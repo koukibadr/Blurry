@@ -1,20 +1,70 @@
 import 'dart:ui';
 
+import 'package:blurry/resources/arrays.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Blurry extends StatelessWidget {
+  
   final String title;
   final String description;
   final String cancelButtonText;
   final String confirmButtonText;
+  late BLURRY_TYPE? type;
+  late Color? themeColor;
 
-  const Blurry(
+  Blurry(
+      {Key? key,
+      required this.title,
+      required this.description,
+      this.cancelButtonText = 'Cancel',
+      required this.themeColor,
+      required this.confirmButtonText})
+      : super(key: key);
+
+  Blurry.info(
       {Key? key,
       required this.title,
       required this.description,
       this.cancelButtonText = 'Cancel',
       required this.confirmButtonText})
-      : super(key: key);
+      : super(key: key) {
+    type = BLURRY_TYPE.info;
+    themeColor = null;
+  }
+
+  Blurry.success(
+      {Key? key,
+      required this.title,
+      required this.description,
+      this.cancelButtonText = 'Cancel',
+      required this.confirmButtonText})
+      : super(key: key) {
+    type = BLURRY_TYPE.success;
+    themeColor = null;
+  }
+
+  Blurry.error(
+      {Key? key,
+      required this.title,
+      required this.description,
+      this.cancelButtonText = 'Cancel',
+      required this.confirmButtonText})
+      : super(key: key) {
+    type = BLURRY_TYPE.error;
+    themeColor = null;
+  }
+
+  Blurry.warning(
+      {Key? key,
+      required this.title,
+      required this.description,
+      this.cancelButtonText = 'Cancel',
+      required this.confirmButtonText})
+      : super(key: key) {
+    type = BLURRY_TYPE.warning;
+    themeColor = null;
+  }
 
   void show(BuildContext context) {
     showDialog(
