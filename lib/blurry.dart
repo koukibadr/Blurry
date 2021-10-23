@@ -70,7 +70,8 @@ class Blurry extends StatelessWidget {
                       child: Text(
                         'Sure, Continue!',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Color(0xff70B8FF)),
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff70B8FF)),
                       ),
                     )),
               ],
