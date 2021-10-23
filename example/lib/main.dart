@@ -33,17 +33,17 @@ class ExampleWidget extends StatelessWidget {
         color: Colors.black,
         width: double.infinity,
         child: Center(
-          child: ElevatedButton(
-            onPressed: (){
-              const Blurry(
-                title: 'Account Creation',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                confirmButtonText: 'Sure! Continue'
-              ).show(context);
-            },
-            child: const Text("Display popup"),
-          )
-        ),
+            child: ElevatedButton(
+          onPressed: () {
+            const Blurry(
+                    title: 'Account Creation',
+                    description:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                    confirmButtonText: 'Sure! Continue')
+                .show(context);
+          },
+          child: const Text("Display popup"),
+        )),
       ),
     );
   }
