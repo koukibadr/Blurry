@@ -30,7 +30,7 @@ class ExampleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.white,
+        color: Colors.black,
         width: double.infinity,
         child: Center(
           child: ElevatedButton(
