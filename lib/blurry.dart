@@ -3,7 +3,18 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class Blurry extends StatelessWidget {
-  const Blurry({Key? key}) : super(key: key);
+  final String title;
+  final String description;
+  final String cancelButtonText;
+  final String confirmButtonText;
+
+  const Blurry(
+      {Key? key,
+      required this.title,
+      required this.description,
+      this.cancelButtonText = 'Cancel',
+      required this.confirmButtonText})
+      : super(key: key);
 
   void show(BuildContext context) {
     showDialog(
@@ -31,13 +42,13 @@ class Blurry extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, top: 10),
             child: Row(
-              children: const [
-                Icon(Icons.info, color: Color(0xff70B8FF)),
-                SizedBox(
+              children: [
+                const Icon(Icons.info, color: Color(0xff70B8FF)),
+                const SizedBox(
                   width: 10,
                 ),
-                Text('This is raised default dialog',
-                    style: TextStyle(
+                Text(title,
+                    style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 18))
@@ -48,8 +59,7 @@ class Blurry extends StatelessWidget {
               child: Padding(
             padding: const EdgeInsets.all(10),
             child: Center(
-              child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
+              child: Text(description),
             ),
           )),
           Padding(
@@ -57,19 +67,19 @@ class Blurry extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Text('Maybe next time',
-                    style: TextStyle(
+                Text(cancelButtonText,
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold, color: Color(0xff70B8FF))),
                 Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color(0xff70B8FF).withOpacity(0.2),
+                      color: const Color(0xff70B8FF).withOpacity(0.2),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Sure, Continue!',
-                        style: TextStyle(
+                        confirmButtonText,
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Color(0xff70B8FF)),
                       ),
