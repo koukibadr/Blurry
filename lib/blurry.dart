@@ -12,6 +12,8 @@ class Blurry extends StatelessWidget {
   final String confirmButtonText;
   late BLURRY_TYPE? type;
   late Color? themeColor;
+  final Function onConfirmButtonPressed;
+  final Function? onCancelButtonPressed;
 
   Blurry(
       {Key? key,
@@ -19,7 +21,9 @@ class Blurry extends StatelessWidget {
       required this.description,
       this.cancelButtonText = 'Cancel',
       required this.themeColor,
-      required this.confirmButtonText})
+      required this.confirmButtonText,
+      required this.onConfirmButtonPressed,
+      this.onCancelButtonPressed})
       : super(key: key);
 
   Blurry.info(
@@ -27,7 +31,9 @@ class Blurry extends StatelessWidget {
       required this.title,
       required this.description,
       this.cancelButtonText = 'Cancel',
-      required this.confirmButtonText})
+      required this.confirmButtonText,
+      required this.onConfirmButtonPressed,
+      this.onCancelButtonPressed})
       : super(key: key) {
     type = BLURRY_TYPE.info;
     themeColor = null;
@@ -38,7 +44,9 @@ class Blurry extends StatelessWidget {
       required this.title,
       required this.description,
       this.cancelButtonText = 'Cancel',
-      required this.confirmButtonText})
+      required this.confirmButtonText,
+      required this.onConfirmButtonPressed,
+      this.onCancelButtonPressed})
       : super(key: key) {
     type = BLURRY_TYPE.success;
     themeColor = null;
@@ -49,7 +57,9 @@ class Blurry extends StatelessWidget {
       required this.title,
       required this.description,
       this.cancelButtonText = 'Cancel',
-      required this.confirmButtonText})
+      required this.confirmButtonText,
+      required this.onConfirmButtonPressed,
+      this.onCancelButtonPressed})
       : super(key: key) {
     type = BLURRY_TYPE.error;
     themeColor = null;
@@ -60,7 +70,9 @@ class Blurry extends StatelessWidget {
       required this.title,
       required this.description,
       this.cancelButtonText = 'Cancel',
-      required this.confirmButtonText})
+      required this.confirmButtonText,
+      required this.onConfirmButtonPressed,
+      this.onCancelButtonPressed})
       : super(key: key) {
     type = BLURRY_TYPE.warning;
     themeColor = null;
@@ -122,22 +134,33 @@ class Blurry extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(cancelButtonText,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: renderinColor)),
-                Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: renderinColor.withOpacity(0.2),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: Text(
-                        confirmButtonText,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: renderinColor),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.pop(context);
+                    onCancelButtonPressed?.call();
+                  },
+                  child: Text(cancelButtonText,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: renderinColor)),
+                ),
+                GestureDetector(
+                  onTap: (){
+                    onConfirmButtonPressed.call();
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: renderinColor.withOpacity(0.2),
                       ),
-                    )),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Text(
+                          confirmButtonText,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: renderinColor),
+                        ),
+                      )),
+                ),
               ],
             ),
           )

@@ -36,11 +36,14 @@ class ExampleWidget extends StatelessWidget {
             child: ElevatedButton(
           onPressed: () {
             Blurry.success(
-                    title: 'Account Creation',
-                    description:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    confirmButtonText: 'Sure! Continue')
-                .show(context);
+                title: 'Account Creation',
+                description:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                confirmButtonText: 'Sure! Continue',
+                onConfirmButtonPressed: () {
+                  print("Button Pressed");
+                  Navigator.pop(context);
+                }).show(context);
           },
           child: const Text("Display popup"),
         )),
