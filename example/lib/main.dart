@@ -35,12 +35,11 @@ class ExampleWidget extends StatelessWidget {
         child: Center(
             child: ElevatedButton(
           onPressed: () {
-            Blurry(
+            Blurry.success(
                     title: 'Account Creation',
                     description:
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    confirmButtonText: 'Sure! Continue',
-                    themeColor: Colors.pink)
+                    confirmButtonText: 'Sure! Continue')
                 .show(context);
           },
           child: const Text("Display popup"),

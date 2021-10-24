@@ -1,11 +1,11 @@
 import 'dart:ui';
 
 import 'package:blurry/resources/arrays.dart';
+import 'package:blurry/resources/colors.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class Blurry extends StatelessWidget {
-  
   final String title;
   final String description;
   final String cancelButtonText;
@@ -80,6 +80,7 @@ class Blurry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color renderinColor = _getRenderingColorTheme();
     return Container(
       height: MediaQuery.of(context).size.height * 0.2,
       width: MediaQuery.of(context).size.width,
@@ -95,7 +96,7 @@ class Blurry extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10, top: 10),
               child: Row(
                 children: [
-                  const Icon(Icons.info, color: Color(0xff70B8FF)),
+                  Icon(Icons.info, color: renderinColor),
                   const SizedBox(
                     width: 10,
                   ),
@@ -122,20 +123,19 @@ class Blurry extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(cancelButtonText,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Color(0xff70B8FF))),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: renderinColor)),
                 Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: const Color(0xff70B8FF).withOpacity(0.2),
+                      color: renderinColor.withOpacity(0.2),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(5),
                       child: Text(
                         confirmButtonText,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xff70B8FF)),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: renderinColor),
                       ),
                     )),
               ],
@@ -144,5 +144,22 @@ class Blurry extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Color _getRenderingColorTheme() {
+    if (themeColor != null) {
+      return themeColor!;
+    } else {
+      switch (type) {
+        case BLURRY_TYPE.info:
+          return BlurryColors.infoColor;
+        case BLURRY_TYPE.success:
+          return BlurryColors.successColor;
+        case BLURRY_TYPE.error:
+          return BlurryColors.errorColor;
+        default:
+          return BlurryColors.warningColor;
+      }
+    }
   }
 }
