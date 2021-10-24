@@ -1,3 +1,5 @@
-## 0.0.1
+## 1.0.0 - 24/10/2021
 
-* TODO: Describe initial release.
+- Display simple blurred dialog
+- Built-in themes
+- Possibility to build custom blurry dialog

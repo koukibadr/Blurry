@@ -16,37 +16,113 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const ExampleWidget(),
+      home: const BlurryDemo(),
     );
   }
 }
 
-class ExampleWidget extends StatelessWidget {
-  const ExampleWidget({
+class BlurryDemo extends StatelessWidget {
+  const BlurryDemo({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Blurry package demo'),
+      ),
       body: Container(
-        color: Colors.black,
+        color: Colors.white,
         width: double.infinity,
-        child: Center(
-            child: ElevatedButton(
-          onPressed: () {
-            Blurry.warning(
-                title: 'Account Creation',
-                description:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                confirmButtonText: 'Sure! Continue',
-                onConfirmButtonPressed: () {
-                  print("Button Pressed");
-                  Navigator.pop(context);
-                }).show(context);
-          },
-          child: const Text("Display popup"),
-        )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Blurry.info(
+                              title: 'Info blurry',
+                              description:
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+                              confirmButtonText: 'Confirm',
+                              onConfirmButtonPressed: () {})
+                          .show(context);
+                    },
+                    child: const Text('Info blurry dialog'))),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Blurry.success(
+                            title: 'Success blurry',
+                            description:
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+                            confirmButtonText: 'Confirm',
+                            onConfirmButtonPressed: () {})
+                        .show(context);
+                  },
+                  child: const Text('Success blurry dialog')),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Blurry.error(
+                            title: 'Error blurry',
+                            description:
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+                            confirmButtonText: 'Confirm',
+                            onConfirmButtonPressed: () {})
+                        .show(context);
+                  },
+                  child: const Text('Error blurry dialog')),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Blurry.warning(
+                            title: 'Warning blurry',
+                            description:
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+                            confirmButtonText: 'Confirm',
+                            onConfirmButtonPressed: () {})
+                        .show(context);
+                  },
+                  child: const Text('Warning blurry dialog')),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Blurry(
+                            icon: Icons.verified_user,
+                            themeColor: Colors.purple,
+                            title: 'Custom blurry',
+                            description:
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+                            confirmButtonText: 'Confirm',
+                            onConfirmButtonPressed: () {})
+                        .show(context);
+                  },
+                  child: const Text('Custom blurry dialog')),
+            )
+          ],
+        ),
       ),
     );
   }

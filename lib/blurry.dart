@@ -132,7 +132,7 @@ class Blurry extends StatelessWidget {
   Widget build(BuildContext context) {
     Color renderingColor = _getRenderingColorTheme();
     return Container(
-      height: MediaQuery.of(context).size.height * 0.2,
+      height: MediaQuery.of(context).size.height * 0.25,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -194,7 +194,12 @@ class Blurry extends StatelessWidget {
                         color: renderingColor.withOpacity(0.2),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.only(
+                          left: 15,
+                          right: 15,
+                          bottom: 5,
+                          top: 5
+                        ),
                         child: Text(
                           confirmButtonText,
                           style: TextStyle(
