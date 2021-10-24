@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:blurry/resources/arrays.dart';
 import 'package:blurry/resources/colors.dart';
+import 'package:blurry/resources/icons.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -14,6 +15,7 @@ class Blurry extends StatelessWidget {
   late Color? themeColor;
   final Function onConfirmButtonPressed;
   final Function? onCancelButtonPressed;
+  late IconData icon;
 
   Blurry(
       {Key? key,
@@ -23,7 +25,8 @@ class Blurry extends StatelessWidget {
       required this.themeColor,
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
-      this.onCancelButtonPressed})
+      this.onCancelButtonPressed,
+      required this.icon})
       : super(key: key);
 
   Blurry.info(
@@ -36,6 +39,7 @@ class Blurry extends StatelessWidget {
       this.onCancelButtonPressed})
       : super(key: key) {
     type = BLURRY_TYPE.info;
+    icon = BlurryIcons.infoIcon;
     themeColor = null;
   }
 
@@ -49,6 +53,7 @@ class Blurry extends StatelessWidget {
       this.onCancelButtonPressed})
       : super(key: key) {
     type = BLURRY_TYPE.success;
+    icon = BlurryIcons.successIcon;
     themeColor = null;
   }
 
@@ -62,6 +67,7 @@ class Blurry extends StatelessWidget {
       this.onCancelButtonPressed})
       : super(key: key) {
     type = BLURRY_TYPE.error;
+    icon = BlurryIcons.errorIcon;
     themeColor = null;
   }
 
@@ -75,6 +81,7 @@ class Blurry extends StatelessWidget {
       this.onCancelButtonPressed})
       : super(key: key) {
     type = BLURRY_TYPE.warning;
+    icon = BlurryIcons.warningIcon;
     themeColor = null;
   }
 
@@ -92,7 +99,7 @@ class Blurry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color renderinColor = _getRenderingColorTheme();
+    Color renderingColor = _getRenderingColorTheme();
     return Container(
       height: MediaQuery.of(context).size.height * 0.2,
       width: MediaQuery.of(context).size.width,
@@ -108,7 +115,7 @@ class Blurry extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10, top: 10),
               child: Row(
                 children: [
-                  Icon(Icons.info, color: renderinColor),
+                  Icon(icon, color: renderingColor, size: 25),
                   const SizedBox(
                     width: 10,
                   ),
@@ -116,7 +123,7 @@ class Blurry extends StatelessWidget {
                       style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
-                          fontSize: 18))
+                          fontSize: 20))
                 ],
               ),
             ),
@@ -126,7 +133,10 @@ class Blurry extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Center(
-                  child: Text(description),
+                  child: Text(
+                    description,
+                    style: const TextStyle(fontSize: 18),
+                  ),
                 ),
               )),
           Expanded(
@@ -141,7 +151,7 @@ class Blurry extends StatelessWidget {
                   },
                   child: Text(cancelButtonText,
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, color: renderinColor)),
+                          fontWeight: FontWeight.bold, color: renderingColor)),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -150,7 +160,7 @@ class Blurry extends StatelessWidget {
                   child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: renderinColor.withOpacity(0.2),
+                        color: renderingColor.withOpacity(0.2),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(5),
@@ -158,7 +168,7 @@ class Blurry extends StatelessWidget {
                           confirmButtonText,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: renderinColor),
+                              color: renderingColor),
                         ),
                       )),
                 ),

@@ -35,7 +35,7 @@ class ExampleWidget extends StatelessWidget {
         child: Center(
             child: ElevatedButton(
           onPressed: () {
-            Blurry.success(
+            Blurry.warning(
                 title: 'Account Creation',
                 description:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
