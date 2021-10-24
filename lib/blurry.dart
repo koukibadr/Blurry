@@ -135,7 +135,7 @@ class Blurry extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.pop(context);
                     onCancelButtonPressed?.call();
                   },
@@ -144,7 +144,7 @@ class Blurry extends StatelessWidget {
                           fontWeight: FontWeight.bold, color: renderinColor)),
                 ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     onConfirmButtonPressed.call();
                   },
                   child: Container(
@@ -157,7 +157,8 @@ class Blurry extends StatelessWidget {
                         child: Text(
                           confirmButtonText,
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, color: renderinColor),
+                              fontWeight: FontWeight.bold,
+                              color: renderinColor),
                         ),
                       )),
                 ),
