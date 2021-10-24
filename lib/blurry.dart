@@ -195,11 +195,7 @@ class Blurry extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.only(
-                          left: 15,
-                          right: 15,
-                          bottom: 5,
-                          top: 5
-                        ),
+                            left: 15, right: 15, bottom: 5, top: 5),
                         child: Text(
                           confirmButtonText,
                           style: TextStyle(
