@@ -23,7 +23,8 @@ class Blurry extends StatelessWidget {
       this.onCancelButtonPressed,
       this.titleTextStyle,
       this.buttonTextStyle,
-      this.descriptionTextStyle})
+      this.descriptionTextStyle,
+      this.popupHeight})
       : super(key: key);
 
   ///info constructor to render info style dialog
@@ -37,7 +38,8 @@ class Blurry extends StatelessWidget {
       this.cancelButtonText = 'Cancel',
       this.titleTextStyle,
       this.buttonTextStyle,
-      this.descriptionTextStyle})
+      this.descriptionTextStyle,
+      this.popupHeight})
       : super(key: key) {
     type = BLURRY_TYPE.info;
     icon = BlurryIcons.infoIcon;
@@ -55,7 +57,8 @@ class Blurry extends StatelessWidget {
       this.cancelButtonText = 'Cancel',
       this.titleTextStyle,
       this.buttonTextStyle,
-      this.descriptionTextStyle})
+      this.descriptionTextStyle,
+      this.popupHeight})
       : super(key: key) {
     type = BLURRY_TYPE.success;
     icon = BlurryIcons.successIcon;
@@ -73,7 +76,8 @@ class Blurry extends StatelessWidget {
       this.cancelButtonText = 'Cancel',
       this.titleTextStyle,
       this.buttonTextStyle,
-      this.descriptionTextStyle})
+      this.descriptionTextStyle,
+      this.popupHeight})
       : super(key: key) {
     type = BLURRY_TYPE.error;
     icon = BlurryIcons.errorIcon;
@@ -91,7 +95,8 @@ class Blurry extends StatelessWidget {
       this.cancelButtonText = 'Cancel',
       this.titleTextStyle,
       this.buttonTextStyle,
-      this.descriptionTextStyle})
+      this.descriptionTextStyle,
+      this.popupHeight})
       : super(key: key) {
     type = BLURRY_TYPE.warning;
     icon = BlurryIcons.warningIcon;
@@ -131,6 +136,8 @@ class Blurry extends StatelessWidget {
   final TextStyle? descriptionTextStyle;
   final TextStyle? buttonTextStyle;
 
+  final double? popupHeight;
+
   late BLURRY_TYPE? type;
 
   ///display the rendered dialog content
@@ -153,7 +160,7 @@ class Blurry extends StatelessWidget {
   Widget build(BuildContext context) {
     Color renderingColor = _getRenderingColorTheme();
     return Container(
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: popupHeight ?? MediaQuery.of(context).size.height * 0.25,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -183,10 +190,12 @@ class Blurry extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Center(
-                  child: Text(
-                    description,
-                    style: descriptionTextStyle ??
-                        DefaultBlurryValues.descriptionDefaultStyle,
+                  child: SingleChildScrollView(
+                    child: Text(
+                      description,
+                      style: descriptionTextStyle ??
+                          DefaultBlurryValues.descriptionDefaultStyle,
+                    ),
                   ),
                 ),
               )),
@@ -227,7 +236,7 @@ class Blurry extends StatelessWidget {
   }
 
   Text _renderButtonText(String text, Color textColor) {
-    return Text(cancelButtonText,
+    return Text(text,
         style: buttonTextStyle == null
             ? TextStyle(fontWeight: FontWeight.bold, color: textColor)
             : buttonTextStyle!.clone(textColor, FontWeight.bold));

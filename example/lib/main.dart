@@ -48,6 +48,17 @@ class BlurryDemo extends StatelessWidget {
                               description:
                                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
                               confirmButtonText: 'Confirm',
+                              titleTextStyle: const TextStyle(
+                                fontFamily: 'Zen'
+                              ),
+                              popupHeight: 300,
+                              buttonTextStyle: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontFamily: 'Zen'
+                              ),
+                              descriptionTextStyle: TextStyle(
+                                fontFamily: 'Zen'
+                              ),
                               onConfirmButtonPressed: () {})
                           .show(context);
                     },
