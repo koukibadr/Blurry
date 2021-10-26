@@ -5,6 +5,7 @@ import 'package:blurry/resources/colors.dart';
 import 'package:blurry/resources/icons.dart';
 import 'package:blurry/resources/values.dart';
 import 'package:flutter/material.dart';
+import 'package:blurry/extension.dart';
 
 // ignore: must_be_immutable
 class Blurry extends StatelessWidget {
@@ -170,7 +171,9 @@ class Blurry extends StatelessWidget {
                   const SizedBox(
                     width: 10,
                   ),
-                  Text(title, style: DefaultBlurryValues.titleDefaultStyle)
+                  Text(title,
+                      style: titleTextStyle ??
+                          DefaultBlurryValues.titleDefaultStyle)
                 ],
               ),
             ),
@@ -182,7 +185,8 @@ class Blurry extends StatelessWidget {
                 child: Center(
                   child: Text(
                     description,
-                    style: DefaultBlurryValues.descriptionDefaultStyle,
+                    style: descriptionTextStyle ??
+                        DefaultBlurryValues.descriptionDefaultStyle,
                   ),
                 ),
               )),
@@ -196,9 +200,7 @@ class Blurry extends StatelessWidget {
                     Navigator.pop(context);
                     onCancelButtonPressed?.call();
                   },
-                  child: Text(cancelButtonText,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: renderingColor)),
+                  child: _renderButtonText(cancelButtonText, renderingColor),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -212,12 +214,8 @@ class Blurry extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             left: 15, right: 15, bottom: 5, top: 5),
-                        child: Text(
-                          confirmButtonText,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: renderingColor),
-                        ),
+                        child: _renderButtonText(
+                            confirmButtonText, renderingColor),
                       )),
                 ),
               ],
@@ -226,6 +224,13 @@ class Blurry extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Text _renderButtonText(String text, Color textColor) {
+    return Text(cancelButtonText,
+        style: buttonTextStyle == null
+            ? TextStyle(fontWeight: FontWeight.bold, color: textColor)
+            : buttonTextStyle!.clone(textColor, FontWeight.bold));
   }
 
   Color _getRenderingColorTheme() {
