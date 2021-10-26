@@ -3,34 +3,41 @@ import 'dart:ui';
 import 'package:blurry/resources/arrays.dart';
 import 'package:blurry/resources/colors.dart';
 import 'package:blurry/resources/icons.dart';
+import 'package:blurry/resources/values.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class Blurry extends StatelessWidget {
   ///default constructor
   ///to generate customized blurry dialog
-  Blurry({
-    Key? key,
-    required this.title,
-    required this.description,
-    required this.themeColor,
-    required this.confirmButtonText,
-    required this.onConfirmButtonPressed,
-    required this.icon,
-    this.cancelButtonText = 'Cancel',
-    this.onCancelButtonPressed,
-  }) : super(key: key);
+  Blurry(
+      {Key? key,
+      required this.title,
+      required this.description,
+      required this.themeColor,
+      required this.confirmButtonText,
+      required this.onConfirmButtonPressed,
+      required this.icon,
+      this.cancelButtonText = 'Cancel',
+      this.onCancelButtonPressed,
+      this.titleTextStyle,
+      this.buttonTextStyle,
+      this.descriptionTextStyle})
+      : super(key: key);
 
   ///info constructor to render info style dialog
-  Blurry.info({
-    Key? key,
-    required this.title,
-    required this.description,
-    required this.confirmButtonText,
-    required this.onConfirmButtonPressed,
-    this.onCancelButtonPressed,
-    this.cancelButtonText = 'Cancel',
-  }) : super(key: key) {
+  Blurry.info(
+      {Key? key,
+      required this.title,
+      required this.description,
+      required this.confirmButtonText,
+      required this.onConfirmButtonPressed,
+      this.onCancelButtonPressed,
+      this.cancelButtonText = 'Cancel',
+      this.titleTextStyle,
+      this.buttonTextStyle,
+      this.descriptionTextStyle})
+      : super(key: key) {
     type = BLURRY_TYPE.info;
     icon = BlurryIcons.infoIcon;
     themeColor = null;
@@ -44,7 +51,10 @@ class Blurry extends StatelessWidget {
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
       this.onCancelButtonPressed,
-      this.cancelButtonText = 'Cancel'})
+      this.cancelButtonText = 'Cancel',
+      this.titleTextStyle,
+      this.buttonTextStyle,
+      this.descriptionTextStyle})
       : super(key: key) {
     type = BLURRY_TYPE.success;
     icon = BlurryIcons.successIcon;
@@ -52,15 +62,18 @@ class Blurry extends StatelessWidget {
   }
 
   ///render error style dialog
-  Blurry.error({
-    Key? key,
-    required this.title,
-    required this.description,
-    required this.confirmButtonText,
-    required this.onConfirmButtonPressed,
-    this.onCancelButtonPressed,
-    this.cancelButtonText = 'Cancel',
-  }) : super(key: key) {
+  Blurry.error(
+      {Key? key,
+      required this.title,
+      required this.description,
+      required this.confirmButtonText,
+      required this.onConfirmButtonPressed,
+      this.onCancelButtonPressed,
+      this.cancelButtonText = 'Cancel',
+      this.titleTextStyle,
+      this.buttonTextStyle,
+      this.descriptionTextStyle})
+      : super(key: key) {
     type = BLURRY_TYPE.error;
     icon = BlurryIcons.errorIcon;
     themeColor = null;
@@ -74,7 +87,10 @@ class Blurry extends StatelessWidget {
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
       this.onCancelButtonPressed,
-      this.cancelButtonText = 'Cancel'})
+      this.cancelButtonText = 'Cancel',
+      this.titleTextStyle,
+      this.buttonTextStyle,
+      this.descriptionTextStyle})
       : super(key: key) {
     type = BLURRY_TYPE.warning;
     icon = BlurryIcons.warningIcon;
@@ -109,6 +125,10 @@ class Blurry extends StatelessWidget {
   ///the icon that will be rendered in the dialog
   ///required only when using the default constructor
   late IconData icon;
+
+  final TextStyle? titleTextStyle;
+  final TextStyle? descriptionTextStyle;
+  final TextStyle? buttonTextStyle;
 
   late BLURRY_TYPE? type;
 
@@ -150,11 +170,7 @@ class Blurry extends StatelessWidget {
                   const SizedBox(
                     width: 10,
                   ),
-                  Text(title,
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20))
+                  Text(title, style: DefaultBlurryValues.titleDefaultStyle)
                 ],
               ),
             ),
@@ -166,7 +182,7 @@ class Blurry extends StatelessWidget {
                 child: Center(
                   child: Text(
                     description,
-                    style: const TextStyle(fontSize: 18),
+                    style: DefaultBlurryValues.descriptionDefaultStyle,
                   ),
                 ),
               )),
