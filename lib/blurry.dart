@@ -5,7 +5,6 @@ import 'package:blurry/resources/colors.dart';
 import 'package:blurry/resources/icons.dart';
 import 'package:blurry/resources/values.dart';
 import 'package:flutter/material.dart';
-import 'package:blurry/extension.dart';
 
 // ignore: must_be_immutable
 class Blurry extends StatelessWidget {
@@ -239,7 +238,8 @@ class Blurry extends StatelessWidget {
     return Text(text,
         style: buttonTextStyle == null
             ? TextStyle(fontWeight: FontWeight.bold, color: textColor)
-            : buttonTextStyle!.clone(textColor, FontWeight.bold));
+            : buttonTextStyle!
+                .copyWith(color: textColor, fontWeight: FontWeight.bold));
   }
 
   Color _getRenderingColorTheme() {
