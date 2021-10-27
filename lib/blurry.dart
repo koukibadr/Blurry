@@ -131,8 +131,14 @@ class Blurry extends StatelessWidget {
   ///required only when using the default constructor
   late IconData icon;
 
+
+  ///title text style, by default it's null
   final TextStyle? titleTextStyle;
+
+  ///description text style, by default it's null
   final TextStyle? descriptionTextStyle;
+
+  ///button text style, by default it's null
   final TextStyle? buttonTextStyle;
 
   final double? popupHeight;
