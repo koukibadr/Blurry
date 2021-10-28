@@ -23,7 +23,8 @@ class Blurry extends StatelessWidget {
       this.titleTextStyle,
       this.buttonTextStyle,
       this.descriptionTextStyle,
-      this.popupHeight})
+      this.popupHeight,
+      this.displayCancelButton = true})
       : super(key: key);
 
   ///info constructor to render info style dialog
@@ -38,7 +39,8 @@ class Blurry extends StatelessWidget {
       this.titleTextStyle,
       this.buttonTextStyle,
       this.descriptionTextStyle,
-      this.popupHeight})
+      this.popupHeight,
+      this.displayCancelButton = true})
       : super(key: key) {
     type = BLURRY_TYPE.info;
     icon = BlurryIcons.infoIcon;
@@ -57,7 +59,8 @@ class Blurry extends StatelessWidget {
       this.titleTextStyle,
       this.buttonTextStyle,
       this.descriptionTextStyle,
-      this.popupHeight})
+      this.popupHeight,
+      this.displayCancelButton = true})
       : super(key: key) {
     type = BLURRY_TYPE.success;
     icon = BlurryIcons.successIcon;
@@ -76,7 +79,8 @@ class Blurry extends StatelessWidget {
       this.titleTextStyle,
       this.buttonTextStyle,
       this.descriptionTextStyle,
-      this.popupHeight})
+      this.popupHeight,
+      this.displayCancelButton = true})
       : super(key: key) {
     type = BLURRY_TYPE.error;
     icon = BlurryIcons.errorIcon;
@@ -95,7 +99,8 @@ class Blurry extends StatelessWidget {
       this.titleTextStyle,
       this.buttonTextStyle,
       this.descriptionTextStyle,
-      this.popupHeight})
+      this.popupHeight,
+      this.displayCancelButton = true})
       : super(key: key) {
     type = BLURRY_TYPE.warning;
     icon = BlurryIcons.warningIcon;
@@ -131,7 +136,6 @@ class Blurry extends StatelessWidget {
   ///required only when using the default constructor
   late IconData icon;
 
-
   ///title text style, by default it's null
   final TextStyle? titleTextStyle;
 
@@ -141,7 +145,10 @@ class Blurry extends StatelessWidget {
   ///button text style, by default it's null
   final TextStyle? buttonTextStyle;
 
+  ///the blurry dialog popup height
   final double? popupHeight;
+
+  final bool displayCancelButton;
 
   late BLURRY_TYPE? type;
 
@@ -209,13 +216,14 @@ class Blurry extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                    onCancelButtonPressed?.call();
-                  },
-                  child: _renderButtonText(cancelButtonText, renderingColor),
-                ),
+                if (displayCancelButton)
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                      onCancelButtonPressed?.call();
+                    },
+                    child: _renderButtonText(cancelButtonText, renderingColor),
+                  ),
                 GestureDetector(
                   onTap: () {
                     onConfirmButtonPressed.call();

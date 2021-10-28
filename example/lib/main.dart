@@ -56,7 +56,8 @@ class BlurryDemo extends StatelessWidget {
                                   fontFamily: 'Zen'),
                               descriptionTextStyle:
                                   TextStyle(fontFamily: 'Zen'),
-                              onConfirmButtonPressed: () {})
+                              onConfirmButtonPressed: () {},
+                              displayCancelButton: false)
                           .show(context);
                     },
                     child: const Text('Info blurry dialog'))),
