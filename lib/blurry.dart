@@ -24,7 +24,9 @@ class Blurry extends StatelessWidget {
       this.buttonTextStyle,
       this.descriptionTextStyle,
       this.popupHeight,
-      this.displayCancelButton = true})
+      this.displayCancelButton = true,
+      this.dismissable = true,
+      this.barrierColor})
       : super(key: key);
 
   ///info constructor to render info style dialog
@@ -40,7 +42,9 @@ class Blurry extends StatelessWidget {
       this.buttonTextStyle,
       this.descriptionTextStyle,
       this.popupHeight,
-      this.displayCancelButton = true})
+      this.displayCancelButton = true,
+      this.dismissable = true,
+      this.barrierColor})
       : super(key: key) {
     type = BLURRY_TYPE.info;
     icon = BlurryIcons.infoIcon;
@@ -60,7 +64,9 @@ class Blurry extends StatelessWidget {
       this.buttonTextStyle,
       this.descriptionTextStyle,
       this.popupHeight,
-      this.displayCancelButton = true})
+      this.displayCancelButton = true,
+      this.dismissable = true,
+      this.barrierColor})
       : super(key: key) {
     type = BLURRY_TYPE.success;
     icon = BlurryIcons.successIcon;
@@ -80,7 +86,9 @@ class Blurry extends StatelessWidget {
       this.buttonTextStyle,
       this.descriptionTextStyle,
       this.popupHeight,
-      this.displayCancelButton = true})
+      this.displayCancelButton = true,
+      this.dismissable = true,
+      this.barrierColor})
       : super(key: key) {
     type = BLURRY_TYPE.error;
     icon = BlurryIcons.errorIcon;
@@ -100,7 +108,9 @@ class Blurry extends StatelessWidget {
       this.buttonTextStyle,
       this.descriptionTextStyle,
       this.popupHeight,
-      this.displayCancelButton = true})
+      this.displayCancelButton = true,
+      this.dismissable = true,
+      this.barrierColor})
       : super(key: key) {
     type = BLURRY_TYPE.warning;
     icon = BlurryIcons.warningIcon;
@@ -148,7 +158,17 @@ class Blurry extends StatelessWidget {
   ///the blurry dialog popup height
   final double? popupHeight;
 
+  ///indicate whether the cancel button will be rendered or not
+  ///by default the cancel button is displayed
   final bool displayCancelButton;
+
+  ///indicates whether the popup dialog is dismissable or not
+  ///by default [dismissable = true]
+  final bool dismissable;
+
+  ///the color of the barrier of the burry dialog
+  ///if it's null the barrier color will be the default color [Colors.black54]
+  final Color? barrierColor;
 
   late BLURRY_TYPE? type;
 
@@ -159,6 +179,8 @@ class Blurry extends StatelessWidget {
   void show(BuildContext context) {
     showDialog(
         context: context,
+        barrierDismissible: dismissable,
+        barrierColor: barrierColor ?? BlurryColors.defaultBarrierColor,
         builder: (context) {
           return AlertDialog(
             content: this,
