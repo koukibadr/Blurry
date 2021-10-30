@@ -1,6 +1,6 @@
 name: blurry
 description: A new flutter dialog display with blurry effect and built-in themes.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/koukibadr/Blurry
 
 environment:
