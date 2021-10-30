@@ -51,14 +51,11 @@ class BlurryDemo extends StatelessWidget {
                               titleTextStyle:
                                   const TextStyle(fontFamily: 'Zen'),
                               popupHeight: 300,
-                              buttonTextStyle: TextStyle(
+                              buttonTextStyle: const TextStyle(
                                   decoration: TextDecoration.underline,
                                   fontFamily: 'Zen'),
-                              descriptionTextStyle:
-                                  TextStyle(fontFamily: 'Zen'),
-                              onConfirmButtonPressed: () {},
-                              displayCancelButton: false,
-                              barrierColor: Colors.red.withOpacity(0.2))
+                              descriptionTextStyle: const TextStyle(fontFamily: 'Zen'),
+                              onConfirmButtonPressed: () {})
                           .show(context);
                     },
                     child: const Text('Info blurry dialog'))),
@@ -74,7 +71,9 @@ class BlurryDemo extends StatelessWidget {
                             description:
                                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
                             confirmButtonText: 'Confirm',
-                            onConfirmButtonPressed: () {})
+                            onConfirmButtonPressed: () {},
+                            barrierColor: Colors.white.withOpacity(0.7),
+                            dismissable: false,)
                         .show(context);
                   },
                   child: const Text('Success blurry dialog')),
