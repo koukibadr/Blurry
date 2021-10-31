@@ -1,4 +1,5 @@
 import 'package:blurry/blurry.dart';
+import 'package:blurry/resources/arrays.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -44,17 +45,20 @@ class BlurryDemo extends StatelessWidget {
                 child: ElevatedButton(
                     onPressed: () {
                       Blurry.info(
-                              title: 'Info blurry',
+                              layoutType: LAYOUT_TYPE.rtl,
+                              title: 'المعلومات ضبابية',
                               description:
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
-                              confirmButtonText: 'Confirm',
+                                  'اربك تكست هو اول موقع يسمح لزواره الكرام بتحويل الكتابة العربي الى كتابة مفهومة',
+                              confirmButtonText: 'يتأكد',
+                              cancelButtonText: 'يلغي',
                               titleTextStyle:
                                   const TextStyle(fontFamily: 'Zen'),
                               popupHeight: 300,
                               buttonTextStyle: const TextStyle(
                                   decoration: TextDecoration.underline,
                                   fontFamily: 'Zen'),
-                              descriptionTextStyle: const TextStyle(fontFamily: 'Zen'),
+                              descriptionTextStyle:
+                                  const TextStyle(fontFamily: 'Zen'),
                               onConfirmButtonPressed: () {})
                           .show(context);
                     },
@@ -67,14 +71,14 @@ class BlurryDemo extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () {
                     Blurry.success(
-                            title: 'Success blurry',
-                            description:
-                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
-                            confirmButtonText: 'Confirm',
-                            onConfirmButtonPressed: () {},
-                            barrierColor: Colors.white.withOpacity(0.7),
-                            dismissable: false,)
-                        .show(context);
+                      title: 'Success blurry',
+                      description:
+                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+                      confirmButtonText: 'Confirm',
+                      onConfirmButtonPressed: () {},
+                      barrierColor: Colors.white.withOpacity(0.7),
+                      dismissable: false,
+                    ).show(context);
                   },
                   child: const Text('Success blurry dialog')),
             ),

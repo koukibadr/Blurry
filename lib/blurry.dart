@@ -26,7 +26,8 @@ class Blurry extends StatelessWidget {
       this.popupHeight,
       this.displayCancelButton = true,
       this.dismissable = true,
-      this.barrierColor})
+      this.barrierColor,
+      this.layoutType = LAYOUT_TYPE.ltr})
       : super(key: key);
 
   ///info constructor to render info style dialog
@@ -44,7 +45,8 @@ class Blurry extends StatelessWidget {
       this.popupHeight,
       this.displayCancelButton = true,
       this.dismissable = true,
-      this.barrierColor})
+      this.barrierColor,
+      this.layoutType = LAYOUT_TYPE.ltr})
       : super(key: key) {
     type = BLURRY_TYPE.info;
     icon = BlurryIcons.infoIcon;
@@ -66,7 +68,8 @@ class Blurry extends StatelessWidget {
       this.popupHeight,
       this.displayCancelButton = true,
       this.dismissable = true,
-      this.barrierColor})
+      this.barrierColor,
+      this.layoutType = LAYOUT_TYPE.ltr})
       : super(key: key) {
     type = BLURRY_TYPE.success;
     icon = BlurryIcons.successIcon;
@@ -88,7 +91,8 @@ class Blurry extends StatelessWidget {
       this.popupHeight,
       this.displayCancelButton = true,
       this.dismissable = true,
-      this.barrierColor})
+      this.barrierColor,
+      this.layoutType = LAYOUT_TYPE.ltr})
       : super(key: key) {
     type = BLURRY_TYPE.error;
     icon = BlurryIcons.errorIcon;
@@ -110,7 +114,8 @@ class Blurry extends StatelessWidget {
       this.popupHeight,
       this.displayCancelButton = true,
       this.dismissable = true,
-      this.barrierColor})
+      this.barrierColor,
+      this.layoutType = LAYOUT_TYPE.ltr})
       : super(key: key) {
     type = BLURRY_TYPE.warning;
     icon = BlurryIcons.warningIcon;
@@ -170,6 +175,8 @@ class Blurry extends StatelessWidget {
   ///if it's null the barrier color will be the default color [Colors.black54]
   final Color? barrierColor;
 
+  final LAYOUT_TYPE layoutType;
+
   late BLURRY_TYPE? type;
 
   ///display the rendered dialog content
@@ -193,6 +200,7 @@ class Blurry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color renderingColor = _getRenderingColorTheme();
+    if (layoutType == LAYOUT_TYPE.center) {}
     return Container(
       height: popupHeight ?? MediaQuery.of(context).size.height * 0.25,
       width: MediaQuery.of(context).size.width,
@@ -204,20 +212,7 @@ class Blurry extends StatelessWidget {
         children: [
           Expanded(
             flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10, top: 10),
-              child: Row(
-                children: [
-                  Icon(icon, color: renderingColor, size: 25),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(title,
-                      style: titleTextStyle ??
-                          DefaultBlurryValues.titleDefaultStyle)
-                ],
-              ),
-            ),
+            child: _renderPopupTitle(renderingColor),
           ),
           Expanded(
               flex: 2,
@@ -227,6 +222,11 @@ class Blurry extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Text(
                       description,
+                      textAlign: layoutType == LAYOUT_TYPE.center
+                          ? TextAlign.center
+                          : layoutType == LAYOUT_TYPE.rtl
+                              ? TextAlign.end
+                              : TextAlign.start,
                       style: descriptionTextStyle ??
                           DefaultBlurryValues.descriptionDefaultStyle,
                     ),
@@ -235,47 +235,137 @@ class Blurry extends StatelessWidget {
               )),
           Expanded(
             flex: 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                if (displayCancelButton)
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                      onCancelButtonPressed?.call();
-                    },
-                    child: _renderButtonText(cancelButtonText, renderingColor),
-                  ),
-                GestureDetector(
-                  onTap: () {
-                    onConfirmButtonPressed.call();
-                  },
-                  child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: renderingColor.withOpacity(0.2),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15, right: 15, bottom: 5, top: 5),
-                        child: _renderButtonText(
-                            confirmButtonText, renderingColor),
-                      )),
-                ),
-              ],
-            ),
+            child: _renderButtonsLayout(context, renderingColor),
           )
         ],
       ),
     );
   }
 
+  Row _renderButtonsLayout(BuildContext context, Color renderingColor) {
+    if (layoutType == LAYOUT_TYPE.rtl) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          GestureDetector(
+            onTap: () {
+              onConfirmButtonPressed.call();
+            },
+            child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: renderingColor.withOpacity(0.2),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 15, right: 15, bottom: 5, top: 5),
+                  child: _renderButtonText(confirmButtonText, renderingColor),
+                )),
+          ),
+          if (displayCancelButton)
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+                onCancelButtonPressed?.call();
+              },
+              child: _renderButtonText(cancelButtonText, renderingColor),
+            ),
+        ],
+      );
+    }
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        if (displayCancelButton)
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+              onCancelButtonPressed?.call();
+            },
+            child: _renderButtonText(cancelButtonText, renderingColor),
+          ),
+        GestureDetector(
+          onTap: () {
+            onConfirmButtonPressed.call();
+          },
+          child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: renderingColor.withOpacity(0.2),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 15, right: 15, bottom: 5, top: 5),
+                child: _renderButtonText(confirmButtonText, renderingColor),
+              )),
+        ),
+      ],
+    );
+  }
+
+  Padding _renderPopupTitle(Color renderingColor) {
+    if (layoutType == LAYOUT_TYPE.center) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: renderingColor, size: 25),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(title,
+                style: titleTextStyle ?? DefaultBlurryValues.titleDefaultStyle)
+          ],
+        ),
+      );
+    } else if (layoutType == LAYOUT_TYPE.rtl) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 10, right: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              title,
+              style: titleTextStyle ?? DefaultBlurryValues.titleDefaultStyle,
+              textAlign: TextAlign.end,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Icon(icon, color: renderingColor, size: 25)
+          ],
+        ),
+      );
+    }
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, top: 10),
+      child: Row(
+        children: [
+          Icon(icon, color: renderingColor, size: 25),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(title,
+              style: titleTextStyle ?? DefaultBlurryValues.titleDefaultStyle)
+        ],
+      ),
+    );
+  }
+
   Text _renderButtonText(String text, Color textColor) {
-    return Text(text,
-        style: buttonTextStyle == null
-            ? TextStyle(fontWeight: FontWeight.bold, color: textColor)
-            : buttonTextStyle!
-                .copyWith(color: textColor, fontWeight: FontWeight.bold));
+    return Text(
+      text,
+      style: buttonTextStyle == null
+          ? TextStyle(fontWeight: FontWeight.bold, color: textColor)
+          : buttonTextStyle!
+              .copyWith(color: textColor, fontWeight: FontWeight.bold),
+      textAlign: layoutType == LAYOUT_TYPE.center
+          ? TextAlign.center
+          : layoutType == LAYOUT_TYPE.rtl
+              ? TextAlign.end
+              : TextAlign.start
+    );
   }
 
   Color _getRenderingColorTheme() {
