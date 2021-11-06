@@ -175,6 +175,7 @@ class Blurry extends StatelessWidget {
   ///if it's null the barrier color will be the default color [Colors.black54]
   final Color? barrierColor;
 
+  //#TODO add documentation
   final LAYOUT_TYPE layoutType;
 
   late BLURRY_TYPE? type;
@@ -233,6 +234,25 @@ class Blurry extends StatelessWidget {
                   ),
                 ),
               )),
+          Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+            child: TextFormField(
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: const BorderSide(
+                    color: Colors.blue,
+                  ),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: const BorderSide(
+                    color: Colors.blue,
+                  ),
+                ),
+              ),
+            ),
+          ),
           Expanded(
             flex: 1,
             child: _renderButtonsLayout(context, renderingColor),
@@ -354,18 +374,16 @@ class Blurry extends StatelessWidget {
   }
 
   Text _renderButtonText(String text, Color textColor) {
-    return Text(
-      text,
-      style: buttonTextStyle == null
-          ? TextStyle(fontWeight: FontWeight.bold, color: textColor)
-          : buttonTextStyle!
-              .copyWith(color: textColor, fontWeight: FontWeight.bold),
-      textAlign: layoutType == LAYOUT_TYPE.center
-          ? TextAlign.center
-          : layoutType == LAYOUT_TYPE.rtl
-              ? TextAlign.end
-              : TextAlign.start
-    );
+    return Text(text,
+        style: buttonTextStyle == null
+            ? TextStyle(fontWeight: FontWeight.bold, color: textColor)
+            : buttonTextStyle!
+                .copyWith(color: textColor, fontWeight: FontWeight.bold),
+        textAlign: layoutType == LAYOUT_TYPE.center
+            ? TextAlign.center
+            : layoutType == LAYOUT_TYPE.rtl
+                ? TextAlign.end
+                : TextAlign.start);
   }
 
   Color _getRenderingColorTheme() {
