@@ -225,8 +225,6 @@ class Blurry extends StatelessWidget {
   //TODO add documentation
   final TextStyle inputLabelStyle;
 
-  final LAYOUT_TYPE layoutType;
-
   late BLURRY_TYPE? type;
 
   ///display the rendered dialog content
