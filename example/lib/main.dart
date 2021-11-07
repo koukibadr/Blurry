@@ -124,7 +124,6 @@ class BlurryDemo extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () {
                     Blurry(
-                            dialogType: TYPE.info,
                             icon: Icons.verified_user,
                             themeColor: Colors.purple,
                             title: 'Custom blurry',
@@ -135,6 +134,27 @@ class BlurryDemo extends StatelessWidget {
                         .show(context);
                   },
                   child: const Text('Custom blurry dialog')),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Blurry.input(
+                            title: 'Input me',
+                            description:
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+                            confirmButtonText: 'Confirm',
+                            onConfirmButtonPressed: () {},
+                            inputLabel: 'Email',
+                            type: BLURRY_TYPE.info,
+                            popupHeight: 300,
+                            inputTextController: TextEditingController())
+                        .show(context);
+                  },
+                  child: const Text('Input blurry dialog')),
             ),
           ],
         ),

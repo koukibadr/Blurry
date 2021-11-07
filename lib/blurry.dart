@@ -2,13 +2,12 @@ import 'dart:ui';
 
 import 'package:blurry/resources/arrays.dart';
 import 'package:blurry/resources/colors.dart';
-import 'package:blurry/resources/icons.dart';
 import 'package:blurry/resources/values.dart';
 import 'package:blurry/widgets/blurry_text_field.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class Blurry extends StatelessWidget {
+class Blurry extends StatefulWidget {
   ///default constructor
   ///to generate customized blurry dialog
   Blurry(
@@ -19,7 +18,6 @@ class Blurry extends StatelessWidget {
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
       required this.icon,
-      required this.dialogType,
       this.cancelButtonText = 'Cancel',
       this.onCancelButtonPressed,
       this.titleTextStyle,
@@ -35,7 +33,7 @@ class Blurry extends StatelessWidget {
       this.inputLabelStyle = const TextStyle(color: Colors.black),
       this.inputTextStyle = const TextStyle(color: Colors.black)})
       : super(key: key) {
-    _assertValues();
+    _dialogType = TYPE.info;
   }
 
   ///info constructor to render info style dialog
@@ -45,7 +43,6 @@ class Blurry extends StatelessWidget {
       required this.description,
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
-      this.dialogType = TYPE.info,
       this.onCancelButtonPressed,
       this.cancelButtonText = 'Cancel',
       this.titleTextStyle,
@@ -62,9 +59,9 @@ class Blurry extends StatelessWidget {
       this.inputTextStyle = const TextStyle(color: Colors.black)})
       : super(key: key) {
     type = BLURRY_TYPE.info;
-    icon = BlurryIcons.infoIcon;
+    icon = themesIcons[type];
     themeColor = null;
-    _assertValues();
+    _dialogType = TYPE.info;
   }
 
   ///render success style dialog
@@ -74,7 +71,6 @@ class Blurry extends StatelessWidget {
       required this.description,
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
-      this.dialogType = TYPE.info,
       this.onCancelButtonPressed,
       this.cancelButtonText = 'Cancel',
       this.titleTextStyle,
@@ -91,9 +87,9 @@ class Blurry extends StatelessWidget {
       this.inputTextStyle = const TextStyle(color: Colors.black)})
       : super(key: key) {
     type = BLURRY_TYPE.success;
-    icon = BlurryIcons.successIcon;
+    icon = themesIcons[type];
     themeColor = null;
-    _assertValues();
+    _dialogType = TYPE.info;
   }
 
   ///render error style dialog
@@ -103,7 +99,6 @@ class Blurry extends StatelessWidget {
       required this.description,
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
-      this.dialogType = TYPE.info,
       this.onCancelButtonPressed,
       this.cancelButtonText = 'Cancel',
       this.titleTextStyle,
@@ -120,9 +115,9 @@ class Blurry extends StatelessWidget {
       this.inputTextStyle = const TextStyle(color: Colors.black)})
       : super(key: key) {
     type = BLURRY_TYPE.error;
-    icon = BlurryIcons.errorIcon;
+    icon = themesIcons[type];
     themeColor = null;
-    _assertValues();
+    _dialogType = TYPE.info;
   }
 
   ///render warning style dialog
@@ -132,7 +127,6 @@ class Blurry extends StatelessWidget {
       required this.description,
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
-      this.dialogType = TYPE.info,
       this.onCancelButtonPressed,
       this.cancelButtonText = 'Cancel',
       this.titleTextStyle,
@@ -149,9 +143,44 @@ class Blurry extends StatelessWidget {
       this.inputTextStyle = const TextStyle(color: Colors.black)})
       : super(key: key) {
     type = BLURRY_TYPE.warning;
-    icon = BlurryIcons.warningIcon;
+    icon = themesIcons[type];
     themeColor = null;
-    _assertValues();
+    _dialogType = TYPE.info;
+  }
+
+  Blurry.input(
+      {Key? key,
+      required this.title,
+      required this.description,
+      required this.confirmButtonText,
+      required this.onConfirmButtonPressed,
+      required this.inputLabel,
+      required this.inputTextController,
+      this.themeColor,
+      this.type,
+      this.icon,
+      this.inputLabelStyle = const TextStyle(color: Colors.black),
+      this.inputTextStyle = const TextStyle(color: Colors.black),
+      this.onCancelButtonPressed,
+      this.cancelButtonText = 'Cancel',
+      this.titleTextStyle,
+      this.buttonTextStyle,
+      this.descriptionTextStyle,
+      this.popupHeight,
+      this.displayCancelButton = true,
+      this.dismissable = true,
+      this.barrierColor,
+      this.layoutType = LAYOUT_TYPE.ltr})
+      : super(key: key) {
+    _dialogType = TYPE.input;
+    assert(inputLabel != null && inputTextController != null);
+    assert(type != null || themeColor != null);
+    if (type != null && themeColor != null) {
+      throw Exception('only dialogType or themeColor should be provided');
+    }
+    if (type == null) {
+      assert(icon != null);
+    }
   }
 
   ///the dialog popup title, required in all blurry class constructors
@@ -181,7 +210,7 @@ class Blurry extends StatelessWidget {
 
   ///the icon that will be rendered in the dialog
   ///required only when using the default constructor
-  late IconData icon;
+  late IconData? icon;
 
   ///title text style, by default it's null
   final TextStyle? titleTextStyle;
@@ -211,21 +240,21 @@ class Blurry extends StatelessWidget {
   final LAYOUT_TYPE layoutType;
 
   //TODO add documentation
-  final TYPE dialogType;
+  late String? inputLabel;
 
   //TODO add documentation
-  final String? inputLabel;
+  late TextEditingController? inputTextController;
 
   //TODO add documentation
-  final TextEditingController? inputTextController;
+  late TextStyle inputTextStyle;
 
   //TODO add documentation
-  final TextStyle inputTextStyle;
+  late TextStyle inputLabelStyle;
 
-  //TODO add documentation
-  final TextStyle inputLabelStyle;
-
+  //? private values
   late BLURRY_TYPE? type;
+
+  late TYPE? _dialogType;
 
   ///display the rendered dialog content
   ///in alert dialog
@@ -245,72 +274,92 @@ class Blurry extends StatelessWidget {
         });
   }
 
-  _assertValues() {
-    if (dialogType == TYPE.input) {
-      assert(inputLabel != null && inputTextController != null);
-    }
-  }
+  @override
+  State<Blurry> createState() => _BlurryState();
+}
 
+class _BlurryState extends State<Blurry> {
   @override
   Widget build(BuildContext context) {
     Color renderingColor = _getRenderingColorTheme();
-    if (layoutType == LAYOUT_TYPE.center) {}
     return Container(
-      height: popupHeight ?? MediaQuery.of(context).size.height * 0.25,
+      height: widget.popupHeight ??  MediaQuery.of(context).size.height * 0.3,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white.withOpacity(0.85)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 1,
-            child: _renderPopupTitle(renderingColor),
-          ),
-          Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Center(
-                  child: SingleChildScrollView(
-                    child: Text(
-                      description,
-                      textAlign: layoutType == LAYOUT_TYPE.center
-                          ? TextAlign.center
-                          : layoutType == LAYOUT_TYPE.rtl
-                              ? TextAlign.end
-                              : TextAlign.start,
-                      style: descriptionTextStyle ??
-                          DefaultBlurryValues.descriptionDefaultStyle,
-                    ),
-                  ),
-                ),
-              )),
-          if (dialogType == TYPE.input)
-            BlurryTextField(
-              label: inputLabel!,
-              textController: inputTextController!,
-              textStyle: inputTextStyle,
-              labelStyle: inputLabelStyle,
-            ),
-          Expanded(
-            flex: 1,
-            child: _renderButtonsLayout(context, renderingColor),
-          )
-        ],
+        children: widget._dialogType == TYPE.info
+            ? _renderBlurryInfo(renderingColor)
+            : _renderBlurryInput(renderingColor),
       ),
     );
   }
 
+  Expanded _renderPopupDescription() {
+    return Expanded(
+        flex: 2,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Text(
+                widget.description,
+                textAlign: widget.layoutType == LAYOUT_TYPE.center
+                    ? TextAlign.center
+                    : widget.layoutType == LAYOUT_TYPE.rtl
+                        ? TextAlign.end
+                        : TextAlign.start,
+                style: widget.descriptionTextStyle ??
+                    DefaultBlurryValues.descriptionDefaultStyle,
+              ),
+            ),
+          ),
+        ));
+  }
+
+  List<Widget> _renderBlurryInput(renderingColor) {
+    return [
+      _renderPopupTitle(renderingColor),
+      _renderPopupDescription(),
+      const SizedBox(
+        height: 5,
+      ),
+      BlurryTextField(
+          label: widget.inputLabel!,
+          textController: widget.inputTextController!,
+          labelStyle: widget.inputLabelStyle,
+          textStyle: widget.inputTextStyle),
+      const SizedBox(
+        height: 5,
+      ),
+      Expanded(
+        flex: 1,
+        child: _renderButtonsLayout(context, renderingColor),
+      )
+    ];
+  }
+
+  List<Widget> _renderBlurryInfo(renderingColor) {
+    return [
+      _renderPopupTitle(renderingColor),
+      _renderPopupDescription(),
+      Expanded(
+        flex: 1,
+        child: _renderButtonsLayout(context, renderingColor),
+      )
+    ];
+  }
+
   Row _renderButtonsLayout(BuildContext context, Color renderingColor) {
-    if (layoutType == LAYOUT_TYPE.rtl) {
+    if (widget.layoutType == LAYOUT_TYPE.rtl) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           GestureDetector(
             onTap: () {
-              onConfirmButtonPressed.call();
+              widget.onConfirmButtonPressed.call();
             },
             child: Container(
                 decoration: BoxDecoration(
@@ -320,16 +369,17 @@ class Blurry extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(
                       left: 15, right: 15, bottom: 5, top: 5),
-                  child: _renderButtonText(confirmButtonText, renderingColor),
+                  child: _renderButtonText(
+                      widget.confirmButtonText, renderingColor),
                 )),
           ),
-          if (displayCancelButton)
+          if (widget.displayCancelButton)
             GestureDetector(
               onTap: () {
                 Navigator.pop(context);
-                onCancelButtonPressed?.call();
+                widget.onCancelButtonPressed?.call();
               },
-              child: _renderButtonText(cancelButtonText, renderingColor),
+              child: _renderButtonText(widget.cancelButtonText, renderingColor),
             ),
         ],
       );
@@ -337,17 +387,17 @@ class Blurry extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        if (displayCancelButton)
+        if (widget.displayCancelButton)
           GestureDetector(
             onTap: () {
               Navigator.pop(context);
-              onCancelButtonPressed?.call();
+              widget.onCancelButtonPressed?.call();
             },
-            child: _renderButtonText(cancelButtonText, renderingColor),
+            child: _renderButtonText(widget.cancelButtonText, renderingColor),
           ),
         GestureDetector(
           onTap: () {
-            onConfirmButtonPressed.call();
+            widget.onConfirmButtonPressed.call();
           },
           child: Container(
               decoration: BoxDecoration(
@@ -357,81 +407,99 @@ class Blurry extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(
                     left: 15, right: 15, bottom: 5, top: 5),
-                child: _renderButtonText(confirmButtonText, renderingColor),
+                child:
+                    _renderButtonText(widget.confirmButtonText, renderingColor),
               )),
         ),
       ],
     );
   }
 
-  Padding _renderPopupTitle(Color renderingColor) {
-    if (layoutType == LAYOUT_TYPE.center) {
-      return Padding(
+  Widget _renderPopupTitle(Color renderingColor) {
+    Widget titleContent;
+    IconData renderingIcon = _getRenderingIcon();
+    if (widget.layoutType == LAYOUT_TYPE.center) {
+      titleContent = Padding(
         padding: const EdgeInsets.only(top: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: renderingColor, size: 25),
+            Icon(renderingIcon, color: renderingColor, size: 25),
             const SizedBox(
               height: 10,
             ),
-            Text(title,
-                style: titleTextStyle ?? DefaultBlurryValues.titleDefaultStyle)
+            Text(widget.title,
+                style: widget.titleTextStyle ??
+                    DefaultBlurryValues.titleDefaultStyle)
           ],
         ),
       );
-    } else if (layoutType == LAYOUT_TYPE.rtl) {
-      return Padding(
+    } else if (widget.layoutType == LAYOUT_TYPE.rtl) {
+      titleContent = Padding(
         padding: const EdgeInsets.only(top: 10, right: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              title,
-              style: titleTextStyle ?? DefaultBlurryValues.titleDefaultStyle,
+              widget.title,
+              style: widget.titleTextStyle ??
+                  DefaultBlurryValues.titleDefaultStyle,
               textAlign: TextAlign.end,
             ),
             const SizedBox(
               width: 10,
             ),
-            Icon(icon, color: renderingColor, size: 25)
+            Icon(renderingIcon, color: renderingColor, size: 25)
           ],
         ),
       );
     }
-    return Padding(
+    titleContent = Padding(
       padding: const EdgeInsets.only(left: 10, top: 10),
       child: Row(
         children: [
-          Icon(icon, color: renderingColor, size: 25),
+          Icon(renderingIcon, color: renderingColor, size: 25),
           const SizedBox(
             width: 10,
           ),
-          Text(title,
-              style: titleTextStyle ?? DefaultBlurryValues.titleDefaultStyle)
+          Text(widget.title,
+              style: widget.titleTextStyle ??
+                  DefaultBlurryValues.titleDefaultStyle)
         ],
       ),
+    );
+    return Expanded(
+      flex: 1,
+      child: titleContent,
     );
   }
 
   Text _renderButtonText(String text, Color textColor) {
     return Text(text,
-        style: buttonTextStyle == null
+        style: widget.buttonTextStyle == null
             ? TextStyle(fontWeight: FontWeight.bold, color: textColor)
-            : buttonTextStyle!
+            : widget.buttonTextStyle!
                 .copyWith(color: textColor, fontWeight: FontWeight.bold),
-        textAlign: layoutType == LAYOUT_TYPE.center
+        textAlign: widget.layoutType == LAYOUT_TYPE.center
             ? TextAlign.center
-            : layoutType == LAYOUT_TYPE.rtl
+            : widget.layoutType == LAYOUT_TYPE.rtl
                 ? TextAlign.end
                 : TextAlign.start);
   }
 
-  Color _getRenderingColorTheme() {
-    if (themeColor != null) {
-      return themeColor!;
+  IconData _getRenderingIcon() {
+    if (widget.type == null) {
+      return widget.icon!;
     } else {
-      switch (type) {
+      return themesIcons[widget.type]!;
+    }
+  }
+
+  Color _getRenderingColorTheme() {
+    if (widget.themeColor != null) {
+      return widget.themeColor!;
+    } else {
+      switch (widget.type) {
         case BLURRY_TYPE.info:
           return BlurryColors.infoColor;
         case BLURRY_TYPE.success:
