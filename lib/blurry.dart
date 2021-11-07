@@ -35,8 +35,8 @@ class Blurry extends StatelessWidget {
       this.inputLabelStyle = const TextStyle(color: Colors.black),
       this.inputTextStyle = const TextStyle(color: Colors.black)})
       : super(key: key) {
-        _assertValues();
-      } 
+    _assertValues();
+  }
 
   ///info constructor to render info style dialog
   Blurry.info(
@@ -245,10 +245,10 @@ class Blurry extends StatelessWidget {
         });
   }
 
-  _assertValues(){
-    if(dialogType == TYPE.input){
-          assert(inputLabel != null && inputTextController != null);
-        }
+  _assertValues() {
+    if (dialogType == TYPE.input) {
+      assert(inputLabel != null && inputTextController != null);
+    }
   }
 
   @override
@@ -287,9 +287,13 @@ class Blurry extends StatelessWidget {
                   ),
                 ),
               )),
-          const BlurryTextField(
-            label: 'Email',
-          ),
+          if (dialogType == TYPE.input)
+            BlurryTextField(
+              label: inputLabel!,
+              textController: inputTextController!,
+              textStyle: inputTextStyle,
+              labelStyle: inputLabelStyle,
+            ),
           Expanded(
             flex: 1,
             child: _renderButtonsLayout(context, renderingColor),

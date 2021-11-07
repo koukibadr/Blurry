@@ -4,10 +4,12 @@ class BlurryTextField extends StatelessWidget {
   final String label;
   final TextStyle textStyle;
   final TextStyle labelStyle;
+  final TextEditingController textController;
 
   const BlurryTextField(
       {Key? key,
       required this.label,
+      required this.textController,
       this.textStyle = const TextStyle(color: Colors.black),
       this.labelStyle = const TextStyle(color: Colors.black)})
       : super(key: key);
