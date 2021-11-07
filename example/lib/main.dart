@@ -124,6 +124,7 @@ class BlurryDemo extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () {
                     Blurry(
+                            dialogType: TYPE.info,
                             icon: Icons.verified_user,
                             themeColor: Colors.purple,
                             title: 'Custom blurry',
@@ -134,7 +135,7 @@ class BlurryDemo extends StatelessWidget {
                         .show(context);
                   },
                   child: const Text('Custom blurry dialog')),
-            )
+            ),
           ],
         ),
       ),

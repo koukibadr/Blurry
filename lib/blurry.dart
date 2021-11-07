@@ -4,6 +4,7 @@ import 'package:blurry/resources/arrays.dart';
 import 'package:blurry/resources/colors.dart';
 import 'package:blurry/resources/icons.dart';
 import 'package:blurry/resources/values.dart';
+import 'package:blurry/widgets/blurry_text_field.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -18,6 +19,7 @@ class Blurry extends StatelessWidget {
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
       required this.icon,
+      required this.dialogType,
       this.cancelButtonText = 'Cancel',
       this.onCancelButtonPressed,
       this.titleTextStyle,
@@ -27,8 +29,14 @@ class Blurry extends StatelessWidget {
       this.displayCancelButton = true,
       this.dismissable = true,
       this.barrierColor,
-      this.layoutType = LAYOUT_TYPE.ltr})
-      : super(key: key);
+      this.layoutType = LAYOUT_TYPE.ltr,
+      this.inputLabel,
+      this.inputTextController,
+      this.inputLabelStyle = const TextStyle(color: Colors.black),
+      this.inputTextStyle = const TextStyle(color: Colors.black)})
+      : super(key: key) {
+    _assertValues();
+  }
 
   ///info constructor to render info style dialog
   Blurry.info(
@@ -37,6 +45,7 @@ class Blurry extends StatelessWidget {
       required this.description,
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
+      this.dialogType = TYPE.info,
       this.onCancelButtonPressed,
       this.cancelButtonText = 'Cancel',
       this.titleTextStyle,
@@ -46,11 +55,16 @@ class Blurry extends StatelessWidget {
       this.displayCancelButton = true,
       this.dismissable = true,
       this.barrierColor,
-      this.layoutType = LAYOUT_TYPE.ltr})
+      this.layoutType = LAYOUT_TYPE.ltr,
+      this.inputLabel,
+      this.inputTextController,
+      this.inputLabelStyle = const TextStyle(color: Colors.black),
+      this.inputTextStyle = const TextStyle(color: Colors.black)})
       : super(key: key) {
     type = BLURRY_TYPE.info;
     icon = BlurryIcons.infoIcon;
     themeColor = null;
+    _assertValues();
   }
 
   ///render success style dialog
@@ -60,6 +74,7 @@ class Blurry extends StatelessWidget {
       required this.description,
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
+      this.dialogType = TYPE.info,
       this.onCancelButtonPressed,
       this.cancelButtonText = 'Cancel',
       this.titleTextStyle,
@@ -69,11 +84,16 @@ class Blurry extends StatelessWidget {
       this.displayCancelButton = true,
       this.dismissable = true,
       this.barrierColor,
-      this.layoutType = LAYOUT_TYPE.ltr})
+      this.layoutType = LAYOUT_TYPE.ltr,
+      this.inputLabel,
+      this.inputTextController,
+      this.inputLabelStyle = const TextStyle(color: Colors.black),
+      this.inputTextStyle = const TextStyle(color: Colors.black)})
       : super(key: key) {
     type = BLURRY_TYPE.success;
     icon = BlurryIcons.successIcon;
     themeColor = null;
+    _assertValues();
   }
 
   ///render error style dialog
@@ -83,6 +103,7 @@ class Blurry extends StatelessWidget {
       required this.description,
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
+      this.dialogType = TYPE.info,
       this.onCancelButtonPressed,
       this.cancelButtonText = 'Cancel',
       this.titleTextStyle,
@@ -92,11 +113,16 @@ class Blurry extends StatelessWidget {
       this.displayCancelButton = true,
       this.dismissable = true,
       this.barrierColor,
-      this.layoutType = LAYOUT_TYPE.ltr})
+      this.layoutType = LAYOUT_TYPE.ltr,
+      this.inputLabel,
+      this.inputTextController,
+      this.inputLabelStyle = const TextStyle(color: Colors.black),
+      this.inputTextStyle = const TextStyle(color: Colors.black)})
       : super(key: key) {
     type = BLURRY_TYPE.error;
     icon = BlurryIcons.errorIcon;
     themeColor = null;
+    _assertValues();
   }
 
   ///render warning style dialog
@@ -106,6 +132,7 @@ class Blurry extends StatelessWidget {
       required this.description,
       required this.confirmButtonText,
       required this.onConfirmButtonPressed,
+      this.dialogType = TYPE.info,
       this.onCancelButtonPressed,
       this.cancelButtonText = 'Cancel',
       this.titleTextStyle,
@@ -115,11 +142,16 @@ class Blurry extends StatelessWidget {
       this.displayCancelButton = true,
       this.dismissable = true,
       this.barrierColor,
-      this.layoutType = LAYOUT_TYPE.ltr})
+      this.layoutType = LAYOUT_TYPE.ltr,
+      this.inputLabel,
+      this.inputTextController,
+      this.inputLabelStyle = const TextStyle(color: Colors.black),
+      this.inputTextStyle = const TextStyle(color: Colors.black)})
       : super(key: key) {
     type = BLURRY_TYPE.warning;
     icon = BlurryIcons.warningIcon;
     themeColor = null;
+    _assertValues();
   }
 
   ///the dialog popup title, required in all blurry class constructors
@@ -175,6 +207,24 @@ class Blurry extends StatelessWidget {
   ///if it's null the barrier color will be the default color [Colors.black54]
   final Color? barrierColor;
 
+  //TODO add documentation
+  final LAYOUT_TYPE layoutType;
+
+  //TODO add documentation
+  final TYPE dialogType;
+
+  //TODO add documentation
+  final String? inputLabel;
+
+  //TODO add documentation
+  final TextEditingController? inputTextController;
+
+  //TODO add documentation
+  final TextStyle inputTextStyle;
+
+  //TODO add documentation
+  final TextStyle inputLabelStyle;
+
   final LAYOUT_TYPE layoutType;
 
   late BLURRY_TYPE? type;
@@ -195,6 +245,12 @@ class Blurry extends StatelessWidget {
             backgroundColor: Colors.white.withOpacity(0),
           );
         });
+  }
+
+  _assertValues() {
+    if (dialogType == TYPE.input) {
+      assert(inputLabel != null && inputTextController != null);
+    }
   }
 
   @override
@@ -233,6 +289,13 @@ class Blurry extends StatelessWidget {
                   ),
                 ),
               )),
+          if (dialogType == TYPE.input)
+            BlurryTextField(
+              label: inputLabel!,
+              textController: inputTextController!,
+              textStyle: inputTextStyle,
+              labelStyle: inputLabelStyle,
+            ),
           Expanded(
             flex: 1,
             child: _renderButtonsLayout(context, renderingColor),
@@ -354,18 +417,16 @@ class Blurry extends StatelessWidget {
   }
 
   Text _renderButtonText(String text, Color textColor) {
-    return Text(
-      text,
-      style: buttonTextStyle == null
-          ? TextStyle(fontWeight: FontWeight.bold, color: textColor)
-          : buttonTextStyle!
-              .copyWith(color: textColor, fontWeight: FontWeight.bold),
-      textAlign: layoutType == LAYOUT_TYPE.center
-          ? TextAlign.center
-          : layoutType == LAYOUT_TYPE.rtl
-              ? TextAlign.end
-              : TextAlign.start
-    );
+    return Text(text,
+        style: buttonTextStyle == null
+            ? TextStyle(fontWeight: FontWeight.bold, color: textColor)
+            : buttonTextStyle!
+                .copyWith(color: textColor, fontWeight: FontWeight.bold),
+        textAlign: layoutType == LAYOUT_TYPE.center
+            ? TextAlign.center
+            : layoutType == LAYOUT_TYPE.rtl
+                ? TextAlign.end
+                : TextAlign.start);
   }
 
   Color _getRenderingColorTheme() {
