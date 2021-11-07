@@ -234,20 +234,23 @@ class Blurry extends StatelessWidget {
                   ),
                 ),
               )),
-          Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.5,
+            height: 50,
             child: TextFormField(
               decoration: InputDecoration(
+                isDense: true,
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25.0),
+                  borderRadius: BorderRadius.circular(5.0),
                   borderSide: const BorderSide(
                     color: Colors.blue,
                   ),
                 ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25.0),
-                  borderSide: const BorderSide(
-                    color: Colors.blue,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(
+                    color: Colors.grey.withOpacity(0.8),
+                    
                   ),
                 ),
               ),
