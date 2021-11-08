@@ -282,19 +282,9 @@ class _BlurryState extends State<Blurry> {
   @override
   Widget build(BuildContext context) {
     Color renderingColor = _getRenderingColorTheme();
-    return Container(
-      height: widget.popupHeight ??  MediaQuery.of(context).size.height * 0.3,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.white.withOpacity(0.85)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: widget._dialogType == TYPE.info
-            ? _renderBlurryInfo(renderingColor)
-            : _renderBlurryInput(renderingColor),
-      ),
-    );
+    return widget._dialogType == TYPE.info
+        ? _renderBlurryInfo(renderingColor)
+        : _renderBlurryInput(renderingColor);
   }
 
   Expanded _renderPopupDescription() {
@@ -319,37 +309,49 @@ class _BlurryState extends State<Blurry> {
         ));
   }
 
-  List<Widget> _renderBlurryInput(renderingColor) {
-    return [
-      _renderPopupTitle(renderingColor),
-      _renderPopupDescription(),
-      const SizedBox(
-        height: 5,
+  Widget _renderBlurryInput(renderingColor) {
+    return Container(
+      height: widget.popupHeight ?? MediaQuery.of(context).size.height * 0.4,
+      width: MediaQuery.of(context).size.width,
+      decoration: DefaultBlurryValues.defaultBoxDecoration,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _renderPopupTitle(renderingColor),
+          _renderPopupDescription(),
+          const SizedBox(
+            height: 5,
+          ),
+          BlurryTextField(
+              label: widget.inputLabel!,
+              textController: widget.inputTextController!,
+              labelStyle: widget.inputLabelStyle,
+              textStyle: widget.inputTextStyle),
+          const SizedBox(
+            height: 5,
+          ),
+          Expanded(
+            flex: 1,
+            child: _renderButtonsLayout(context, renderingColor),
+          )
+        ],
       ),
-      BlurryTextField(
-          label: widget.inputLabel!,
-          textController: widget.inputTextController!,
-          labelStyle: widget.inputLabelStyle,
-          textStyle: widget.inputTextStyle),
-      const SizedBox(
-        height: 5,
-      ),
-      Expanded(
-        flex: 1,
-        child: _renderButtonsLayout(context, renderingColor),
-      )
-    ];
+    );
   }
 
-  List<Widget> _renderBlurryInfo(renderingColor) {
-    return [
-      _renderPopupTitle(renderingColor),
-      _renderPopupDescription(),
-      Expanded(
-        flex: 1,
-        child: _renderButtonsLayout(context, renderingColor),
-      )
-    ];
+  Widget _renderBlurryInfo(renderingColor) {
+    return Container(
+        height: widget.popupHeight ?? MediaQuery.of(context).size.height * 0.3,
+        width: MediaQuery.of(context).size.width,
+        decoration: DefaultBlurryValues.defaultBoxDecoration,
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          _renderPopupTitle(renderingColor),
+          _renderPopupDescription(),
+          Expanded(
+            flex: 1,
+            child: _renderButtonsLayout(context, renderingColor),
+          )
+        ]));
   }
 
   Row _renderButtonsLayout(BuildContext context, Color renderingColor) {

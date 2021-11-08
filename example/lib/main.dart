@@ -150,7 +150,6 @@ class BlurryDemo extends StatelessWidget {
                             onConfirmButtonPressed: () {},
                             inputLabel: 'Email',
                             type: BLURRY_TYPE.info,
-                            popupHeight: 300,
                             inputTextController: TextEditingController())
                         .show(context);
                   },
