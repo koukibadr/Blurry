@@ -149,7 +149,8 @@ class BlurryDemo extends StatelessWidget {
                             confirmButtonText: 'Confirm',
                             onConfirmButtonPressed: () {},
                             inputLabel: 'Email',
-                            type: BLURRY_TYPE.info,
+                            themeColor: Colors.red,
+                            icon: Icons.reduce_capacity_outlined,
                             inputTextController: TextEditingController())
                         .show(context);
                   },

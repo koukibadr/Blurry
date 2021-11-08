@@ -34,6 +34,7 @@ class Blurry extends StatefulWidget {
       this.inputTextStyle = const TextStyle(color: Colors.black)})
       : super(key: key) {
     _dialogType = TYPE.info;
+    type = null;
   }
 
   ///info constructor to render info style dialog
