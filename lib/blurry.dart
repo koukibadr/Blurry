@@ -5,6 +5,7 @@ import 'package:blurry/resources/colors.dart';
 import 'package:blurry/resources/values.dart';
 import 'package:blurry/widgets/blurry_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:blurry/resources/extensions.dart';
 
 // ignore: must_be_immutable
 class Blurry extends StatefulWidget {
@@ -420,14 +421,17 @@ class _BlurryState extends State<Blurry> {
 
   Widget _renderPopupTitle(Color renderingColor) {
     Widget titleContent;
-    IconData renderingIcon = _getRenderingIcon();
     if (widget.layoutType == LAYOUT_TYPE.center) {
       titleContent = Padding(
         padding: const EdgeInsets.only(top: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(renderingIcon, color: renderingColor, size: 25),
+            Icon(
+              widget.type.renderingIcon(widget.icon),
+              color: renderingColor,
+              size: 25,
+            ),
             const SizedBox(
               height: 10,
             ),
@@ -452,7 +456,11 @@ class _BlurryState extends State<Blurry> {
             const SizedBox(
               width: 10,
             ),
-            Icon(renderingIcon, color: renderingColor, size: 25)
+            Icon(
+              widget.type.renderingIcon(widget.icon),
+              color: renderingColor,
+              size: 25,
+            )
           ],
         ),
       );
@@ -461,7 +469,11 @@ class _BlurryState extends State<Blurry> {
       padding: const EdgeInsets.only(left: 10, top: 10),
       child: Row(
         children: [
-          Icon(renderingIcon, color: renderingColor, size: 25),
+          Icon(
+            widget.type.renderingIcon(widget.icon),
+            color: renderingColor,
+            size: 25,
+          ),
           const SizedBox(
             width: 10,
           ),
@@ -488,14 +500,6 @@ class _BlurryState extends State<Blurry> {
             : widget.layoutType == LAYOUT_TYPE.rtl
                 ? TextAlign.end
                 : TextAlign.start);
-  }
-
-  IconData _getRenderingIcon() {
-    if (widget.type == null) {
-      return widget.icon!;
-    } else {
-      return themesIcons[widget.type]!;
-    }
   }
 
   Color _getRenderingColorTheme() {
