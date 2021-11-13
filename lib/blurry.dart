@@ -273,7 +273,7 @@ class Blurry extends StatefulWidget {
             contentPadding: const EdgeInsets.all(0),
             backgroundColor: Colors.white.withOpacity(0),
           );
-        });
+        },);
   }
 
   @override
@@ -328,7 +328,7 @@ class _BlurryState extends State<Blurry> {
               label: widget.inputLabel!,
               textController: widget.inputTextController!,
               labelStyle: widget.inputLabelStyle,
-              textStyle: widget.inputTextStyle),
+              textStyle: widget.inputTextStyle,),
           const SizedBox(
             height: 5,
           ),
@@ -372,9 +372,9 @@ class _BlurryState extends State<Blurry> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      left: 15, right: 15, bottom: 5, top: 5),
+                      left: 15, right: 15, bottom: 5, top: 5,),
                   child: _renderButtonText(
-                      widget.confirmButtonText, renderingColor),
+                      widget.confirmButtonText, renderingColor,),
                 )),
           ),
           if (widget.displayCancelButton)
@@ -383,7 +383,7 @@ class _BlurryState extends State<Blurry> {
                 Navigator.pop(context);
                 widget.onCancelButtonPressed?.call();
               },
-              child: _renderButtonText(widget.cancelButtonText, renderingColor),
+              child: _renderButtonText(widget.cancelButtonText, renderingColor,),
             ),
         ],
       );
@@ -397,7 +397,7 @@ class _BlurryState extends State<Blurry> {
               Navigator.pop(context);
               widget.onCancelButtonPressed?.call();
             },
-            child: _renderButtonText(widget.cancelButtonText, renderingColor),
+            child: _renderButtonText(widget.cancelButtonText, renderingColor,),
           ),
         GestureDetector(
           onTap: () {
@@ -410,9 +410,13 @@ class _BlurryState extends State<Blurry> {
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 15, right: 15, bottom: 5, top: 5),
+                  left: 15,
+                  right: 15,
+                  bottom: 5,
+                  top: 5,
+                ),
                 child:
-                    _renderButtonText(widget.confirmButtonText, renderingColor),
+                    _renderButtonText(widget.confirmButtonText, renderingColor,),
               )),
         ),
       ],
@@ -479,7 +483,7 @@ class _BlurryState extends State<Blurry> {
           ),
           Text(widget.title,
               style: widget.titleTextStyle ??
-                  DefaultBlurryValues.titleDefaultStyle)
+                  DefaultBlurryValues.titleDefaultStyle,)
         ],
       ),
     );
@@ -492,9 +496,9 @@ class _BlurryState extends State<Blurry> {
   Text _renderButtonText(String text, Color textColor) {
     return Text(text,
         style: widget.buttonTextStyle == null
-            ? TextStyle(fontWeight: FontWeight.bold, color: textColor)
+            ? TextStyle(fontWeight: FontWeight.bold, color: textColor,)
             : widget.buttonTextStyle!
-                .copyWith(color: textColor, fontWeight: FontWeight.bold),
+                .copyWith(color: textColor, fontWeight: FontWeight.bold,),
         textAlign: widget.layoutType == LAYOUT_TYPE.center
             ? TextAlign.center
             : widget.layoutType == LAYOUT_TYPE.rtl
