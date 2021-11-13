@@ -264,16 +264,17 @@ class Blurry extends StatefulWidget {
   ///[context]: the context of the app to display the dialog
   void show(BuildContext context) {
     showDialog(
-        context: context,
-        barrierDismissible: dismissable,
-        barrierColor: barrierColor ?? BlurryColors.defaultBarrierColor,
-        builder: (context) {
-          return AlertDialog(
-            content: this,
-            contentPadding: const EdgeInsets.all(0),
-            backgroundColor: Colors.white.withOpacity(0),
-          );
-        },);
+      context: context,
+      barrierDismissible: dismissable,
+      barrierColor: barrierColor ?? BlurryColors.defaultBarrierColor,
+      builder: (context) {
+        return AlertDialog(
+          content: this,
+          contentPadding: const EdgeInsets.all(0),
+          backgroundColor: Colors.white.withOpacity(0),
+        );
+      },
+    );
   }
 
   @override
@@ -325,10 +326,11 @@ class _BlurryState extends State<Blurry> {
             height: 5,
           ),
           BlurryTextField(
-              label: widget.inputLabel!,
-              textController: widget.inputTextController!,
-              labelStyle: widget.inputLabelStyle,
-              textStyle: widget.inputTextStyle,),
+            label: widget.inputLabel!,
+            textController: widget.inputTextController!,
+            labelStyle: widget.inputLabelStyle,
+            textStyle: widget.inputTextStyle,
+          ),
           const SizedBox(
             height: 5,
           ),
@@ -372,9 +374,15 @@ class _BlurryState extends State<Blurry> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      left: 15, right: 15, bottom: 5, top: 5,),
+                    left: 15,
+                    right: 15,
+                    bottom: 5,
+                    top: 5,
+                  ),
                   child: _renderButtonText(
-                      widget.confirmButtonText, renderingColor,),
+                    widget.confirmButtonText,
+                    renderingColor,
+                  ),
                 )),
           ),
           if (widget.displayCancelButton)
@@ -383,7 +391,10 @@ class _BlurryState extends State<Blurry> {
                 Navigator.pop(context);
                 widget.onCancelButtonPressed?.call();
               },
-              child: _renderButtonText(widget.cancelButtonText, renderingColor,),
+              child: _renderButtonText(
+                widget.cancelButtonText,
+                renderingColor,
+              ),
             ),
         ],
       );
@@ -397,7 +408,10 @@ class _BlurryState extends State<Blurry> {
               Navigator.pop(context);
               widget.onCancelButtonPressed?.call();
             },
-            child: _renderButtonText(widget.cancelButtonText, renderingColor,),
+            child: _renderButtonText(
+              widget.cancelButtonText,
+              renderingColor,
+            ),
           ),
         GestureDetector(
           onTap: () {
@@ -415,8 +429,10 @@ class _BlurryState extends State<Blurry> {
                   bottom: 5,
                   top: 5,
                 ),
-                child:
-                    _renderButtonText(widget.confirmButtonText, renderingColor,),
+                child: _renderButtonText(
+                  widget.confirmButtonText,
+                  renderingColor,
+                ),
               )),
         ),
       ],
@@ -481,9 +497,11 @@ class _BlurryState extends State<Blurry> {
           const SizedBox(
             width: 10,
           ),
-          Text(widget.title,
-              style: widget.titleTextStyle ??
-                  DefaultBlurryValues.titleDefaultStyle,)
+          Text(
+            widget.title,
+            style:
+                widget.titleTextStyle ?? DefaultBlurryValues.titleDefaultStyle,
+          )
         ],
       ),
     );
@@ -496,9 +514,14 @@ class _BlurryState extends State<Blurry> {
   Text _renderButtonText(String text, Color textColor) {
     return Text(text,
         style: widget.buttonTextStyle == null
-            ? TextStyle(fontWeight: FontWeight.bold, color: textColor,)
-            : widget.buttonTextStyle!
-                .copyWith(color: textColor, fontWeight: FontWeight.bold,),
+            ? TextStyle(
+                fontWeight: FontWeight.bold,
+                color: textColor,
+              )
+            : widget.buttonTextStyle!.copyWith(
+                color: textColor,
+                fontWeight: FontWeight.bold,
+              ),
         textAlign: widget.layoutType == LAYOUT_TYPE.center
             ? TextAlign.center
             : widget.layoutType == LAYOUT_TYPE.rtl
