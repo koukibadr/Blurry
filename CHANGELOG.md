@@ -1,3 +1,9 @@
+## 1.2.0 - 14/11/2021
+
+- Add support to LTR and RTL layouts
+- Add input popup type
+- Enahnce performance and rendering
+
 ## 1.0.1 - 30/10/2021
 
 - Add customization to buttons text
