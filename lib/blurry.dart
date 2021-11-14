@@ -11,55 +11,51 @@ import 'package:blurry/resources/extensions.dart';
 class Blurry extends StatefulWidget {
   ///default constructor
   ///to generate customized blurry dialog
-  Blurry(
-      {Key? key,
-      required this.title,
-      required this.description,
-      required this.themeColor,
-      required this.confirmButtonText,
-      required this.onConfirmButtonPressed,
-      required this.icon,
-      this.cancelButtonText = 'Cancel',
-      this.onCancelButtonPressed,
-      this.titleTextStyle,
-      this.buttonTextStyle,
-      this.descriptionTextStyle,
-      this.popupHeight,
-      this.displayCancelButton = true,
-      this.dismissable = true,
-      this.barrierColor,
-      this.layoutType = LAYOUT_TYPE.ltr,
-      this.inputLabel,
-      this.inputTextController,
-      this.inputLabelStyle = const TextStyle(color: Colors.black),
-      this.inputTextStyle = const TextStyle(color: Colors.black)})
-      : super(key: key) {
+  Blurry({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.themeColor,
+    required this.confirmButtonText,
+    required this.onConfirmButtonPressed,
+    required this.icon,
+    this.cancelButtonText = 'Cancel',
+    this.onCancelButtonPressed,
+    this.titleTextStyle,
+    this.buttonTextStyle,
+    this.descriptionTextStyle,
+    this.popupHeight,
+    this.displayCancelButton = true,
+    this.dismissable = true,
+    this.barrierColor,
+    this.layoutType = LAYOUT_TYPE.ltr,
+    this.inputLabel,
+    this.inputTextController,
+  }) : super(key: key) {
     _dialogType = TYPE.info;
     type = null;
   }
 
   ///info constructor to render info style dialog
-  Blurry.info(
-      {Key? key,
-      required this.title,
-      required this.description,
-      required this.confirmButtonText,
-      required this.onConfirmButtonPressed,
-      this.onCancelButtonPressed,
-      this.cancelButtonText = 'Cancel',
-      this.titleTextStyle,
-      this.buttonTextStyle,
-      this.descriptionTextStyle,
-      this.popupHeight,
-      this.displayCancelButton = true,
-      this.dismissable = true,
-      this.barrierColor,
-      this.layoutType = LAYOUT_TYPE.ltr,
-      this.inputLabel,
-      this.inputTextController,
-      this.inputLabelStyle = const TextStyle(color: Colors.black),
-      this.inputTextStyle = const TextStyle(color: Colors.black)})
-      : super(key: key) {
+  Blurry.info({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.confirmButtonText,
+    required this.onConfirmButtonPressed,
+    this.onCancelButtonPressed,
+    this.cancelButtonText = 'Cancel',
+    this.titleTextStyle,
+    this.buttonTextStyle,
+    this.descriptionTextStyle,
+    this.popupHeight,
+    this.displayCancelButton = true,
+    this.dismissable = true,
+    this.barrierColor,
+    this.layoutType = LAYOUT_TYPE.ltr,
+    this.inputLabel,
+    this.inputTextController,
+  }) : super(key: key) {
     type = BLURRY_TYPE.info;
     icon = themesIcons[type];
     themeColor = null;
@@ -67,27 +63,25 @@ class Blurry extends StatefulWidget {
   }
 
   ///render success style dialog
-  Blurry.success(
-      {Key? key,
-      required this.title,
-      required this.description,
-      required this.confirmButtonText,
-      required this.onConfirmButtonPressed,
-      this.onCancelButtonPressed,
-      this.cancelButtonText = 'Cancel',
-      this.titleTextStyle,
-      this.buttonTextStyle,
-      this.descriptionTextStyle,
-      this.popupHeight,
-      this.displayCancelButton = true,
-      this.dismissable = true,
-      this.barrierColor,
-      this.layoutType = LAYOUT_TYPE.ltr,
-      this.inputLabel,
-      this.inputTextController,
-      this.inputLabelStyle = const TextStyle(color: Colors.black),
-      this.inputTextStyle = const TextStyle(color: Colors.black)})
-      : super(key: key) {
+  Blurry.success({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.confirmButtonText,
+    required this.onConfirmButtonPressed,
+    this.onCancelButtonPressed,
+    this.cancelButtonText = 'Cancel',
+    this.titleTextStyle,
+    this.buttonTextStyle,
+    this.descriptionTextStyle,
+    this.popupHeight,
+    this.displayCancelButton = true,
+    this.dismissable = true,
+    this.barrierColor,
+    this.layoutType = LAYOUT_TYPE.ltr,
+    this.inputLabel,
+    this.inputTextController,
+  }) : super(key: key) {
     type = BLURRY_TYPE.success;
     icon = themesIcons[type];
     themeColor = null;
@@ -95,27 +89,25 @@ class Blurry extends StatefulWidget {
   }
 
   ///render error style dialog
-  Blurry.error(
-      {Key? key,
-      required this.title,
-      required this.description,
-      required this.confirmButtonText,
-      required this.onConfirmButtonPressed,
-      this.onCancelButtonPressed,
-      this.cancelButtonText = 'Cancel',
-      this.titleTextStyle,
-      this.buttonTextStyle,
-      this.descriptionTextStyle,
-      this.popupHeight,
-      this.displayCancelButton = true,
-      this.dismissable = true,
-      this.barrierColor,
-      this.layoutType = LAYOUT_TYPE.ltr,
-      this.inputLabel,
-      this.inputTextController,
-      this.inputLabelStyle = const TextStyle(color: Colors.black),
-      this.inputTextStyle = const TextStyle(color: Colors.black)})
-      : super(key: key) {
+  Blurry.error({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.confirmButtonText,
+    required this.onConfirmButtonPressed,
+    this.onCancelButtonPressed,
+    this.cancelButtonText = 'Cancel',
+    this.titleTextStyle,
+    this.buttonTextStyle,
+    this.descriptionTextStyle,
+    this.popupHeight,
+    this.displayCancelButton = true,
+    this.dismissable = true,
+    this.barrierColor,
+    this.layoutType = LAYOUT_TYPE.ltr,
+    this.inputLabel,
+    this.inputTextController,
+  }) : super(key: key) {
     type = BLURRY_TYPE.error;
     icon = themesIcons[type];
     themeColor = null;
@@ -123,57 +115,57 @@ class Blurry extends StatefulWidget {
   }
 
   ///render warning style dialog
-  Blurry.warning(
-      {Key? key,
-      required this.title,
-      required this.description,
-      required this.confirmButtonText,
-      required this.onConfirmButtonPressed,
-      this.onCancelButtonPressed,
-      this.cancelButtonText = 'Cancel',
-      this.titleTextStyle,
-      this.buttonTextStyle,
-      this.descriptionTextStyle,
-      this.popupHeight,
-      this.displayCancelButton = true,
-      this.dismissable = true,
-      this.barrierColor,
-      this.layoutType = LAYOUT_TYPE.ltr,
-      this.inputLabel,
-      this.inputTextController,
-      this.inputLabelStyle = const TextStyle(color: Colors.black),
-      this.inputTextStyle = const TextStyle(color: Colors.black)})
-      : super(key: key) {
+  Blurry.warning({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.confirmButtonText,
+    required this.onConfirmButtonPressed,
+    this.onCancelButtonPressed,
+    this.cancelButtonText = 'Cancel',
+    this.titleTextStyle,
+    this.buttonTextStyle,
+    this.descriptionTextStyle,
+    this.popupHeight,
+    this.displayCancelButton = true,
+    this.dismissable = true,
+    this.barrierColor,
+    this.layoutType = LAYOUT_TYPE.ltr,
+  }) : super(key: key) {
     type = BLURRY_TYPE.warning;
     icon = themesIcons[type];
     themeColor = null;
     _dialogType = TYPE.info;
   }
 
-  Blurry.input(
-      {Key? key,
-      required this.title,
-      required this.description,
-      required this.confirmButtonText,
-      required this.onConfirmButtonPressed,
-      required this.inputLabel,
-      required this.inputTextController,
-      this.themeColor,
-      this.type,
-      this.icon,
-      this.inputLabelStyle = const TextStyle(color: Colors.black),
-      this.inputTextStyle = const TextStyle(color: Colors.black),
-      this.onCancelButtonPressed,
-      this.cancelButtonText = 'Cancel',
-      this.titleTextStyle,
-      this.buttonTextStyle,
-      this.descriptionTextStyle,
-      this.popupHeight,
-      this.displayCancelButton = true,
-      this.dismissable = true,
-      this.barrierColor,
-      this.layoutType = LAYOUT_TYPE.ltr})
-      : super(key: key) {
+
+  /// to create input blurry popup provide the required values
+  /// provide either themeColor or type 
+  /// when providing themeColor you should provide icon value
+  Blurry.input({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.confirmButtonText,
+    required this.onConfirmButtonPressed,
+    required this.inputLabel,
+    required this.inputTextController,
+    this.themeColor,
+    this.type,
+    this.icon,
+    this.inputLabelStyle = const TextStyle(color: Colors.black),
+    this.inputTextStyle = const TextStyle(color: Colors.black),
+    this.onCancelButtonPressed,
+    this.cancelButtonText = 'Cancel',
+    this.titleTextStyle,
+    this.buttonTextStyle,
+    this.descriptionTextStyle,
+    this.popupHeight,
+    this.displayCancelButton = true,
+    this.dismissable = true,
+    this.barrierColor,
+    this.layoutType = LAYOUT_TYPE.ltr,
+  }) : super(key: key) {
     _dialogType = TYPE.input;
     assert(inputLabel != null && inputTextController != null);
     assert(type != null || themeColor != null);
@@ -238,22 +230,37 @@ class Blurry extends StatefulWidget {
   ///if it's null the barrier color will be the default color [Colors.black54]
   final Color? barrierColor;
 
-  //TODO add documentation
+  ///the layout rendering type, LTR, RTL or center
+  ///possible values
+  /// - ltr
+  /// - rtl
+  /// - center
+  /// by default is [LAYOUT_TYPE.ltr]
   final LAYOUT_TYPE layoutType;
 
-  //TODO add documentation
+  /// the input label string, required when using the input constructor
   late String? inputLabel;
 
-  //TODO add documentation
+  /// the input text field text controller
+  /// required when using the input constructor
   late TextEditingController? inputTextController;
 
-  //TODO add documentation
+  /// the input text style by default it's just black text
   late TextStyle inputTextStyle;
 
-  //TODO add documentation
+  /// the input label style by default it's just black text
   late TextStyle inputLabelStyle;
 
-  //? private values
+  /// the design type of the popup, available when using input constructor
+  /// availabele options
+  /// ```dart
+  /// { 
+  /// info,
+  /// success,
+  /// error,
+  /// warning 
+  /// }
+  /// ```
   late BLURRY_TYPE? type;
 
   late TYPE? _dialogType;
