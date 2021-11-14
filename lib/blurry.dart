@@ -6,6 +6,7 @@ import 'package:blurry/resources/values.dart';
 import 'package:blurry/widgets/blurry_buttons_layout.dart';
 import 'package:blurry/widgets/blurry_cancel_widget.dart';
 import 'package:blurry/widgets/blurry_confirm_button.dart';
+import 'package:blurry/widgets/blurry_info_popup.dart';
 import 'package:blurry/widgets/blurry_input_popup.dart';
 import 'package:blurry/widgets/blurry_popup_button_text.dart';
 import 'package:blurry/widgets/blurry_popup_title.dart';
@@ -294,7 +295,28 @@ class _BlurryState extends State<Blurry> {
   Widget build(BuildContext context) {
     Color renderingColor = _getRenderingColorTheme();
     return widget._dialogType == TYPE.info
-        ? _renderBlurryInfo(renderingColor)
+        ? BlurryInfoPopup(
+            popupHeight: widget.popupHeight,
+            blurryType: widget.type,
+            icon: widget.icon,
+            layoutType: widget.layoutType,
+            renderingColor: renderingColor,
+            titleTextStyle: widget.titleTextStyle,
+            title: widget.title,
+            description: widget.description,
+            descriptionTextStyle: widget.descriptionTextStyle,
+            buttonTextStyle: widget.buttonTextStyle,
+            cancelButtonText: widget.cancelButtonText,
+            confirmButtonText: widget.confirmButtonText,
+            displayCancelButton: widget.displayCancelButton,
+            onCancelPressed: () {
+              Navigator.pop(context);
+              widget.onCancelButtonPressed?.call();
+            },
+            onConfirmPressed: () {
+              widget.onConfirmButtonPressed.call();
+            },
+          )
         : BlurryInputPopup(
             popupHeight: widget.popupHeight,
             blurryType: widget.type,
@@ -322,48 +344,7 @@ class _BlurryState extends State<Blurry> {
             },
           );
   }
-
-  Widget _renderBlurryInfo(renderingColor) {
-    return Container(
-        height: widget.popupHeight ?? MediaQuery.of(context).size.height * 0.3,
-        width: MediaQuery.of(context).size.width,
-        decoration: DefaultBlurryValues.defaultBoxDecoration,
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          BlurryPopupTitle(
-            layoutType: widget.layoutType,
-            renderingColor: renderingColor,
-            icon: widget.icon,
-            blurryType: widget.type,
-            title: widget.title,
-            textStyle: widget.titleTextStyle,
-          ),
-          BlurryPopupDescription(
-            description: widget.description,
-            layoutType: widget.layoutType,
-            textStyle: widget.descriptionTextStyle ??
-                DefaultBlurryValues.descriptionDefaultStyle,
-          ),
-          Expanded(
-            flex: 1,
-            child: BlurryButtonsLayout(
-              confirmButtonText: widget.confirmButtonText,
-              cancelButtonText: widget.cancelButtonText,
-              layoutType: widget.layoutType,
-              buttonColor: renderingColor,
-              textStyle: widget.buttonTextStyle,
-              onCancelButtonPressed: () {
-                Navigator.pop(context);
-                widget.onCancelButtonPressed?.call();
-              },
-              onConfirmButtonPressed: () {
-                widget.onConfirmButtonPressed.call();
-              },
-              displayCancelButton: widget.displayCancelButton,
-            ),
-          )
-        ]));
-  }
-
+  
   Color _getRenderingColorTheme() {
     if (widget.themeColor != null) {
       return widget.themeColor!;
