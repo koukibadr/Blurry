@@ -3,10 +3,14 @@ import 'dart:ui';
 import 'package:blurry/resources/arrays.dart';
 import 'package:blurry/resources/colors.dart';
 import 'package:blurry/resources/values.dart';
+import 'package:blurry/widgets/blurry_confirm_button.dart';
+import 'package:blurry/widgets/blurry_popup_button_text.dart';
 import 'package:blurry/widgets/blurry_popup_title.dart';
 import 'package:blurry/widgets/blurry_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:blurry/resources/extensions.dart';
+
+import 'widgets/blurry_popup_description.dart';
 
 // ignore: must_be_immutable
 class Blurry extends StatefulWidget {
@@ -291,28 +295,6 @@ class _BlurryState extends State<Blurry> {
         : _renderBlurryInput(renderingColor);
   }
 
-  Expanded _renderPopupDescription() {
-    return Expanded(
-        flex: 2,
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Text(
-                widget.description,
-                textAlign: widget.layoutType == LAYOUT_TYPE.center
-                    ? TextAlign.center
-                    : widget.layoutType == LAYOUT_TYPE.rtl
-                        ? TextAlign.end
-                        : TextAlign.start,
-                style: widget.descriptionTextStyle ??
-                    DefaultBlurryValues.descriptionDefaultStyle,
-              ),
-            ),
-          ),
-        ));
-  }
-
   Widget _renderBlurryInput(renderingColor) {
     return Container(
       height: widget.popupHeight ?? MediaQuery.of(context).size.height * 0.4,
@@ -329,7 +311,12 @@ class _BlurryState extends State<Blurry> {
             title: widget.title,
             textStyle: widget.titleTextStyle,
           ),
-          _renderPopupDescription(),
+          BlurryPopupDescription(
+            description: widget.description,
+            layoutType: widget.layoutType,
+            textStyle: widget.descriptionTextStyle ??
+                DefaultBlurryValues.descriptionDefaultStyle,
+          ),
           const SizedBox(
             height: 5,
           ),
@@ -365,7 +352,12 @@ class _BlurryState extends State<Blurry> {
             title: widget.title,
             textStyle: widget.titleTextStyle,
           ),
-          _renderPopupDescription(),
+          BlurryPopupDescription(
+            description: widget.description,
+            layoutType: widget.layoutType,
+            textStyle: widget.descriptionTextStyle ??
+                DefaultBlurryValues.descriptionDefaultStyle,
+          ),
           Expanded(
             flex: 1,
             child: _renderButtonsLayout(context, renderingColor),
@@ -378,27 +370,14 @@ class _BlurryState extends State<Blurry> {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          GestureDetector(
-            onTap: () {
+          BlurryConfirmButton(
+            onPress: () {
               widget.onConfirmButtonPressed.call();
             },
-            child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: renderingColor.withOpacity(0.2),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 15,
-                    right: 15,
-                    bottom: 5,
-                    top: 5,
-                  ),
-                  child: _renderButtonText(
-                    widget.confirmButtonText,
-                    renderingColor,
-                  ),
-                )),
+            buttonText: widget.confirmButtonText,
+            layoutType: widget.layoutType,
+            buttonColor: renderingColor,
+            textStyle: widget.buttonTextStyle,
           ),
           if (widget.displayCancelButton)
             GestureDetector(
@@ -406,9 +385,11 @@ class _BlurryState extends State<Blurry> {
                 Navigator.pop(context);
                 widget.onCancelButtonPressed?.call();
               },
-              child: _renderButtonText(
-                widget.cancelButtonText,
-                renderingColor,
+              child: BlurryPopupButtonText(
+                text: widget.cancelButtonText,
+                textColor: renderingColor,
+                buttonTextStyle: widget.buttonTextStyle,
+                layoutType: widget.layoutType,
               ),
             ),
         ],
@@ -423,9 +404,11 @@ class _BlurryState extends State<Blurry> {
               Navigator.pop(context);
               widget.onCancelButtonPressed?.call();
             },
-            child: _renderButtonText(
-              widget.cancelButtonText,
-              renderingColor,
+            child: BlurryPopupButtonText(
+              text: widget.cancelButtonText,
+              textColor: renderingColor,
+              buttonTextStyle: widget.buttonTextStyle,
+              layoutType: widget.layoutType,
             ),
           ),
         GestureDetector(
@@ -433,43 +416,28 @@ class _BlurryState extends State<Blurry> {
             widget.onConfirmButtonPressed.call();
           },
           child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: renderingColor.withOpacity(0.2),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: renderingColor.withOpacity(0.2),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 15,
+                right: 15,
+                bottom: 5,
+                top: 5,
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                  bottom: 5,
-                  top: 5,
-                ),
-                child: _renderButtonText(
-                  widget.confirmButtonText,
-                  renderingColor,
-                ),
-              )),
+              child: BlurryPopupButtonText(
+                text: widget.confirmButtonText,
+                textColor: renderingColor,
+                buttonTextStyle: widget.buttonTextStyle,
+                layoutType: widget.layoutType,
+              ),
+            ),
+          ),
         ),
       ],
     );
-  }
-
-  Text _renderButtonText(String text, Color textColor) {
-    return Text(text,
-        style: widget.buttonTextStyle == null
-            ? TextStyle(
-                fontWeight: FontWeight.bold,
-                color: textColor,
-              )
-            : widget.buttonTextStyle!.copyWith(
-                color: textColor,
-                fontWeight: FontWeight.bold,
-              ),
-        textAlign: widget.layoutType == LAYOUT_TYPE.center
-            ? TextAlign.center
-            : widget.layoutType == LAYOUT_TYPE.rtl
-                ? TextAlign.end
-                : TextAlign.start);
   }
 
   Color _getRenderingColorTheme() {
