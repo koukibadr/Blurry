@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:blurry/resources/arrays.dart';
 import 'package:blurry/resources/colors.dart';
 import 'package:blurry/resources/values.dart';
+import 'package:blurry/widgets/blurry_popup_title.dart';
 import 'package:blurry/widgets/blurry_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:blurry/resources/extensions.dart';
@@ -320,7 +321,14 @@ class _BlurryState extends State<Blurry> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _renderPopupTitle(renderingColor),
+          BlurryPopupTitle(
+            layoutType: widget.layoutType,
+            renderingColor: renderingColor,
+            icon: widget.icon,
+            blurryType: widget.type,
+            title: widget.title,
+            textStyle: widget.titleTextStyle,
+          ),
           _renderPopupDescription(),
           const SizedBox(
             height: 5,
@@ -349,7 +357,14 @@ class _BlurryState extends State<Blurry> {
         width: MediaQuery.of(context).size.width,
         decoration: DefaultBlurryValues.defaultBoxDecoration,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          _renderPopupTitle(renderingColor),
+          BlurryPopupTitle(
+            layoutType: widget.layoutType,
+            renderingColor: renderingColor,
+            icon: widget.icon,
+            blurryType: widget.type,
+            title: widget.title,
+            textStyle: widget.titleTextStyle,
+          ),
           _renderPopupDescription(),
           Expanded(
             flex: 1,
@@ -436,78 +451,6 @@ class _BlurryState extends State<Blurry> {
               )),
         ),
       ],
-    );
-  }
-
-  Widget _renderPopupTitle(Color renderingColor) {
-    Widget titleContent;
-    if (widget.layoutType == LAYOUT_TYPE.center) {
-      titleContent = Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              widget.type.renderingIcon(widget.icon),
-              color: renderingColor,
-              size: 25,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(widget.title,
-                style: widget.titleTextStyle ??
-                    DefaultBlurryValues.titleDefaultStyle)
-          ],
-        ),
-      );
-    } else if (widget.layoutType == LAYOUT_TYPE.rtl) {
-      titleContent = Padding(
-        padding: const EdgeInsets.only(top: 10, right: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              widget.title,
-              style: widget.titleTextStyle ??
-                  DefaultBlurryValues.titleDefaultStyle,
-              textAlign: TextAlign.end,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Icon(
-              widget.type.renderingIcon(widget.icon),
-              color: renderingColor,
-              size: 25,
-            )
-          ],
-        ),
-      );
-    }
-    titleContent = Padding(
-      padding: const EdgeInsets.only(left: 10, top: 10),
-      child: Row(
-        children: [
-          Icon(
-            widget.type.renderingIcon(widget.icon),
-            color: renderingColor,
-            size: 25,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Text(
-            widget.title,
-            style:
-                widget.titleTextStyle ?? DefaultBlurryValues.titleDefaultStyle,
-          )
-        ],
-      ),
-    );
-    return Expanded(
-      flex: 1,
-      child: titleContent,
     );
   }
 
