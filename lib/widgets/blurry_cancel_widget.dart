@@ -23,7 +23,6 @@ class BlurryCancelWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pop(context);
         onPress.call();
       },
       child: BlurryPopupButtonText(

@@ -2,19 +2,10 @@ import 'dart:ui';
 
 import 'package:blurry/resources/arrays.dart';
 import 'package:blurry/resources/colors.dart';
-import 'package:blurry/resources/values.dart';
-import 'package:blurry/widgets/blurry_buttons_layout.dart';
-import 'package:blurry/widgets/blurry_cancel_widget.dart';
-import 'package:blurry/widgets/blurry_confirm_button.dart';
 import 'package:blurry/widgets/blurry_info_popup.dart';
 import 'package:blurry/widgets/blurry_input_popup.dart';
-import 'package:blurry/widgets/blurry_popup_button_text.dart';
-import 'package:blurry/widgets/blurry_popup_title.dart';
-import 'package:blurry/widgets/blurry_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:blurry/resources/extensions.dart';
-
-import 'widgets/blurry_popup_description.dart';
 
 // ignore: must_be_immutable
 class Blurry extends StatefulWidget {
