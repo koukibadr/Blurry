@@ -293,14 +293,13 @@ class Blurry extends StatefulWidget {
 class _BlurryState extends State<Blurry> {
   @override
   Widget build(BuildContext context) {
-    Color renderingColor = _getRenderingColorTheme();
     return widget._dialogType == TYPE.info
         ? BlurryInfoPopup(
             popupHeight: widget.popupHeight,
             blurryType: widget.type,
             icon: widget.icon,
             layoutType: widget.layoutType,
-            renderingColor: renderingColor,
+            renderingColor: widget.type.renderingColor(widget.themeColor),
             titleTextStyle: widget.titleTextStyle,
             title: widget.title,
             description: widget.description,
@@ -322,7 +321,7 @@ class _BlurryState extends State<Blurry> {
             blurryType: widget.type,
             icon: widget.icon,
             layoutType: widget.layoutType,
-            renderingColor: renderingColor,
+            renderingColor: widget.type.renderingColor(widget.themeColor),
             titleTextStyle: widget.titleTextStyle,
             title: widget.title,
             description: widget.description,
@@ -343,22 +342,5 @@ class _BlurryState extends State<Blurry> {
               widget.onConfirmButtonPressed.call();
             },
           );
-  }
-  
-  Color _getRenderingColorTheme() {
-    if (widget.themeColor != null) {
-      return widget.themeColor!;
-    } else {
-      switch (widget.type) {
-        case BLURRY_TYPE.info:
-          return BlurryColors.infoColor;
-        case BLURRY_TYPE.success:
-          return BlurryColors.successColor;
-        case BLURRY_TYPE.error:
-          return BlurryColors.errorColor;
-        default:
-          return BlurryColors.warningColor;
-      }
-    }
   }
 }

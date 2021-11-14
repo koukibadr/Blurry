@@ -5,14 +5,16 @@ class BlurryTextField extends StatelessWidget {
   final TextStyle textStyle;
   final TextStyle labelStyle;
   final TextEditingController textController;
+  final Color themeColor;
 
-  const BlurryTextField(
-      {Key? key,
-      required this.label,
-      required this.textController,
-      this.textStyle = const TextStyle(color: Colors.black),
-      this.labelStyle = const TextStyle(color: Colors.black)})
-      : super(key: key);
+  const BlurryTextField({
+    Key? key,
+    required this.label,
+    required this.textController,
+    required this.themeColor,
+    this.textStyle = const TextStyle(color: Colors.black),
+    this.labelStyle = const TextStyle(color: Colors.black),
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +29,8 @@ class BlurryTextField extends StatelessWidget {
           isDense: true,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.0),
-            borderSide: const BorderSide(
-              color: Colors.blue,
+            borderSide: BorderSide(
+              color: themeColor,
             ),
           ),
           enabledBorder: OutlineInputBorder(

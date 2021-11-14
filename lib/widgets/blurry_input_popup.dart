@@ -81,6 +81,7 @@ class BlurryInputPopup extends StatelessWidget {
             textController: textEditingController,
             labelStyle: inputLabelStyle,
             textStyle: inputTextStyle,
+            themeColor: renderingColor,
           ),
           const SizedBox(
             height: 5,
