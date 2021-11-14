@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:blurry/resources/arrays.dart';
 import 'package:blurry/resources/colors.dart';
+import 'package:blurry/resources/values.dart';
 import 'package:blurry/widgets/blurry_info_popup.dart';
 import 'package:blurry/widgets/blurry_input_popup.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,8 @@ class Blurry extends StatefulWidget {
     this.buttonTextStyle,
     this.descriptionTextStyle,
     this.popupHeight,
-    this.displayCancelButton = true,
-    this.dismissable = true,
+    this.displayCancelButton = DefaultBlurryValues.defaultDisplayCancelButtonState,
+    this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
     this.layoutType = LAYOUT_TYPE.ltr,
     this.inputLabel,
@@ -49,8 +50,8 @@ class Blurry extends StatefulWidget {
     this.buttonTextStyle,
     this.descriptionTextStyle,
     this.popupHeight,
-    this.displayCancelButton = true,
-    this.dismissable = true,
+    this.displayCancelButton = DefaultBlurryValues.defaultDisplayCancelButtonState,
+    this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
     this.layoutType = LAYOUT_TYPE.ltr,
     this.inputLabel,
@@ -75,8 +76,8 @@ class Blurry extends StatefulWidget {
     this.buttonTextStyle,
     this.descriptionTextStyle,
     this.popupHeight,
-    this.displayCancelButton = true,
-    this.dismissable = true,
+    this.displayCancelButton = DefaultBlurryValues.defaultDisplayCancelButtonState,
+    this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
     this.layoutType = LAYOUT_TYPE.ltr,
     this.inputLabel,
@@ -101,8 +102,8 @@ class Blurry extends StatefulWidget {
     this.buttonTextStyle,
     this.descriptionTextStyle,
     this.popupHeight,
-    this.displayCancelButton = true,
-    this.dismissable = true,
+    this.displayCancelButton = DefaultBlurryValues.defaultDisplayCancelButtonState,
+    this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
     this.layoutType = LAYOUT_TYPE.ltr,
     this.inputLabel,
@@ -127,8 +128,8 @@ class Blurry extends StatefulWidget {
     this.buttonTextStyle,
     this.descriptionTextStyle,
     this.popupHeight,
-    this.displayCancelButton = true,
-    this.dismissable = true,
+    this.displayCancelButton = DefaultBlurryValues.defaultDisplayCancelButtonState,
+    this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
     this.layoutType = LAYOUT_TYPE.ltr,
   }) : super(key: key) {
@@ -153,16 +154,16 @@ class Blurry extends StatefulWidget {
     this.themeColor,
     this.type,
     this.icon,
-    this.inputLabelStyle = const TextStyle(color: Colors.black),
-    this.inputTextStyle = const TextStyle(color: Colors.black),
+    this.inputLabelStyle = DefaultBlurryValues.defaultInputTextStyle,
+    this.inputTextStyle = DefaultBlurryValues.defaultInputTextStyle,
     this.onCancelButtonPressed,
     this.cancelButtonText = 'Cancel',
     this.titleTextStyle,
     this.buttonTextStyle,
     this.descriptionTextStyle,
     this.popupHeight,
-    this.displayCancelButton = true,
-    this.dismissable = true,
+    this.displayCancelButton = DefaultBlurryValues.defaultDisplayCancelButtonState,
+    this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
     this.layoutType = LAYOUT_TYPE.ltr,
   }) : super(key: key) {
