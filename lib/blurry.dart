@@ -151,6 +151,7 @@ class Blurry extends StatefulWidget {
     required this.onConfirmButtonPressed,
     required this.inputLabel,
     required this.inputTextController,
+    this.textInputType = TextInputType.text,
     this.themeColor,
     this.type,
     this.icon,
@@ -252,6 +253,10 @@ class Blurry extends StatefulWidget {
   /// the input label style by default it's just black text
   late TextStyle inputLabelStyle;
 
+  /// text input type applied on input field
+  /// available only when using the input constructor
+  late TextInputType textInputType;
+
   /// the design type of the popup, available when using input constructor
   /// availabele options
   /// ```dart
@@ -328,6 +333,7 @@ class _BlurryState extends State<Blurry> {
             inputLabel: widget.inputLabel!,
             inputLabelStyle: widget.inputLabelStyle,
             inputTextStyle: widget.inputTextStyle,
+            textInputType: widget.textInputType,
             textEditingController: widget.inputTextController!,
             buttonTextStyle: widget.buttonTextStyle,
             cancelButtonText: widget.cancelButtonText,

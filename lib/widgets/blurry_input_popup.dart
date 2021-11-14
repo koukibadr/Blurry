@@ -27,6 +27,7 @@ class BlurryInputPopup extends StatelessWidget {
   final Function onConfirmPressed;
   final Function onCancelPressed;
   final bool displayCancelButton;
+  final TextInputType textInputType;
 
   const BlurryInputPopup({
     Key? key,
@@ -49,6 +50,7 @@ class BlurryInputPopup extends StatelessWidget {
     required this.displayCancelButton,
     required this.onCancelPressed,
     required this.onConfirmPressed,
+    required this.textInputType,
   }) : super(key: key);
 
   @override
@@ -82,6 +84,7 @@ class BlurryInputPopup extends StatelessWidget {
             labelStyle: inputLabelStyle,
             textStyle: inputTextStyle,
             themeColor: renderingColor,
+            textInputType: textInputType,
           ),
           const SizedBox(
             height: 5,

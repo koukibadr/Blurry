@@ -6,12 +6,14 @@ class BlurryTextField extends StatelessWidget {
   final TextStyle labelStyle;
   final TextEditingController textController;
   final Color themeColor;
+  final TextInputType textInputType;
 
   const BlurryTextField({
     Key? key,
     required this.label,
     required this.textController,
     required this.themeColor,
+    required this.textInputType,
     this.textStyle = const TextStyle(color: Colors.black),
     this.labelStyle = const TextStyle(color: Colors.black),
   }) : super(key: key);
@@ -23,6 +25,7 @@ class BlurryTextField extends StatelessWidget {
       height: 50,
       child: TextFormField(
         style: textStyle,
+        keyboardType: textInputType,
         decoration: InputDecoration(
           label: Text(label),
           labelStyle: labelStyle.copyWith(fontSize: 12),
