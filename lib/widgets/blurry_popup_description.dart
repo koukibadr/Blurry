@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class BlurryPopupDescription extends StatelessWidget {
   final String description;
   final LAYOUT_TYPE layoutType;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   const BlurryPopupDescription({
     Key? key,
