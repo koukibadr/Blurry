@@ -28,6 +28,8 @@ class BlurryInputPopup extends StatelessWidget {
   final Function onCancelPressed;
   final bool displayCancelButton;
   final TextInputType textInputType;
+  final bool isPassword;
+  final bool withVisibityEye;
 
   const BlurryInputPopup({
     Key? key,
@@ -51,6 +53,8 @@ class BlurryInputPopup extends StatelessWidget {
     required this.onCancelPressed,
     required this.onConfirmPressed,
     required this.textInputType,
+    required this.isPassword,
+    required this.withVisibityEye,
   }) : super(key: key);
 
   @override
@@ -85,6 +89,8 @@ class BlurryInputPopup extends StatelessWidget {
             textStyle: inputTextStyle,
             themeColor: renderingColor,
             textInputType: textInputType,
+            isPassword: isPassword,
+            withVisibilityEye: withVisibityEye,
           ),
           const SizedBox(
             height: 5,

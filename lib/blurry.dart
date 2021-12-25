@@ -182,6 +182,48 @@ class Blurry extends StatefulWidget {
     }
   }
 
+  /// to create input blurry popup provide the required values
+  /// provide either themeColor or type
+  /// when providing themeColor you should provide icon value
+  Blurry.password({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.confirmButtonText,
+    required this.onConfirmButtonPressed,
+    required this.inputLabel,
+    required this.inputTextController,
+    this.textInputType = TextInputType.text,
+    this.themeColor,
+    this.type,
+    this.icon,
+    this.inputLabelStyle = DefaultBlurryValues.defaultInputTextStyle,
+    this.inputTextStyle = DefaultBlurryValues.defaultInputTextStyle,
+    this.onCancelButtonPressed,
+    this.cancelButtonText = 'Cancel',
+    this.titleTextStyle,
+    this.buttonTextStyle,
+    this.descriptionTextStyle,
+    this.popupHeight,
+    this.displayCancelButton =
+        DefaultBlurryValues.defaultDisplayCancelButtonState,
+    this.dismissable = DefaultBlurryValues.defaultDismissableValue,
+    this.barrierColor,
+    this.layoutType = LAYOUT_TYPE.ltr,
+    this.withVisibilityEye = DefaultBlurryValues.defaultVisibilityEyeValue,
+  }) : super(key: key) {
+    _dialogType = TYPE.input;
+    isPasswordField = true;
+    assert(inputLabel != null && inputTextController != null);
+    assert(type != null || themeColor != null);
+    if (type != null && themeColor != null) {
+      throw Exception('only dialogType or themeColor should be provided');
+    }
+    if (type == null) {
+      assert(icon != null);
+    }
+  }
+
   ///the dialog popup title, required in all blurry class constructors
   final String title;
 
@@ -272,7 +314,15 @@ class Blurry extends StatefulWidget {
   /// ```
   late BLURRY_TYPE? type;
 
+
+  //TODO add missing code documentation
+  bool isPasswordField = false;
+
+
+  //private values
   late TYPE? _dialogType;
+  bool withVisibilityEye = false;
+  
 
   ///display the rendered dialog content
   ///in alert dialog
@@ -342,6 +392,8 @@ class _BlurryState extends State<Blurry> {
             cancelButtonText: widget.cancelButtonText,
             confirmButtonText: widget.confirmButtonText,
             displayCancelButton: widget.displayCancelButton,
+            isPassword: widget.isPasswordField,
+            withVisibityEye: widget.withVisibilityEye,
             onCancelPressed: () {
               Navigator.pop(context);
               widget.onCancelButtonPressed?.call();

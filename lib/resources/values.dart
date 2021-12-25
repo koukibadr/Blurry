@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DefaultBlurryValues {
@@ -16,4 +15,5 @@ class DefaultBlurryValues {
   static const defaultDisplayCancelButtonState = true;
 
   static const defaultDismissableValue = true;
+  static const defaultVisibilityEyeValue = true;
 }

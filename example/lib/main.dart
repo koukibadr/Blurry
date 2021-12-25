@@ -183,6 +183,28 @@ class BlurryDemo extends StatelessWidget {
                 child: const Text('Number Input blurry dialog'),
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                onPressed: () {
+                  Blurry.password(
+                    title: 'Blurry Code Input',
+                    description:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                    confirmButtonText: 'Confirm',
+                    onConfirmButtonPressed: () {},
+                    inputLabel: 'Code',
+                    withVisibilityEye: false,
+                    type: BLURRY_TYPE.info,
+                    inputTextController: TextEditingController(),
+                  ).show(context);
+                },
+                child: const Text('Password input blurry dialog'),
+              ),
+            ),
           ],
         ),
       ),
