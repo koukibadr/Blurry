@@ -39,40 +39,41 @@ class _BlurryTextFieldState extends State<BlurryTextField> {
         keyboardType: widget.textInputType,
         obscureText: obscureText,
         decoration: InputDecoration(
-            label: Text(widget.label),
-            labelStyle: widget.labelStyle.copyWith(fontSize: 12),
-            isDense: true,
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: BorderSide(
-                color: widget.themeColor,
-              ),
+          label: Text(widget.label),
+          labelStyle: widget.labelStyle.copyWith(fontSize: 12),
+          isDense: true,
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5.0),
+            borderSide: BorderSide(
+              color: widget.themeColor,
             ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                color: Colors.grey.withOpacity(0.8),
-              ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(
+              color: Colors.grey.withOpacity(0.8),
             ),
-            suffix: widget.isPassword && widget.withVisibilityEye
-                ? InkWell(
-                    onTap: _changePasswordVisibility,
-                    child: obscureText
-                        ? Icon(
-                            CupertinoIcons.eye,
-                            color: widget.themeColor,
-                          )
-                        : Icon(
-                            CupertinoIcons.eye_slash,
-                            color: widget.themeColor,
-                          ),
-                  )
-                : null),
+          ),
+          suffix: widget.isPassword && widget.withVisibilityEye
+              ? InkWell(
+                  onTap: _changePasswordVisibility,
+                  child: obscureText
+                      ? Icon(
+                          CupertinoIcons.eye,
+                          color: widget.themeColor,
+                        )
+                      : Icon(
+                          CupertinoIcons.eye_slash,
+                          color: widget.themeColor,
+                        ),
+                )
+              : null,
+        ),
       ),
     );
   }
 
-  _changePasswordVisibility() {
+  void _changePasswordVisibility() {
     setState(() {
       obscureText = !obscureText;
     });

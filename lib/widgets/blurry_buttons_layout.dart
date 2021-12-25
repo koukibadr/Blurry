@@ -33,13 +33,14 @@ class BlurryButtonsLayout extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           BlurryConfirmButton(
-              onPress: () {
-                onConfirmButtonPressed.call();
-              },
-              buttonText: confirmButtonText,
-              layoutType: layoutType,
-              buttonColor: buttonColor,
-              textStyle: textStyle),
+            onPress: () {
+              onConfirmButtonPressed.call();
+            },
+            buttonText: confirmButtonText,
+            layoutType: layoutType,
+            buttonColor: buttonColor,
+            textStyle: textStyle,
+          ),
           if (displayCancelButton)
             BlurryCancelWidget(
               onPress: () {
@@ -67,13 +68,14 @@ class BlurryButtonsLayout extends StatelessWidget {
             buttonText: cancelButtonText,
           ),
         BlurryConfirmButton(
-            onPress: () {
-              onConfirmButtonPressed.call();
-            },
-            buttonText: confirmButtonText,
-            layoutType: layoutType,
-            buttonColor: buttonColor,
-            textStyle: textStyle),
+          onPress: () {
+            onConfirmButtonPressed.call();
+          },
+          buttonText: confirmButtonText,
+          layoutType: layoutType,
+          buttonColor: buttonColor,
+          textStyle: textStyle,
+        ),
       ],
     );
   }

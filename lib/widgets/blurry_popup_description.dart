@@ -16,22 +16,23 @@ class BlurryPopupDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        flex: 2,
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Text(
-                description,
-                textAlign: layoutType == LAYOUT_TYPE.center
-                    ? TextAlign.center
-                    : layoutType == LAYOUT_TYPE.rtl
-                        ? TextAlign.end
-                        : TextAlign.start,
-                style: textStyle,
-              ),
+      flex: 2,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Text(
+              description,
+              textAlign: layoutType == LAYOUT_TYPE.center
+                  ? TextAlign.center
+                  : layoutType == LAYOUT_TYPE.rtl
+                      ? TextAlign.end
+                      : TextAlign.start,
+              style: textStyle,
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

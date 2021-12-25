@@ -7,8 +7,9 @@ class DefaultBlurryValues {
   static const TextStyle descriptionDefaultStyle = TextStyle(fontSize: 18);
 
   static BoxDecoration defaultBoxDecoration = BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
-      color: Colors.white.withOpacity(0.85));
+    borderRadius: BorderRadius.circular(10),
+    color: Colors.white.withOpacity(0.85),
+  );
 
   static const TextStyle defaultInputTextStyle = TextStyle(color: Colors.black);
 

@@ -314,15 +314,12 @@ class Blurry extends StatefulWidget {
   /// ```
   late BLURRY_TYPE? type;
 
-
   //TODO add missing code documentation
   bool isPasswordField = false;
-
 
   //private values
   late TYPE? _dialogType;
   bool withVisibilityEye = false;
-  
 
   ///display the rendered dialog content
   ///in alert dialog
