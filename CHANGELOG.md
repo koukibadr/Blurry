@@ -1,3 +1,8 @@
+## 1.3.0 - 14/11/2021
+
+- Add password input blurry dialog type
+- Enahnce performance and rendering
+
 ## 1.2.0 - 14/11/2021
 
 - Add support to LTR and RTL layouts
