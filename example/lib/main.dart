@@ -196,8 +196,7 @@ class BlurryDemo extends StatelessWidget {
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                     confirmButtonText: 'Confirm',
                     onConfirmButtonPressed: () {},
-                    inputLabel: 'Code',
-                    withVisibilityEye: false,
+                    inputLabel: 'Password',
                     type: BLURRY_TYPE.info,
                     inputTextController: TextEditingController(),
                   ).show(context);

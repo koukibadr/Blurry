@@ -314,12 +314,14 @@ class Blurry extends StatefulWidget {
   /// ```
   late BLURRY_TYPE? type;
 
-  //TODO add missing code documentation
-  bool withVisibilityEye = false;
+  /// indicate whether display visibility eye icon on password fields
+  /// available only when using `Blurry.password` constructor
+  /// by default it's 'true'
+  bool withVisibilityEye = true;
   
 
-  //private values
   late TYPE? _dialogType;
+  
   bool isPasswordField = false;
 
   ///display the rendered dialog content
