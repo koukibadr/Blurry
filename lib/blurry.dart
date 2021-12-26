@@ -318,10 +318,9 @@ class Blurry extends StatefulWidget {
   /// available only when using `Blurry.password` constructor
   /// by default it's 'true'
   bool withVisibilityEye = true;
-  
 
   late TYPE? _dialogType;
-  
+
   bool isPasswordField = false;
 
   ///display the rendered dialog content
