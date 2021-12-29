@@ -3,6 +3,7 @@ import 'package:blurry/resources/colors.dart';
 import 'package:blurry/resources/values.dart';
 import 'package:blurry/widgets/blurry_info_popup.dart';
 import 'package:blurry/widgets/blurry_input_popup.dart';
+import 'package:blurry/widgets/blurry_single_choice_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:blurry/resources/extensions.dart';
 
@@ -258,8 +259,11 @@ class Blurry extends StatefulWidget {
     this.layoutType = LAYOUT_TYPE.ltr,
   }) : super(key: key) {
     _dialogType = TYPE.singleChoiceSelector;
-    isPasswordField = true;
-    assert(inputLabel != null && inputTextController != null);
+    
+    isPasswordField = false;
+    inputLabel = null;
+    inputTextController = null;
+
     assert(type != null || themeColor != null);
     if (type != null && themeColor != null) {
       throw Exception('only dialogType or themeColor should be provided');
@@ -297,8 +301,11 @@ class Blurry extends StatefulWidget {
     this.layoutType = LAYOUT_TYPE.ltr,
   }) : super(key: key) {
     _dialogType = TYPE.multiChoiceSelected;
-    isPasswordField = true;
-    assert(inputLabel != null && inputTextController != null);
+
+    isPasswordField = false;
+    inputLabel = null;
+    inputTextController = null;
+
     assert(type != null || themeColor != null);
     if (type != null && themeColor != null) {
       throw Exception('only dialogType or themeColor should be provided');
@@ -438,8 +445,9 @@ class Blurry extends StatefulWidget {
 class _BlurryState extends State<Blurry> {
   @override
   Widget build(BuildContext context) {
-    return widget._dialogType == TYPE.info
-        ? BlurryInfoPopup(
+    switch (widget._dialogType) {
+      case TYPE.singleChoiceSelector:
+        return BlurrySingleChoiceSelector(
             popupHeight: widget.popupHeight,
             blurryType: widget.type,
             icon: widget.icon,
@@ -460,8 +468,9 @@ class _BlurryState extends State<Blurry> {
             onConfirmPressed: () {
               widget.onConfirmButtonPressed.call();
             },
-          )
-        : BlurryInputPopup(
+          );
+      case TYPE.input:
+        return BlurryInputPopup(
             popupHeight: widget.popupHeight,
             blurryType: widget.type,
             icon: widget.icon,
@@ -490,5 +499,29 @@ class _BlurryState extends State<Blurry> {
               widget.onConfirmButtonPressed.call();
             },
           );
+      default:
+        return BlurryInfoPopup(
+            popupHeight: widget.popupHeight,
+            blurryType: widget.type,
+            icon: widget.icon,
+            layoutType: widget.layoutType,
+            renderingColor: widget.type.renderingColor(widget.themeColor),
+            titleTextStyle: widget.titleTextStyle,
+            title: widget.title,
+            description: widget.description,
+            descriptionTextStyle: widget.descriptionTextStyle,
+            buttonTextStyle: widget.buttonTextStyle,
+            cancelButtonText: widget.cancelButtonText,
+            confirmButtonText: widget.confirmButtonText,
+            displayCancelButton: widget.displayCancelButton,
+            onCancelPressed: () {
+              Navigator.pop(context);
+              widget.onCancelButtonPressed?.call();
+            },
+            onConfirmPressed: () {
+              widget.onConfirmButtonPressed.call();
+            },
+          );
+    }
   }
 }

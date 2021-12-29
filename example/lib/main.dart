@@ -204,6 +204,29 @@ class BlurryDemo extends StatelessWidget {
                 child: const Text('Password input blurry dialog'),
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                onPressed: () {
+                  Blurry.singleChoiceSelector(
+                    items: [
+                      Container(),
+                    ],
+                    title: 'Blurry Single selector',
+                    description:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                    confirmButtonText: 'Confirm',
+                    onConfirmButtonPressed: () {},
+                    type: BLURRY_TYPE.info,
+                    popupHeight: 300,
+                  ).show(context);
+                },
+                child: const Text('Single choice selector'),
+              ),
+            ),
           ],
         ),
       ),
