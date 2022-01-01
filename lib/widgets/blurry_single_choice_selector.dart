@@ -1,8 +1,6 @@
 import 'package:blurry/resources/arrays.dart';
 import 'package:blurry/resources/values.dart';
 import 'package:flutter/material.dart';
-
-import 'blurry_buttons_layout.dart';
 import 'blurry_popup_description.dart';
 import 'blurry_popup_title.dart';
 
@@ -80,18 +78,8 @@ class BlurrySingleChoiceSelector extends StatelessWidget {
               itemBuilder: (context, index) => listItems[index],
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: BlurryButtonsLayout(
-              confirmButtonText: confirmButtonText,
-              cancelButtonText: cancelButtonText,
-              layoutType: layoutType,
-              buttonColor: renderingColor,
-              textStyle: buttonTextStyle,
-              onCancelButtonPressed: onCancelPressed,
-              onConfirmButtonPressed: onConfirmPressed,
-              displayCancelButton: displayCancelButton,
-            ),
+          const SizedBox(
+            height: 5,
           ),
         ],
       ),

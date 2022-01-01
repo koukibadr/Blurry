@@ -274,48 +274,6 @@ class Blurry extends StatefulWidget {
     assert(items != null && items!.isNotEmpty);
   }
 
-  /// to create input blurry popup provide the required values
-  /// provide either themeColor or type
-  /// when providing themeColor you should provide icon value
-  Blurry.multiChoiceSelector({
-    Key? key,
-    required this.title,
-    required this.description,
-    required this.confirmButtonText,
-    required this.onConfirmButtonPressed,
-    required this.items,
-    this.textInputType = TextInputType.text,
-    this.themeColor,
-    this.type,
-    this.icon,
-    this.onCancelButtonPressed,
-    this.cancelButtonText = 'Cancel',
-    this.titleTextStyle,
-    this.buttonTextStyle,
-    this.descriptionTextStyle,
-    this.popupHeight,
-    this.displayCancelButton =
-        DefaultBlurryValues.defaultDisplayCancelButtonState,
-    this.dismissable = DefaultBlurryValues.defaultDismissableValue,
-    this.barrierColor,
-    this.layoutType = LAYOUT_TYPE.ltr,
-  }) : super(key: key) {
-    _dialogType = TYPE.multiChoiceSelected;
-
-    isPasswordField = false;
-    inputLabel = null;
-    inputTextController = null;
-
-    assert(type != null || themeColor != null);
-    if (type != null && themeColor != null) {
-      throw Exception('only dialogType or themeColor should be provided');
-    }
-    if (type == null) {
-      assert(icon != null);
-    }
-    assert(items != null && items!.isNotEmpty);
-  }
-
 
 
   ///the dialog popup title, required in all blurry class constructors

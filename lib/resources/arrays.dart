@@ -19,7 +19,6 @@ enum TYPE {
   info,
   input,
   singleChoiceSelector,
-  multiChoiceSelected,
 }
 
 Map<BLURRY_TYPE, IconData> themesIcons = {
