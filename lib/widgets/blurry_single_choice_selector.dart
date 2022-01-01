@@ -22,6 +22,7 @@ class BlurrySingleChoiceSelector extends StatelessWidget {
   final Function onConfirmPressed;
   final Function onCancelPressed;
   final bool displayCancelButton;
+  final List<Widget> listItems;
 
   const BlurrySingleChoiceSelector({
     Key? key,
@@ -40,6 +41,7 @@ class BlurrySingleChoiceSelector extends StatelessWidget {
     required this.displayCancelButton,
     required this.onCancelPressed,
     required this.onConfirmPressed,
+    required this.listItems,
   }) : super(key: key);
 
   @override
@@ -73,17 +75,9 @@ class BlurrySingleChoiceSelector extends StatelessWidget {
           ),
           Expanded(
             flex: 3,
-            child: ListView(
-              children: List.generate(
-                10,
-                (index) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 20,
-                    color: Colors.green,
-                  ),
-                ),
-              ),
+            child: ListView.builder(
+              itemCount: listItems.length,
+              itemBuilder: (context, index) => listItems[index],
             ),
           ),
           Expanded(

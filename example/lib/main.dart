@@ -212,9 +212,16 @@ class BlurryDemo extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   Blurry.singleChoiceSelector(
-                    items: [
-                      Container(),
-                    ],
+                    items: List.generate(
+                      10,
+                      (index) => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 20,
+                          color: Colors.green,
+                        ),
+                      ),
+                    ),
                     title: 'Blurry Single selector',
                     description:
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit',

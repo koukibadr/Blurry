@@ -461,6 +461,7 @@ class _BlurryState extends State<Blurry> {
             cancelButtonText: widget.cancelButtonText,
             confirmButtonText: widget.confirmButtonText,
             displayCancelButton: widget.displayCancelButton,
+            listItems: widget.items!,
             onCancelPressed: () {
               Navigator.pop(context);
               widget.onCancelButtonPressed?.call();
