@@ -222,7 +222,9 @@ class BlurryDemo extends StatelessWidget {
                         ),
                       ),
                     ),
-                    onItemSelected: (index){},
+                    onItemSelected: (index){
+                      print(index);
+                    },
                     title: 'Blurry Single selector',
                     description:
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit',

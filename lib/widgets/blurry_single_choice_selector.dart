@@ -16,6 +16,7 @@ class BlurrySingleChoiceSelector extends StatelessWidget {
   final TextStyle? descriptionTextStyle;
   final TextStyle? buttonTextStyle;
   final List<Widget> listItems;
+  final Function(int) onItemSelected;
 
   const BlurrySingleChoiceSelector({
     Key? key,
@@ -30,6 +31,7 @@ class BlurrySingleChoiceSelector extends StatelessWidget {
     required this.descriptionTextStyle,
     required this.buttonTextStyle,
     required this.listItems,
+    required this.onItemSelected,
   }) : super(key: key);
 
   @override
@@ -65,7 +67,13 @@ class BlurrySingleChoiceSelector extends StatelessWidget {
             flex: 3,
             child: ListView.builder(
               itemCount: listItems.length,
-              itemBuilder: (context, index) => listItems[index],
+              itemBuilder: (context, index) => InkWell(
+                child: listItems[index],
+                onTap: (){
+                  Navigator.pop(context);
+                  onItemSelected.call(index);
+                },
+              ),
             ),
           ),
           const SizedBox(

@@ -281,6 +281,7 @@ class Blurry extends StatefulWidget {
       assert(icon != null);
     }
     assert(items != null && items!.isNotEmpty);
+    assert(onItemSelected != null);
   }
 
 
@@ -428,6 +429,7 @@ class _BlurryState extends State<Blurry> {
             descriptionTextStyle: widget.descriptionTextStyle,
             buttonTextStyle: widget.buttonTextStyle,
             listItems: widget.items!,
+            onItemSelected: widget.onItemSelected!,
           );
       case TYPE.input:
         return BlurryInputPopup(
