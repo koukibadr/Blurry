@@ -14,12 +14,7 @@ class BlurrySingleChoiceSelector extends StatelessWidget {
   final TextStyle? titleTextStyle;
   final String description;
   final TextStyle? descriptionTextStyle;
-  final String confirmButtonText;
-  final String cancelButtonText;
   final TextStyle? buttonTextStyle;
-  final Function onConfirmPressed;
-  final Function onCancelPressed;
-  final bool displayCancelButton;
   final List<Widget> listItems;
 
   const BlurrySingleChoiceSelector({
@@ -34,11 +29,6 @@ class BlurrySingleChoiceSelector extends StatelessWidget {
     required this.description,
     required this.descriptionTextStyle,
     required this.buttonTextStyle,
-    required this.cancelButtonText,
-    required this.confirmButtonText,
-    required this.displayCancelButton,
-    required this.onCancelPressed,
-    required this.onConfirmPressed,
     required this.listItems,
   }) : super(key: key);
 

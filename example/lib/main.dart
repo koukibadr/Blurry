@@ -222,11 +222,10 @@ class BlurryDemo extends StatelessWidget {
                         ),
                       ),
                     ),
+                    onItemSelected: (index){},
                     title: 'Blurry Single selector',
                     description:
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-                    confirmButtonText: 'Confirm',
-                    onConfirmButtonPressed: () {},
                     type: BLURRY_TYPE.info,
                     popupHeight: 300,
                   ).show(context);

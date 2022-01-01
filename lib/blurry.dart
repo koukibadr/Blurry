@@ -36,6 +36,7 @@ class Blurry extends StatefulWidget {
     _dialogType = TYPE.info;
     type = null;
     items = null;
+    onItemSelected = null;
   }
 
   ///info constructor to render info style dialog
@@ -64,6 +65,7 @@ class Blurry extends StatefulWidget {
     themeColor = null;
     _dialogType = TYPE.info;
     items = null;
+    onItemSelected = null;
   }
 
   ///render success style dialog
@@ -92,6 +94,7 @@ class Blurry extends StatefulWidget {
     themeColor = null;
     _dialogType = TYPE.info;
     items = null;
+    onItemSelected = null;
   }
 
   ///render error style dialog
@@ -120,6 +123,7 @@ class Blurry extends StatefulWidget {
     themeColor = null;
     _dialogType = TYPE.info;
     items = null;
+    onItemSelected = null;
   }
 
   ///render warning style dialog
@@ -146,6 +150,7 @@ class Blurry extends StatefulWidget {
     themeColor = null;
     _dialogType = TYPE.info;
     items = null;
+    onItemSelected = null;
   }
 
   /// to create input blurry popup provide the required values
@@ -187,6 +192,7 @@ class Blurry extends StatefulWidget {
       assert(icon != null);
     }
     items = null;
+    onItemSelected = null;
   }
 
   /// to create input blurry popup provide the required values
@@ -221,8 +227,10 @@ class Blurry extends StatefulWidget {
   }) : super(key: key) {
     _dialogType = TYPE.input;
     isPasswordField = true;
+    //TODO add text assertion
     assert(inputLabel != null && inputTextController != null);
     assert(type != null || themeColor != null);
+
     if (type != null && themeColor != null) {
       throw Exception('only dialogType or themeColor should be provided');
     }
@@ -230,6 +238,7 @@ class Blurry extends StatefulWidget {
       assert(icon != null);
     }
     items = null;
+    onItemSelected = null;
   }
 
   /// to create input blurry popup provide the required values
@@ -239,21 +248,16 @@ class Blurry extends StatefulWidget {
     Key? key,
     required this.title,
     required this.description,
-    required this.confirmButtonText,
-    required this.onConfirmButtonPressed,
     required this.items,
+    required this.onItemSelected,
     this.textInputType = TextInputType.text,
     this.themeColor,
     this.type,
     this.icon,
-    this.onCancelButtonPressed,
-    this.cancelButtonText = 'Cancel',
     this.titleTextStyle,
     this.buttonTextStyle,
     this.descriptionTextStyle,
     this.popupHeight,
-    this.displayCancelButton =
-        DefaultBlurryValues.defaultDisplayCancelButtonState,
     this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
     this.layoutType = LAYOUT_TYPE.ltr,
@@ -263,7 +267,12 @@ class Blurry extends StatefulWidget {
     isPasswordField = false;
     inputLabel = null;
     inputTextController = null;
-
+    confirmButtonText = '';
+    onConfirmButtonPressed = null;
+    onCancelButtonPressed = null;
+    displayCancelButton =
+        DefaultBlurryValues.defaultDisplayCancelButtonState;
+    cancelButtonText = '';
     assert(type != null || themeColor != null);
     if (type != null && themeColor != null) {
       throw Exception('only dialogType or themeColor should be provided');
@@ -284,10 +293,10 @@ class Blurry extends StatefulWidget {
   final String description;
 
   ///the cancel button text, by default  it's 'Cancel'
-  final String cancelButtonText;
+  late String? cancelButtonText;
 
   ///the confirm button (primary button) text string
-  final String confirmButtonText;
+  late String? confirmButtonText;
 
   ///the dialog theme color
   ///will be applied on buttons and icon
@@ -296,10 +305,10 @@ class Blurry extends StatefulWidget {
 
   ///function invoked when the primary button is pressed
   ///required in all constructors
-  final Function onConfirmButtonPressed;
+  late Function? onConfirmButtonPressed;
 
   ///the callback that will be invoked when pressing on cancel button
-  final Function? onCancelButtonPressed;
+  late Function? onCancelButtonPressed;
 
   ///the icon that will be rendered in the dialog
   ///required only when using the default constructor
@@ -319,7 +328,7 @@ class Blurry extends StatefulWidget {
 
   ///indicate whether the cancel button will be rendered or not
   ///by default the cancel button is displayed
-  final bool displayCancelButton;
+  late bool displayCancelButton;
 
   ///indicates whether the popup dialog is dismissable or not
   ///by default [dismissable = true]
@@ -373,6 +382,8 @@ class Blurry extends StatefulWidget {
 
   late List<Widget>? items;
 
+  late Function(int)? onItemSelected;
+
   late TYPE? _dialogType;
 
   bool isPasswordField = false;
@@ -416,17 +427,7 @@ class _BlurryState extends State<Blurry> {
             description: widget.description,
             descriptionTextStyle: widget.descriptionTextStyle,
             buttonTextStyle: widget.buttonTextStyle,
-            cancelButtonText: widget.cancelButtonText,
-            confirmButtonText: widget.confirmButtonText,
-            displayCancelButton: widget.displayCancelButton,
             listItems: widget.items!,
-            onCancelPressed: () {
-              Navigator.pop(context);
-              widget.onCancelButtonPressed?.call();
-            },
-            onConfirmPressed: () {
-              widget.onConfirmButtonPressed.call();
-            },
           );
       case TYPE.input:
         return BlurryInputPopup(
@@ -445,8 +446,8 @@ class _BlurryState extends State<Blurry> {
             textInputType: widget.textInputType,
             textEditingController: widget.inputTextController!,
             buttonTextStyle: widget.buttonTextStyle,
-            cancelButtonText: widget.cancelButtonText,
-            confirmButtonText: widget.confirmButtonText,
+            cancelButtonText: widget.cancelButtonText!,
+            confirmButtonText: widget.confirmButtonText!,
             displayCancelButton: widget.displayCancelButton,
             isPassword: widget.isPasswordField,
             withVisibityEye: widget.withVisibilityEye,
@@ -455,7 +456,7 @@ class _BlurryState extends State<Blurry> {
               widget.onCancelButtonPressed?.call();
             },
             onConfirmPressed: () {
-              widget.onConfirmButtonPressed.call();
+              widget.onConfirmButtonPressed?.call();
             },
           );
       default:
@@ -470,15 +471,15 @@ class _BlurryState extends State<Blurry> {
             description: widget.description,
             descriptionTextStyle: widget.descriptionTextStyle,
             buttonTextStyle: widget.buttonTextStyle,
-            cancelButtonText: widget.cancelButtonText,
-            confirmButtonText: widget.confirmButtonText,
+            cancelButtonText: widget.cancelButtonText!,
+            confirmButtonText: widget.confirmButtonText!,
             displayCancelButton: widget.displayCancelButton,
             onCancelPressed: () {
               Navigator.pop(context);
               widget.onCancelButtonPressed?.call();
             },
             onConfirmPressed: () {
-              widget.onConfirmButtonPressed.call();
+              widget.onConfirmButtonPressed?.call();
             },
           );
     }
