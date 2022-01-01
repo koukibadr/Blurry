@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'icons.dart';
 
-enum BLURRY_TYPE {
+enum DEFAULT_THEMES {
   info,
   success,
   error,
@@ -21,9 +21,9 @@ enum TYPE {
   singleChoiceSelector,
 }
 
-Map<BLURRY_TYPE, IconData> themesIcons = {
-  BLURRY_TYPE.info: BlurryIcons.infoIcon,
-  BLURRY_TYPE.error: BlurryIcons.errorIcon,
-  BLURRY_TYPE.success: BlurryIcons.successIcon,
-  BLURRY_TYPE.warning: BlurryIcons.warningIcon
+Map<DEFAULT_THEMES, IconData> themesIcons = {
+  DEFAULT_THEMES.info: BlurryIcons.infoIcon,
+  DEFAULT_THEMES.error: BlurryIcons.errorIcon,
+  DEFAULT_THEMES.success: BlurryIcons.successIcon,
+  DEFAULT_THEMES.warning: BlurryIcons.warningIcon
 };

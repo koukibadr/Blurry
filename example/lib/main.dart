@@ -175,7 +175,7 @@ class BlurryDemo extends StatelessWidget {
                     confirmButtonText: 'Confirm',
                     onConfirmButtonPressed: () {},
                     inputLabel: 'Code',
-                    type: BLURRY_TYPE.info,
+                    defaultTheme: DEFAULT_THEMES.info,
                     inputTextController: TextEditingController(),
                     textInputType: TextInputType.number,
                   ).show(context);
@@ -197,7 +197,7 @@ class BlurryDemo extends StatelessWidget {
                     confirmButtonText: 'Confirm',
                     onConfirmButtonPressed: () {},
                     inputLabel: 'Password',
-                    type: BLURRY_TYPE.info,
+                    defaultTheme: DEFAULT_THEMES.info,
                     inputTextController: TextEditingController(),
                   ).show(context);
                 },
@@ -228,7 +228,8 @@ class BlurryDemo extends StatelessWidget {
                     title: 'Blurry Single selector',
                     description:
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-                    type: BLURRY_TYPE.info,
+                    themeColor: Colors.pink,
+                    icon: Icons.account_circle_outlined,
                     popupHeight: 300,
                   ).show(context);
                 },

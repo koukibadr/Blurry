@@ -11,7 +11,7 @@ class BlurryInfoPopup extends StatelessWidget {
   final LAYOUT_TYPE layoutType;
   final Color renderingColor;
   final IconData? icon;
-  final BLURRY_TYPE? blurryType;
+  final DEFAULT_THEMES? blurryType;
   final String title;
   final TextStyle? titleTextStyle;
   final String description;

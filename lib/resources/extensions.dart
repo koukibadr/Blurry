@@ -1,10 +1,11 @@
+import 'package:blurry/blurry.dart';
 import 'package:blurry/resources/arrays.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
-extension BlurryTypeExtension on BLURRY_TYPE? {
+extension BlurryTypeExtension on DEFAULT_THEMES? {
   IconData? renderingIcon(IconData? widgetIcon) =>
       this == null ? widgetIcon : themesIcons[this]!;
 
@@ -13,11 +14,11 @@ extension BlurryTypeExtension on BLURRY_TYPE? {
       return themeColor;
     } else {
       switch (this) {
-        case BLURRY_TYPE.info:
+        case DEFAULT_THEMES.info:
           return BlurryColors.infoColor;
-        case BLURRY_TYPE.success:
+        case DEFAULT_THEMES.success:
           return BlurryColors.successColor;
-        case BLURRY_TYPE.error:
+        case DEFAULT_THEMES.error:
           return BlurryColors.errorColor;
         default:
           return BlurryColors.warningColor;
@@ -39,4 +40,18 @@ extension WidgetExtension on Widget {
       child: this,
     );
   }
+}
+
+extension BlurryExtensions on Blurry {
+
+  void initializeValuesInputBlurry({
+    bool passwordField = false,
+  }){
+    assert(inputLabel != null && inputTextController != null);
+    assert(defaultTheme != null || (themeColor != null && icon != null));
+    isPasswordField = passwordField;
+    items = null;
+    onItemSelected = null;
+  }
+
 }

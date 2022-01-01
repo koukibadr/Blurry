@@ -34,14 +34,9 @@ class Blurry extends StatefulWidget {
     this.inputTextController,
   }) : super(key: key) {
     _dialogType = TYPE.info;
-    type = null;
+    defaultTheme = null;
     items = null;
     onItemSelected = null;
-    
-    assert(confirmButtonText != null);
-    if(displayCancelButton){
-      assert(cancelButtonText != null);
-    }
   }
 
   ///info constructor to render info style dialog
@@ -65,17 +60,12 @@ class Blurry extends StatefulWidget {
     this.inputLabel,
     this.inputTextController,
   }) : super(key: key) {
-    type = BLURRY_TYPE.info;
-    icon = themesIcons[type];
+    defaultTheme = DEFAULT_THEMES.info;
+    icon = themesIcons[defaultTheme];
     themeColor = null;
     _dialogType = TYPE.info;
     items = null;
     onItemSelected = null;
-
-    assert(confirmButtonText != null);
-    if(displayCancelButton){
-      assert(cancelButtonText != null);
-    }
   }
 
   ///render success style dialog
@@ -99,17 +89,12 @@ class Blurry extends StatefulWidget {
     this.inputLabel,
     this.inputTextController,
   }) : super(key: key) {
-    type = BLURRY_TYPE.success;
-    icon = themesIcons[type];
+    defaultTheme = DEFAULT_THEMES.success;
+    icon = themesIcons[defaultTheme];
     themeColor = null;
     _dialogType = TYPE.info;
     items = null;
     onItemSelected = null;
-
-    assert(confirmButtonText != null);
-    if(displayCancelButton){
-      assert(cancelButtonText != null);
-    }
   }
 
   ///render error style dialog
@@ -133,17 +118,12 @@ class Blurry extends StatefulWidget {
     this.inputLabel,
     this.inputTextController,
   }) : super(key: key) {
-    type = BLURRY_TYPE.error;
-    icon = themesIcons[type];
+    defaultTheme = DEFAULT_THEMES.error;
+    icon = themesIcons[defaultTheme];
     themeColor = null;
     _dialogType = TYPE.info;
     items = null;
     onItemSelected = null;
-
-    assert(confirmButtonText != null);
-    if(displayCancelButton){
-      assert(cancelButtonText != null);
-    }
   }
 
   ///render warning style dialog
@@ -165,17 +145,12 @@ class Blurry extends StatefulWidget {
     this.barrierColor,
     this.layoutType = LAYOUT_TYPE.ltr,
   }) : super(key: key) {
-    type = BLURRY_TYPE.warning;
-    icon = themesIcons[type];
+    defaultTheme = DEFAULT_THEMES.warning;
+    icon = themesIcons[defaultTheme];
     themeColor = null;
     _dialogType = TYPE.info;
     items = null;
     onItemSelected = null;
-
-    assert(confirmButtonText != null);
-    if(displayCancelButton){
-      assert(cancelButtonText != null);
-    }
   }
 
   /// to create input blurry popup provide the required values
@@ -191,7 +166,7 @@ class Blurry extends StatefulWidget {
     required this.inputTextController,
     this.textInputType = TextInputType.text,
     this.themeColor,
-    this.type,
+    this.defaultTheme,
     this.icon,
     this.inputLabelStyle = DefaultBlurryValues.defaultInputTextStyle,
     this.inputTextStyle = DefaultBlurryValues.defaultInputTextStyle,
@@ -207,19 +182,9 @@ class Blurry extends StatefulWidget {
     this.barrierColor,
     this.layoutType = LAYOUT_TYPE.ltr,
   }) : super(key: key) {
+    
     _dialogType = TYPE.input;
-    assert(inputLabel != null && inputTextController != null);
-
-    assert(inputLabel != null && inputTextController != null);
-    assert(type != null || (themeColor != null && icon != null));
-    assert(confirmButtonText != null);
-    if(displayCancelButton){
-      assert(cancelButtonText != null);
-    }
-
-    items = null;
-    onItemSelected = null;
-
+    initializeValuesInputBlurry();
   }
 
   /// to create input blurry popup provide the required values
@@ -235,7 +200,7 @@ class Blurry extends StatefulWidget {
     required this.inputTextController,
     this.textInputType = TextInputType.text,
     this.themeColor,
-    this.type,
+    this.defaultTheme,
     this.icon,
     this.inputLabelStyle = DefaultBlurryValues.defaultInputTextStyle,
     this.inputTextStyle = DefaultBlurryValues.defaultInputTextStyle,
@@ -253,18 +218,11 @@ class Blurry extends StatefulWidget {
     this.withVisibilityEye = DefaultBlurryValues.defaultVisibilityEyeValue,
   }) : super(key: key) {
     
+    
     _dialogType = TYPE.input;
-    isPasswordField = true;
-
-    assert(inputLabel != null && inputTextController != null);
-    assert(type != null || (themeColor != null && icon != null));
-    assert(confirmButtonText != null);
-    if(displayCancelButton){
-      assert(cancelButtonText != null);
-    }
-
-    items = null;
-    onItemSelected = null;
+    initializeValuesInputBlurry(
+      passwordField: true,
+    );
   }
 
   /// to create input blurry popup provide the required values
@@ -278,7 +236,7 @@ class Blurry extends StatefulWidget {
     required this.onItemSelected,
     this.textInputType = TextInputType.text,
     this.themeColor,
-    this.type,
+    this.defaultTheme,
     this.icon,
     this.titleTextStyle,
     this.buttonTextStyle,
@@ -290,17 +248,14 @@ class Blurry extends StatefulWidget {
   }) : super(key: key) {
     _dialogType = TYPE.singleChoiceSelector;
     
-    isPasswordField = false;
     inputLabel = null;
     inputTextController = null;
-    confirmButtonText = '';
     onConfirmButtonPressed = null;
     onCancelButtonPressed = null;
     displayCancelButton =
         DefaultBlurryValues.defaultDisplayCancelButtonState;
-    cancelButtonText = '';
     
-    assert(type != null || (themeColor != null && icon != null));
+    assert(defaultTheme != null || (themeColor != null && icon != null));
     assert(items != null && items!.isNotEmpty);
     assert(onItemSelected != null);
   }
@@ -315,10 +270,10 @@ class Blurry extends StatefulWidget {
   final String description;
 
   ///the cancel button text, by default  it's 'Cancel'
-  late String? cancelButtonText;
+  late String cancelButtonText = '';
 
   ///the confirm button (primary button) text string
-  late String? confirmButtonText;
+  late String confirmButtonText = '';
 
   ///the dialog theme color
   ///will be applied on buttons and icon
@@ -395,7 +350,7 @@ class Blurry extends StatefulWidget {
   /// warning
   /// }
   /// ```
-  late BLURRY_TYPE? type;
+  late DEFAULT_THEMES? defaultTheme;
 
   /// indicate whether display visibility eye icon on password fields
   /// available only when using `Blurry.password` constructor
@@ -440,10 +395,10 @@ class _BlurryState extends State<Blurry> {
       case TYPE.singleChoiceSelector:
         return BlurrySingleChoiceSelector(
             popupHeight: widget.popupHeight,
-            blurryType: widget.type,
+            blurryType: widget.defaultTheme,
             icon: widget.icon,
             layoutType: widget.layoutType,
-            renderingColor: widget.type.renderingColor(widget.themeColor),
+            renderingColor: widget.defaultTheme.renderingColor(widget.themeColor),
             titleTextStyle: widget.titleTextStyle,
             title: widget.title,
             description: widget.description,
@@ -455,10 +410,10 @@ class _BlurryState extends State<Blurry> {
       case TYPE.input:
         return BlurryInputPopup(
             popupHeight: widget.popupHeight,
-            blurryType: widget.type,
+            blurryType: widget.defaultTheme,
             icon: widget.icon,
             layoutType: widget.layoutType,
-            renderingColor: widget.type.renderingColor(widget.themeColor),
+            renderingColor: widget.defaultTheme.renderingColor(widget.themeColor),
             titleTextStyle: widget.titleTextStyle,
             title: widget.title,
             description: widget.description,
@@ -469,8 +424,8 @@ class _BlurryState extends State<Blurry> {
             textInputType: widget.textInputType,
             textEditingController: widget.inputTextController!,
             buttonTextStyle: widget.buttonTextStyle,
-            cancelButtonText: widget.cancelButtonText!,
-            confirmButtonText: widget.confirmButtonText!,
+            cancelButtonText: widget.cancelButtonText,
+            confirmButtonText: widget.confirmButtonText,
             displayCancelButton: widget.displayCancelButton,
             isPassword: widget.isPasswordField,
             withVisibityEye: widget.withVisibilityEye,
@@ -485,17 +440,17 @@ class _BlurryState extends State<Blurry> {
       default:
         return BlurryInfoPopup(
             popupHeight: widget.popupHeight,
-            blurryType: widget.type,
+            blurryType: widget.defaultTheme,
             icon: widget.icon,
             layoutType: widget.layoutType,
-            renderingColor: widget.type.renderingColor(widget.themeColor),
+            renderingColor: widget.defaultTheme.renderingColor(widget.themeColor),
             titleTextStyle: widget.titleTextStyle,
             title: widget.title,
             description: widget.description,
             descriptionTextStyle: widget.descriptionTextStyle,
             buttonTextStyle: widget.buttonTextStyle,
-            cancelButtonText: widget.cancelButtonText!,
-            confirmButtonText: widget.confirmButtonText!,
+            cancelButtonText: widget.cancelButtonText,
+            confirmButtonText: widget.confirmButtonText,
             displayCancelButton: widget.displayCancelButton,
             onCancelPressed: () {
               Navigator.pop(context);
