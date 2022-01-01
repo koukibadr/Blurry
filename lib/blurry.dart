@@ -37,6 +37,11 @@ class Blurry extends StatefulWidget {
     type = null;
     items = null;
     onItemSelected = null;
+    
+    assert(confirmButtonText != null);
+    if(displayCancelButton){
+      assert(cancelButtonText != null);
+    }
   }
 
   ///info constructor to render info style dialog
@@ -66,6 +71,11 @@ class Blurry extends StatefulWidget {
     _dialogType = TYPE.info;
     items = null;
     onItemSelected = null;
+
+    assert(confirmButtonText != null);
+    if(displayCancelButton){
+      assert(cancelButtonText != null);
+    }
   }
 
   ///render success style dialog
@@ -95,6 +105,11 @@ class Blurry extends StatefulWidget {
     _dialogType = TYPE.info;
     items = null;
     onItemSelected = null;
+
+    assert(confirmButtonText != null);
+    if(displayCancelButton){
+      assert(cancelButtonText != null);
+    }
   }
 
   ///render error style dialog
@@ -124,6 +139,11 @@ class Blurry extends StatefulWidget {
     _dialogType = TYPE.info;
     items = null;
     onItemSelected = null;
+
+    assert(confirmButtonText != null);
+    if(displayCancelButton){
+      assert(cancelButtonText != null);
+    }
   }
 
   ///render warning style dialog
@@ -151,6 +171,11 @@ class Blurry extends StatefulWidget {
     _dialogType = TYPE.info;
     items = null;
     onItemSelected = null;
+
+    assert(confirmButtonText != null);
+    if(displayCancelButton){
+      assert(cancelButtonText != null);
+    }
   }
 
   /// to create input blurry popup provide the required values
@@ -184,15 +209,17 @@ class Blurry extends StatefulWidget {
   }) : super(key: key) {
     _dialogType = TYPE.input;
     assert(inputLabel != null && inputTextController != null);
-    assert(type != null || themeColor != null);
-    if (type != null && themeColor != null) {
-      throw Exception('only dialogType or themeColor should be provided');
+
+    assert(inputLabel != null && inputTextController != null);
+    assert(type != null || (themeColor != null && icon != null));
+    assert(confirmButtonText != null);
+    if(displayCancelButton){
+      assert(cancelButtonText != null);
     }
-    if (type == null) {
-      assert(icon != null);
-    }
+
     items = null;
     onItemSelected = null;
+
   }
 
   /// to create input blurry popup provide the required values
@@ -225,18 +252,17 @@ class Blurry extends StatefulWidget {
     this.layoutType = LAYOUT_TYPE.ltr,
     this.withVisibilityEye = DefaultBlurryValues.defaultVisibilityEyeValue,
   }) : super(key: key) {
+    
     _dialogType = TYPE.input;
     isPasswordField = true;
-    //TODO add text assertion
-    assert(inputLabel != null && inputTextController != null);
-    assert(type != null || themeColor != null);
 
-    if (type != null && themeColor != null) {
-      throw Exception('only dialogType or themeColor should be provided');
+    assert(inputLabel != null && inputTextController != null);
+    assert(type != null || (themeColor != null && icon != null));
+    assert(confirmButtonText != null);
+    if(displayCancelButton){
+      assert(cancelButtonText != null);
     }
-    if (type == null) {
-      assert(icon != null);
-    }
+
     items = null;
     onItemSelected = null;
   }
@@ -273,13 +299,8 @@ class Blurry extends StatefulWidget {
     displayCancelButton =
         DefaultBlurryValues.defaultDisplayCancelButtonState;
     cancelButtonText = '';
-    assert(type != null || themeColor != null);
-    if (type != null && themeColor != null) {
-      throw Exception('only dialogType or themeColor should be provided');
-    }
-    if (type == null) {
-      assert(icon != null);
-    }
+    
+    assert(type != null || (themeColor != null && icon != null));
     assert(items != null && items!.isNotEmpty);
     assert(onItemSelected != null);
   }
