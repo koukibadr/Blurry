@@ -1,5 +1,6 @@
 import 'package:blurry/resources/arrays.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
@@ -22,5 +23,20 @@ extension BlurryTypeExtension on BLURRY_TYPE? {
           return BlurryColors.warningColor;
       }
     }
+  }
+}
+
+extension WidgetExtension on Widget {
+  Widget clickable({
+    required Function onPress,
+    required BuildContext context,
+  }) {
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+        onPress.call();
+      },
+      child: this,
+    );
   }
 }

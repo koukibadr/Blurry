@@ -1,4 +1,5 @@
 import 'package:blurry/resources/arrays.dart';
+import 'package:blurry/resources/extensions.dart';
 import 'package:blurry/resources/values.dart';
 import 'package:flutter/material.dart';
 import 'blurry_popup_description.dart';
@@ -67,12 +68,11 @@ class BlurrySingleChoiceSelector extends StatelessWidget {
             flex: 3,
             child: ListView.builder(
               itemCount: listItems.length,
-              itemBuilder: (context, index) => InkWell(
-                child: listItems[index],
-                onTap: (){
-                  Navigator.pop(context);
+              itemBuilder: (context, index) => listItems[index].clickable(
+                onPress: () {
                   onItemSelected.call(index);
                 },
+                context: context,
               ),
             ),
           ),
