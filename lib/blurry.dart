@@ -19,7 +19,7 @@ class Blurry extends StatefulWidget {
     required this.confirmButtonText,
     required this.onConfirmButtonPressed,
     required this.icon,
-    this.cancelButtonText = 'Cancel',
+    this.cancelButtonText = DefaultBlurryValues.defaultCancelButtonText,
     this.onCancelButtonPressed,
     this.titleTextStyle,
     this.buttonTextStyle,
@@ -29,7 +29,7 @@ class Blurry extends StatefulWidget {
         DefaultBlurryValues.defaultDisplayCancelButtonState,
     this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
-    this.layoutType = LAYOUT_TYPE.ltr,
+    this.layoutType = DefaultBlurryValues.defaultLayoutType,
     this.inputLabel,
     this.inputTextController,
   }) : super(key: key) {
@@ -47,7 +47,7 @@ class Blurry extends StatefulWidget {
     required this.confirmButtonText,
     required this.onConfirmButtonPressed,
     this.onCancelButtonPressed,
-    this.cancelButtonText = 'Cancel',
+    this.cancelButtonText = DefaultBlurryValues.defaultCancelButtonText,
     this.titleTextStyle,
     this.buttonTextStyle,
     this.descriptionTextStyle,
@@ -56,7 +56,7 @@ class Blurry extends StatefulWidget {
         DefaultBlurryValues.defaultDisplayCancelButtonState,
     this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
-    this.layoutType = LAYOUT_TYPE.ltr,
+    this.layoutType = DefaultBlurryValues.defaultLayoutType,
     this.inputLabel,
     this.inputTextController,
   }) : super(key: key) {
@@ -73,7 +73,7 @@ class Blurry extends StatefulWidget {
     required this.confirmButtonText,
     required this.onConfirmButtonPressed,
     this.onCancelButtonPressed,
-    this.cancelButtonText = 'Cancel',
+    this.cancelButtonText = DefaultBlurryValues.defaultCancelButtonText,
     this.titleTextStyle,
     this.buttonTextStyle,
     this.descriptionTextStyle,
@@ -82,7 +82,7 @@ class Blurry extends StatefulWidget {
         DefaultBlurryValues.defaultDisplayCancelButtonState,
     this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
-    this.layoutType = LAYOUT_TYPE.ltr,
+    this.layoutType = DefaultBlurryValues.defaultLayoutType,
     this.inputLabel,
     this.inputTextController,
   }) : super(key: key) {
@@ -99,7 +99,7 @@ class Blurry extends StatefulWidget {
     required this.confirmButtonText,
     required this.onConfirmButtonPressed,
     this.onCancelButtonPressed,
-    this.cancelButtonText = 'Cancel',
+    this.cancelButtonText = DefaultBlurryValues.defaultCancelButtonText,
     this.titleTextStyle,
     this.buttonTextStyle,
     this.descriptionTextStyle,
@@ -108,7 +108,7 @@ class Blurry extends StatefulWidget {
         DefaultBlurryValues.defaultDisplayCancelButtonState,
     this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
-    this.layoutType = LAYOUT_TYPE.ltr,
+    this.layoutType = DefaultBlurryValues.defaultLayoutType,
     this.inputLabel,
     this.inputTextController,
   }) : super(key: key) {
@@ -125,7 +125,7 @@ class Blurry extends StatefulWidget {
     required this.confirmButtonText,
     required this.onConfirmButtonPressed,
     this.onCancelButtonPressed,
-    this.cancelButtonText = 'Cancel',
+    this.cancelButtonText = DefaultBlurryValues.defaultCancelButtonText,
     this.titleTextStyle,
     this.buttonTextStyle,
     this.descriptionTextStyle,
@@ -134,7 +134,7 @@ class Blurry extends StatefulWidget {
         DefaultBlurryValues.defaultDisplayCancelButtonState,
     this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
-    this.layoutType = LAYOUT_TYPE.ltr,
+    this.layoutType = DefaultBlurryValues.defaultLayoutType,
   }) : super(key: key) {
     defaultTheme = DEFAULT_THEMES.warning;
     _dialogType = TYPE.info;
@@ -159,7 +159,7 @@ class Blurry extends StatefulWidget {
     this.inputLabelStyle = DefaultBlurryValues.defaultInputTextStyle,
     this.inputTextStyle = DefaultBlurryValues.defaultInputTextStyle,
     this.onCancelButtonPressed,
-    this.cancelButtonText = 'Cancel',
+    this.cancelButtonText = DefaultBlurryValues.defaultCancelButtonText,
     this.titleTextStyle,
     this.buttonTextStyle,
     this.descriptionTextStyle,
@@ -168,7 +168,7 @@ class Blurry extends StatefulWidget {
         DefaultBlurryValues.defaultDisplayCancelButtonState,
     this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
-    this.layoutType = LAYOUT_TYPE.ltr,
+    this.layoutType = DefaultBlurryValues.defaultLayoutType,
   }) : super(key: key) {
     
     _dialogType = TYPE.input;
@@ -193,7 +193,7 @@ class Blurry extends StatefulWidget {
     this.inputLabelStyle = DefaultBlurryValues.defaultInputTextStyle,
     this.inputTextStyle = DefaultBlurryValues.defaultInputTextStyle,
     this.onCancelButtonPressed,
-    this.cancelButtonText = 'Cancel',
+    this.cancelButtonText = DefaultBlurryValues.defaultCancelButtonText,
     this.titleTextStyle,
     this.buttonTextStyle,
     this.descriptionTextStyle,
@@ -202,7 +202,7 @@ class Blurry extends StatefulWidget {
         DefaultBlurryValues.defaultDisplayCancelButtonState,
     this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
-    this.layoutType = LAYOUT_TYPE.ltr,
+    this.layoutType = DefaultBlurryValues.defaultLayoutType,
     this.withVisibilityEye = DefaultBlurryValues.defaultVisibilityEyeValue,
   }) : super(key: key) {
     
@@ -232,7 +232,7 @@ class Blurry extends StatefulWidget {
     this.popupHeight,
     this.dismissable = DefaultBlurryValues.defaultDismissableValue,
     this.barrierColor,
-    this.layoutType = LAYOUT_TYPE.ltr,
+    this.layoutType = DefaultBlurryValues.defaultLayoutType,
   }) : super(key: key) {
     _dialogType = TYPE.singleChoiceSelector;
     initializeValuesSingleSelectorBlurry();
@@ -335,8 +335,9 @@ class Blurry extends StatefulWidget {
   /// by default it's 'true'
   bool withVisibilityEye = true;
 
-  late List<Widget>? items;
 
+  //TODO add missing code documentation
+  late List<Widget>? items;
   late Function(int)? onItemSelected;
 
   late TYPE? _dialogType;

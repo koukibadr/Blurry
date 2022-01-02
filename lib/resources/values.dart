@@ -1,3 +1,4 @@
+import 'package:blurry/resources/arrays.dart';
 import 'package:flutter/material.dart';
 
 class DefaultBlurryValues {
@@ -24,4 +25,8 @@ class DefaultBlurryValues {
 
   static const defaultDismissableValue = true;
   static const defaultVisibilityEyeValue = true;
+
+  static const String defaultCancelButtonText = 'Cancel';
+
+  static const LAYOUT_TYPE defaultLayoutType = LAYOUT_TYPE.ltr;
 }
