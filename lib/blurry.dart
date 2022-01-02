@@ -61,11 +61,8 @@ class Blurry extends StatefulWidget {
     this.inputTextController,
   }) : super(key: key) {
     defaultTheme = DEFAULT_THEMES.info;
-    icon = themesIcons[defaultTheme];
-    themeColor = null;
     _dialogType = TYPE.info;
-    items = null;
-    onItemSelected = null;
+    initializeValuesBlurryPopup();
   }
 
   ///render success style dialog
@@ -90,11 +87,8 @@ class Blurry extends StatefulWidget {
     this.inputTextController,
   }) : super(key: key) {
     defaultTheme = DEFAULT_THEMES.success;
-    icon = themesIcons[defaultTheme];
-    themeColor = null;
     _dialogType = TYPE.info;
-    items = null;
-    onItemSelected = null;
+    initializeValuesBlurryPopup();
   }
 
   ///render error style dialog
@@ -119,11 +113,8 @@ class Blurry extends StatefulWidget {
     this.inputTextController,
   }) : super(key: key) {
     defaultTheme = DEFAULT_THEMES.error;
-    icon = themesIcons[defaultTheme];
-    themeColor = null;
     _dialogType = TYPE.info;
-    items = null;
-    onItemSelected = null;
+    initializeValuesBlurryPopup();
   }
 
   ///render warning style dialog
@@ -146,11 +137,8 @@ class Blurry extends StatefulWidget {
     this.layoutType = LAYOUT_TYPE.ltr,
   }) : super(key: key) {
     defaultTheme = DEFAULT_THEMES.warning;
-    icon = themesIcons[defaultTheme];
-    themeColor = null;
     _dialogType = TYPE.info;
-    items = null;
-    onItemSelected = null;
+    initializeValuesBlurryPopup();
   }
 
   /// to create input blurry popup provide the required values
@@ -247,17 +235,7 @@ class Blurry extends StatefulWidget {
     this.layoutType = LAYOUT_TYPE.ltr,
   }) : super(key: key) {
     _dialogType = TYPE.singleChoiceSelector;
-    
-    inputLabel = null;
-    inputTextController = null;
-    onConfirmButtonPressed = null;
-    onCancelButtonPressed = null;
-    displayCancelButton =
-        DefaultBlurryValues.defaultDisplayCancelButtonState;
-    
-    assert(defaultTheme != null || (themeColor != null && icon != null));
-    assert(items != null && items!.isNotEmpty);
-    assert(onItemSelected != null);
+    initializeValuesSingleSelectorBlurry();
   }
 
 

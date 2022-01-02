@@ -1,5 +1,6 @@
 import 'package:blurry/blurry.dart';
 import 'package:blurry/resources/arrays.dart';
+import 'package:blurry/resources/values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -50,6 +51,25 @@ extension BlurryExtensions on Blurry {
     assert(inputLabel != null && inputTextController != null);
     assert(defaultTheme != null || (themeColor != null && icon != null));
     isPasswordField = passwordField;
+    items = null;
+    onItemSelected = null;
+  }
+
+  void initializeValuesSingleSelectorBlurry(){
+    inputLabel = null;
+    inputTextController = null;
+    onConfirmButtonPressed = null;
+    onCancelButtonPressed = null;
+    displayCancelButton =
+        DefaultBlurryValues.defaultDisplayCancelButtonState;
+    assert(defaultTheme != null || (themeColor != null && icon != null));
+    assert(items != null && items!.isNotEmpty);
+    assert(onItemSelected != null);
+  }
+
+  void initializeValuesBlurryPopup(){
+    icon = themesIcons[defaultTheme];
+    themeColor = null;
     items = null;
     onItemSelected = null;
   }
