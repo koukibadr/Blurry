@@ -44,10 +44,9 @@ extension WidgetExtension on Widget {
 }
 
 extension BlurryExtensions on Blurry {
-
   void initializeValuesInputBlurry({
     bool passwordField = false,
-  }){
+  }) {
     assert(inputLabel != null && inputTextController != null);
     assert(defaultTheme != null || (themeColor != null && icon != null));
     isPasswordField = passwordField;
@@ -55,22 +54,20 @@ extension BlurryExtensions on Blurry {
     onItemSelected = null;
   }
 
-  void initializeValuesSingleSelectorBlurry(){
+  void initializeValuesSingleSelectorBlurry() {
     inputLabel = null;
     inputTextController = null;
     onConfirmButtonPressed = null;
     onCancelButtonPressed = null;
-    displayCancelButton =
-        DefaultBlurryValues.defaultDisplayCancelButtonState;
+    displayCancelButton = DefaultBlurryValues.defaultDisplayCancelButtonState;
     assert(defaultTheme != null || (themeColor != null && icon != null));
     assert(items != null && items!.isNotEmpty);
   }
 
-  void initializeValuesBlurryPopup(){
+  void initializeValuesBlurryPopup() {
     icon = themesIcons[defaultTheme];
     themeColor = null;
     items = null;
     onItemSelected = null;
   }
-
 }

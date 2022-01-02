@@ -1,3 +1,8 @@
+## 1.4.0 - 02/01/2022
+
+- Add single selector blurry popup type
+- Fix some rendering problems
+
 ## 1.3.0 - 14/11/2021
 
 - Add password input blurry dialog type

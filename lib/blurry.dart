@@ -170,7 +170,6 @@ class Blurry extends StatefulWidget {
     this.barrierColor,
     this.layoutType = DefaultBlurryValues.defaultLayoutType,
   }) : super(key: key) {
-    
     _dialogType = TYPE.input;
     initializeValuesInputBlurry();
   }
@@ -205,8 +204,6 @@ class Blurry extends StatefulWidget {
     this.layoutType = DefaultBlurryValues.defaultLayoutType,
     this.withVisibilityEye = DefaultBlurryValues.defaultVisibilityEyeValue,
   }) : super(key: key) {
-    
-    
     _dialogType = TYPE.input;
     initializeValuesInputBlurry(
       passwordField: true,
@@ -237,8 +234,6 @@ class Blurry extends StatefulWidget {
     _dialogType = TYPE.singleChoiceSelector;
     initializeValuesSingleSelectorBlurry();
   }
-
-
 
   ///the dialog popup title, required in all blurry class constructors
   final String title;
@@ -335,14 +330,13 @@ class Blurry extends StatefulWidget {
   /// by default it's 'true'
   bool withVisibilityEye = true;
 
-
   ///list items that will be rendered in the single selector blurry popup type
   ///available only when using `singleChoiceSelector` constructor (should be not null and not empty)
   late List<Widget>? items;
 
   ///invoked when pressing on item from the list
   ///available only when using `singleChoiceSelector`
-  ///by default pressing an element from the list will close the popup 
+  ///by default pressing an element from the list will close the popup
   late Function(int)? onItemSelected;
 
   late TYPE? _dialogType;
@@ -378,72 +372,72 @@ class _BlurryState extends State<Blurry> {
     switch (widget._dialogType) {
       case TYPE.singleChoiceSelector:
         return BlurrySingleChoiceSelector(
-            popupHeight: widget.popupHeight,
-            blurryType: widget.defaultTheme,
-            icon: widget.icon,
-            layoutType: widget.layoutType,
-            renderingColor: widget.defaultTheme.renderingColor(widget.themeColor),
-            titleTextStyle: widget.titleTextStyle,
-            title: widget.title,
-            description: widget.description,
-            descriptionTextStyle: widget.descriptionTextStyle,
-            buttonTextStyle: widget.buttonTextStyle,
-            listItems: widget.items!,
-            onItemSelected: widget.onItemSelected,
-          );
+          popupHeight: widget.popupHeight,
+          blurryType: widget.defaultTheme,
+          icon: widget.icon,
+          layoutType: widget.layoutType,
+          renderingColor: widget.defaultTheme.renderingColor(widget.themeColor),
+          titleTextStyle: widget.titleTextStyle,
+          title: widget.title,
+          description: widget.description,
+          descriptionTextStyle: widget.descriptionTextStyle,
+          buttonTextStyle: widget.buttonTextStyle,
+          listItems: widget.items!,
+          onItemSelected: widget.onItemSelected,
+        );
       case TYPE.input:
         return BlurryInputPopup(
-            popupHeight: widget.popupHeight,
-            blurryType: widget.defaultTheme,
-            icon: widget.icon,
-            layoutType: widget.layoutType,
-            renderingColor: widget.defaultTheme.renderingColor(widget.themeColor),
-            titleTextStyle: widget.titleTextStyle,
-            title: widget.title,
-            description: widget.description,
-            descriptionTextStyle: widget.descriptionTextStyle,
-            inputLabel: widget.inputLabel!,
-            inputLabelStyle: widget.inputLabelStyle,
-            inputTextStyle: widget.inputTextStyle,
-            textInputType: widget.textInputType,
-            textEditingController: widget.inputTextController!,
-            buttonTextStyle: widget.buttonTextStyle,
-            cancelButtonText: widget.cancelButtonText,
-            confirmButtonText: widget.confirmButtonText,
-            displayCancelButton: widget.displayCancelButton,
-            isPassword: widget.isPasswordField,
-            withVisibityEye: widget.withVisibilityEye,
-            onCancelPressed: () {
-              Navigator.pop(context);
-              widget.onCancelButtonPressed?.call();
-            },
-            onConfirmPressed: () {
-              widget.onConfirmButtonPressed?.call();
-            },
-          );
+          popupHeight: widget.popupHeight,
+          blurryType: widget.defaultTheme,
+          icon: widget.icon,
+          layoutType: widget.layoutType,
+          renderingColor: widget.defaultTheme.renderingColor(widget.themeColor),
+          titleTextStyle: widget.titleTextStyle,
+          title: widget.title,
+          description: widget.description,
+          descriptionTextStyle: widget.descriptionTextStyle,
+          inputLabel: widget.inputLabel!,
+          inputLabelStyle: widget.inputLabelStyle,
+          inputTextStyle: widget.inputTextStyle,
+          textInputType: widget.textInputType,
+          textEditingController: widget.inputTextController!,
+          buttonTextStyle: widget.buttonTextStyle,
+          cancelButtonText: widget.cancelButtonText,
+          confirmButtonText: widget.confirmButtonText,
+          displayCancelButton: widget.displayCancelButton,
+          isPassword: widget.isPasswordField,
+          withVisibityEye: widget.withVisibilityEye,
+          onCancelPressed: () {
+            Navigator.pop(context);
+            widget.onCancelButtonPressed?.call();
+          },
+          onConfirmPressed: () {
+            widget.onConfirmButtonPressed?.call();
+          },
+        );
       default:
         return BlurryInfoPopup(
-            popupHeight: widget.popupHeight,
-            blurryType: widget.defaultTheme,
-            icon: widget.icon,
-            layoutType: widget.layoutType,
-            renderingColor: widget.defaultTheme.renderingColor(widget.themeColor),
-            titleTextStyle: widget.titleTextStyle,
-            title: widget.title,
-            description: widget.description,
-            descriptionTextStyle: widget.descriptionTextStyle,
-            buttonTextStyle: widget.buttonTextStyle,
-            cancelButtonText: widget.cancelButtonText,
-            confirmButtonText: widget.confirmButtonText,
-            displayCancelButton: widget.displayCancelButton,
-            onCancelPressed: () {
-              Navigator.pop(context);
-              widget.onCancelButtonPressed?.call();
-            },
-            onConfirmPressed: () {
-              widget.onConfirmButtonPressed?.call();
-            },
-          );
+          popupHeight: widget.popupHeight,
+          blurryType: widget.defaultTheme,
+          icon: widget.icon,
+          layoutType: widget.layoutType,
+          renderingColor: widget.defaultTheme.renderingColor(widget.themeColor),
+          titleTextStyle: widget.titleTextStyle,
+          title: widget.title,
+          description: widget.description,
+          descriptionTextStyle: widget.descriptionTextStyle,
+          buttonTextStyle: widget.buttonTextStyle,
+          cancelButtonText: widget.cancelButtonText,
+          confirmButtonText: widget.confirmButtonText,
+          displayCancelButton: widget.displayCancelButton,
+          onCancelPressed: () {
+            Navigator.pop(context);
+            widget.onCancelButtonPressed?.call();
+          },
+          onConfirmPressed: () {
+            widget.onConfirmButtonPressed?.call();
+          },
+        );
     }
   }
 }

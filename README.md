@@ -1,3 +1,4 @@
+  
 
   
 
@@ -5,13 +6,16 @@
 
   
 
+  
+
 <p  align="center">
 <img  src="https://github.com/koukibadr/Blurry/blob/main/example/blurry_logo.gif?raw=true"  height="400"/>
 </p>
 
+  
+  
 
 ##  Features
-
 
 -  Display simple blurry dialog popup
 -  Offer built-in themes
@@ -24,21 +28,22 @@
 -  Support arabic language
 -  Input popup option with keyboard type
 -  Customizable input style and input text style
-- Password popup type with eye icon to view password
+-  Password popup type with eye icon to view password
+-  Single item selector type
 
 ##  Getting started
 
+  
+  
 
 To use the blurry dialog package you need to add it in `pubspec.yaml` file
 
 ```yaml
 dependencies:
-	blurry: ^1.3.0
+	blurry: ^1.4.0
 ```
 
-
 ##  Usage
-
 
 ###  Parameters
 
@@ -88,7 +93,6 @@ final double? popupHeight;
 ///by default the cancel button is displayed
 final bool displayCancelButton;
 
-
 ///indicates whether the popup dialog is dismissable or not
 ///by default [dismissable = true]
 final bool dismissable;
@@ -137,16 +141,33 @@ late BLURRY_TYPE? type;
 /// indicate whether display visibility eye icon on password fields
 /// available only when using `Blurry.password` constructor
 /// by default it's 'true'
-bool  withVisibilityEye  =  true;
+bool withVisibilityEye =  true;
 
+
+///list items that will be rendered in the single selector blurry popup type
+///available only when using `singleChoiceSelector` constructor (should be not null and not empty)
+late  List<Widget>?  items;
+
+
+///invoked when pressing on item from the list
+///available only when using `singleChoiceSelector`
+///by default pressing an element from the list will close the popup
+late  Function(int)?  onItemSelected;
 ```
 
+  
+  
 
 ###  Examples
 
+  
+
 **Info style blurry package**
 
+  
+
 ```dart
+
 Blurry.info(
 	title:  'Info blurry',
 	description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntut labore et dolore magna aliqua. Ut enim ad minim veniam',
@@ -163,12 +184,12 @@ Blurry.info(
 
 ```
 
-  
-
 <p  align="center">
 <img  src="https://github.com/koukibadr/Blurry/blob/main/example/info_blurry_example.png?raw=true"  height="500"/>
 </p>
 
+  
+  
 
 **Success style blurry package**
 ```dart
@@ -187,26 +208,25 @@ Blurry.success(
 <img  src="https://github.com/koukibadr/Blurry/blob/main/example/success_blurry_example.png?raw=true"  height="500"/>
 </p>
 
-
 **Error style blurry package**
 
 ```dart
 Blurry.error(
 	title:  'Error blurry',
-	description:
-	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun',
+	description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun',
 	confirmButtonText:  'Confirm',
 	onConfirmButtonPressed: () {
 		print('hello world');
 	})
 .show(context);
+
 ```
 
 <p  align="center">
 <img  src="https://github.com/koukibadr/Blurry/blob/main/example/error_blurry_example.png?raw=true"  height="500"/>
 </p>
 
-
+  
 **Warning style blurry package**
 
 ```dart
@@ -220,15 +240,15 @@ Blurry.warning(
 .show(context);
 
 ```
+
 <p  align="center">
 <img  src="https://github.com/koukibadr/Blurry/blob/main/example/warning_blurry_example.png?raw=true"  height="500"/>
 </p>
 
-  
-
 **Custom style blurry package**
 
 ```dart
+
 Blurry(
 	icon: Icons.verified_user,
 	themeColor: Colors.purple,
@@ -242,6 +262,8 @@ Blurry(
 <p  align="center">
 <img  src="https://github.com/koukibadr/Blurry/blob/main/example/custom_blurry_example.png?raw=true"  height="500"/>
 </p>
+
+  
 
 **Arabic Blurry Popup with RTL layout**
 
@@ -264,14 +286,15 @@ Blurry.info(
 
 ```
 <p  align="center">
-<img  src="https://github.com/koukibadr/Blurry/blob/main/example/blurry_arabic.png?raw=true"  height="500"/>
+<img  src="https://github.com/koukibadr/Blurry/blob/main/example/blurry_rtl_example.png?raw=true"  height="500"/>
+
 </p>
 
   
-
 **Input Type Example**
 
 ```dart
+
 Blurry.input(
 	title:  'Blurry Input',
 	description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
@@ -287,8 +310,6 @@ Blurry.input(
 <p  align="center">
 <img  src="https://github.com/koukibadr/Blurry/blob/main/example/blurry_input.png?raw=true"  height="500"/>
 </p>
-
-  
 
 **Number Input Example**
 
@@ -309,9 +330,7 @@ Blurry.input(
 <img  src="https://github.com/koukibadr/Blurry/blob/main/example/blurry_number_input.png?raw=true"  height="500"/>
 </p>
 
-
 **Password Input Example**
-
 ```dart
 Blurry.password(
 	title:  'Blurry Code Input',
@@ -319,18 +338,53 @@ Blurry.password(
 	confirmButtonText:  'Confirm',
 	onConfirmButtonPressed: () {},
 	inputLabel:  'Password',
-	type:  BLURRY_TYPE.info,
-	inputTextController:  TextEditingController(),
+	type: BLURRY_TYPE.info,
+	inputTextController: TextEditingController(),
 ).show(context);
+
 ```
+
 <p  align="center">
 <img  src="https://github.com/koukibadr/Blurry/blob/main/example/blurry_password_input.png?raw=true"  height="500"/>
 </p>
 
 
+**Single selector Example**
+```dart
+Blurry.singleChoiceSelector(
+	items:  List.generate(
+		5,
+		(index) =>  Padding(
+			padding:  const  EdgeInsets.symmetric(
+				horizontal:  5
+			),
+			child:  ListTile(
+				title:  Text('Name: User $index'),
+				subtitle:  Text('Age : ${index * 20}'),
+			)
+		),
+	),
+	title:  'Blurry Single selector',
+	description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+	themeColor:  Colors.pink,
+	icon:  Icons.account_circle_outlined,
+	popupHeight:  300,
+).show(context);
+```
+
+<p  align="center">
+<img  src="https://github.com/koukibadr/Blurry/blob/main/example/blurry_single_selector.png?raw=true"  height="500"/>
+</p>
+
+  
+  
+
 ##  Contribution
 
+  
+
 Of course the project is open source, and you can contribute to it [repository link](https://github.com/koukibadr/Blurry)
+
 -  If you **found a bug**, open an issue.
 -  If you **have a feature request**, open an issue.
 -  If you **want to contribute**, submit a pull request.
