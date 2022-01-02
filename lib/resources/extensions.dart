@@ -64,7 +64,6 @@ extension BlurryExtensions on Blurry {
         DefaultBlurryValues.defaultDisplayCancelButtonState;
     assert(defaultTheme != null || (themeColor != null && icon != null));
     assert(items != null && items!.isNotEmpty);
-    assert(onItemSelected != null);
   }
 
   void initializeValuesBlurryPopup(){

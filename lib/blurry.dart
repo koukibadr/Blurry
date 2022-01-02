@@ -221,7 +221,7 @@ class Blurry extends StatefulWidget {
     required this.title,
     required this.description,
     required this.items,
-    required this.onItemSelected,
+    this.onItemSelected,
     this.textInputType = TextInputType.text,
     this.themeColor,
     this.defaultTheme,
@@ -336,8 +336,13 @@ class Blurry extends StatefulWidget {
   bool withVisibilityEye = true;
 
 
-  //TODO add missing code documentation
+  ///list items that will be rendered in the single selector blurry popup type
+  ///available only when using `singleChoiceSelector` constructor (should be not null and not empty)
   late List<Widget>? items;
+
+  ///invoked when pressing on item from the list
+  ///available only when using `singleChoiceSelector`
+  ///by default pressing an element from the list will close the popup 
   late Function(int)? onItemSelected;
 
   late TYPE? _dialogType;
@@ -384,7 +389,7 @@ class _BlurryState extends State<Blurry> {
             descriptionTextStyle: widget.descriptionTextStyle,
             buttonTextStyle: widget.buttonTextStyle,
             listItems: widget.items!,
-            onItemSelected: widget.onItemSelected!,
+            onItemSelected: widget.onItemSelected,
           );
       case TYPE.input:
         return BlurryInputPopup(
