@@ -26,7 +26,9 @@ class BlurryPopupTitle extends StatelessWidget {
     Widget titleContent;
     if (layoutType == LAYOUT_TYPE.center) {
       titleContent = Padding(
-        padding: const EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(
+          top: 10,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -47,7 +49,10 @@ class BlurryPopupTitle extends StatelessWidget {
       );
     } else if (layoutType == LAYOUT_TYPE.rtl) {
       titleContent = Padding(
-        padding: const EdgeInsets.only(top: 10, right: 10),
+        padding: const EdgeInsets.only(
+          top: 10,
+          right: 10,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -63,30 +68,34 @@ class BlurryPopupTitle extends StatelessWidget {
               blurryType.renderingIcon(icon),
               color: renderingColor,
               size: 25,
+            ),
+          ],
+        ),
+      );
+    } else {
+      titleContent = Padding(
+        padding: const EdgeInsets.only(
+          left: 10,
+          top: 10,
+        ),
+        child: Row(
+          children: [
+            Icon(
+              blurryType.renderingIcon(icon),
+              color: renderingColor,
+              size: 25,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              title,
+              style: textStyle ?? DefaultBlurryValues.titleDefaultStyle,
             )
           ],
         ),
       );
     }
-    titleContent = Padding(
-      padding: const EdgeInsets.only(left: 10, top: 10),
-      child: Row(
-        children: [
-          Icon(
-            blurryType.renderingIcon(icon),
-            color: renderingColor,
-            size: 25,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Text(
-            title,
-            style: textStyle ?? DefaultBlurryValues.titleDefaultStyle,
-          )
-        ],
-      ),
-    );
     return Expanded(
       flex: 1,
       child: titleContent,
