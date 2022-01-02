@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:blurry/blurry.dart';
 import 'package:blurry/resources/arrays.dart';
 import 'package:flutter/material.dart';
@@ -213,13 +215,15 @@ class BlurryDemo extends StatelessWidget {
                 onPressed: () {
                   Blurry.singleChoiceSelector(
                     items: List.generate(
-                      10,
+                      5,
                       (index) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 20,
-                          color: Colors.green,
+                        padding: const  EdgeInsets.symmetric(
+                          horizontal: 5
                         ),
+                        child: ListTile(
+                          title: Text('Name: User $index'),
+                          subtitle: Text('Age : ${index * 20}'),
+                        )
                       ),
                     ),
                     onItemSelected: (index){
