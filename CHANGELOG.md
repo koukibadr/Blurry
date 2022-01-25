@@ -1,3 +1,7 @@
+## 1.4.1 - 25/01/2022
+
+- Fix blurry input text controller bugs
+
 ## 1.4.0 - 02/01/2022
 
 - Add single selector blurry popup type
