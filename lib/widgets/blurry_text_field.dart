@@ -38,6 +38,7 @@ class _BlurryTextFieldState extends State<BlurryTextField> {
         style: widget.textStyle,
         keyboardType: widget.textInputType,
         obscureText: obscureText,
+        controller: widget.textController,
         decoration: InputDecoration(
           label: Text(widget.label),
           labelStyle: widget.labelStyle.copyWith(fontSize: 12),

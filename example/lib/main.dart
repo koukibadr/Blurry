@@ -170,15 +170,18 @@ class BlurryDemo extends StatelessWidget {
               width: 200,
               child: ElevatedButton(
                 onPressed: () {
+                  var textController  = TextEditingController();
                   Blurry.input(
                     title: 'Blurry Code Input',
                     description:
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                     confirmButtonText: 'Confirm',
-                    onConfirmButtonPressed: () {},
+                    onConfirmButtonPressed: () {
+                      print(textController.text);
+                    },
                     inputLabel: 'Code',
                     defaultTheme: DEFAULT_THEMES.info,
-                    inputTextController: TextEditingController(),
+                    inputTextController: textController,
                     textInputType: TextInputType.number,
                   ).show(context);
                 },
