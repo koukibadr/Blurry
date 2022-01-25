@@ -195,15 +195,19 @@ class BlurryDemo extends StatelessWidget {
               width: 200,
               child: ElevatedButton(
                 onPressed: () {
+                  var textController  = TextEditingController();
                   Blurry.password(
                     title: 'Blurry Code Input',
                     description:
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                     confirmButtonText: 'Confirm',
-                    onConfirmButtonPressed: () {},
+                    onConfirmButtonPressed: () {
+                      Navigator.pop(context);
+                      print(textController.text);
+                    },
                     inputLabel: 'Password',
                     defaultTheme: DEFAULT_THEMES.info,
-                    inputTextController: TextEditingController(),
+                    inputTextController: textController,
                   ).show(context);
                 },
                 child: const Text('Password input blurry dialog'),
