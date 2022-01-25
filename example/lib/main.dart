@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:blurry/blurry.dart';
 import 'package:blurry/resources/arrays.dart';
 import 'package:flutter/material.dart';
@@ -170,7 +168,7 @@ class BlurryDemo extends StatelessWidget {
               width: 200,
               child: ElevatedButton(
                 onPressed: () {
-                  var textController  = TextEditingController();
+                  var textController = TextEditingController();
                   Blurry.input(
                     title: 'Blurry Code Input',
                     description:
@@ -195,7 +193,7 @@ class BlurryDemo extends StatelessWidget {
               width: 200,
               child: ElevatedButton(
                 onPressed: () {
-                  var textController  = TextEditingController();
+                  var textController = TextEditingController();
                   Blurry.password(
                     title: 'Blurry Code Input',
                     description:
@@ -224,14 +222,13 @@ class BlurryDemo extends StatelessWidget {
                     items: List.generate(
                       5,
                       (index) => Padding(
-                        padding: const  EdgeInsets.symmetric(
-                          horizontal: 5
-                        ),
-                        child: ListTile(
-                          title: Text('Name: User $index'),
-                          subtitle: Text('Age : ${index * 20}'),
-                        )
-                      ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 5,
+                          ),
+                          child: ListTile(
+                            title: Text('Name: User $index'),
+                            subtitle: Text('Age : ${index * 20}'),
+                          )),
                     ),
                     title: 'Blurry Single selector',
                     description:
