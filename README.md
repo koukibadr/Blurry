@@ -40,7 +40,7 @@ To use the blurry dialog package you need to add it in `pubspec.yaml` file
 
 ```yaml
 dependencies:
-	blurry: ^1.4.1
+	blurry: ^1.4.2
 ```
 
 ##  Usage

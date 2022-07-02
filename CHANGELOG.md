@@ -1,3 +1,8 @@
+## 1.4.2 - 02/07/2022
+
+- Enhance code quality
+- remove unused attributes
+
 ## 1.4.1 - 25/01/2022
 
 - Fix blurry input text controller bugs
