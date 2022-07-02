@@ -1,5 +1,4 @@
 import 'package:blurry/resources/arrays.dart';
-import 'package:blurry/resources/values.dart';
 import 'package:flutter/material.dart';
 import 'package:blurry/resources/extensions.dart';
 
@@ -42,7 +41,12 @@ class BlurryPopupTitle extends StatelessWidget {
             ),
             Text(
               title,
-              style: textStyle ?? DefaultBlurryValues.titleDefaultStyle,
+              style: textStyle ??
+                  const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
             )
           ],
         ),
@@ -58,7 +62,12 @@ class BlurryPopupTitle extends StatelessWidget {
           children: [
             Text(
               title,
-              style: textStyle ?? DefaultBlurryValues.titleDefaultStyle,
+              style: textStyle ??
+                  const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
               textAlign: TextAlign.end,
             ),
             const SizedBox(
@@ -90,7 +99,12 @@ class BlurryPopupTitle extends StatelessWidget {
             ),
             Text(
               title,
-              style: textStyle ?? DefaultBlurryValues.titleDefaultStyle,
+              style: textStyle ??
+                  const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
             )
           ],
         ),

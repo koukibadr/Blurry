@@ -1,6 +1,5 @@
 import 'package:blurry/blurry.dart';
 import 'package:blurry/resources/arrays.dart';
-import 'package:blurry/resources/values.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
@@ -58,7 +57,7 @@ extension BlurryExtensions on Blurry {
     inputTextController = null;
     onConfirmButtonPressed = null;
     onCancelButtonPressed = null;
-    displayCancelButton = DefaultBlurryValues.defaultDisplayCancelButtonState;
+    displayCancelButton = true;
     assert(defaultTheme != null || (themeColor != null && icon != null));
     assert(items != null && items!.isNotEmpty);
   }

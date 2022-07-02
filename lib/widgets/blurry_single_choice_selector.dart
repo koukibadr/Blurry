@@ -1,6 +1,5 @@
 import 'package:blurry/resources/arrays.dart';
 import 'package:blurry/resources/extensions.dart';
-import 'package:blurry/resources/values.dart';
 import 'package:flutter/material.dart';
 import 'blurry_popup_description.dart';
 import 'blurry_popup_title.dart';
@@ -40,7 +39,10 @@ class BlurrySingleChoiceSelector extends StatelessWidget {
     return Container(
       height: popupHeight ?? MediaQuery.of(context).size.height * 0.3,
       width: MediaQuery.of(context).size.width,
-      decoration: DefaultBlurryValues.defaultBoxDecoration,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white.withOpacity(0.85),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
