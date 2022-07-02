@@ -9,7 +9,7 @@ class BlurryButtonsLayout extends StatelessWidget {
   final String confirmButtonText;
   final String cancelButtonText;
   final TextStyle? textStyle;
-  final LAYOUT_TYPE layoutType;
+  final LayoutType layoutType;
   final Function onConfirmButtonPressed;
   final Function onCancelButtonPressed;
   final bool displayCancelButton;
@@ -28,7 +28,7 @@ class BlurryButtonsLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (layoutType == LAYOUT_TYPE.rtl) {
+    if (layoutType == LayoutType.rtl) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [

@@ -1,12 +1,11 @@
 import 'package:blurry/blurry.dart';
 import 'package:blurry/resources/arrays.dart';
 import 'package:blurry/resources/values.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
-extension BlurryTypeExtension on DEFAULT_THEMES? {
+extension BlurryTypeExtension on DefaultThemes? {
   IconData? renderingIcon(IconData? widgetIcon) =>
       this == null ? widgetIcon : themesIcons[this]!;
 
@@ -15,11 +14,11 @@ extension BlurryTypeExtension on DEFAULT_THEMES? {
       return themeColor;
     } else {
       switch (this) {
-        case DEFAULT_THEMES.info:
+        case DefaultThemes.info:
           return BlurryColors.infoColor;
-        case DEFAULT_THEMES.success:
+        case DefaultThemes.success:
           return BlurryColors.successColor;
-        case DEFAULT_THEMES.error:
+        case DefaultThemes.error:
           return BlurryColors.errorColor;
         default:
           return BlurryColors.warningColor;

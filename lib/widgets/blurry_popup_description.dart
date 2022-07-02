@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class BlurryPopupDescription extends StatelessWidget {
   final String description;
-  final LAYOUT_TYPE layoutType;
+  final LayoutType layoutType;
   final TextStyle? textStyle;
 
   const BlurryPopupDescription({
@@ -23,9 +23,9 @@ class BlurryPopupDescription extends StatelessWidget {
           child: SingleChildScrollView(
             child: Text(
               description,
-              textAlign: layoutType == LAYOUT_TYPE.center
+              textAlign: layoutType == LayoutType.center
                   ? TextAlign.center
-                  : layoutType == LAYOUT_TYPE.rtl
+                  : layoutType == LayoutType.rtl
                       ? TextAlign.end
                       : TextAlign.start,
               style: textStyle,

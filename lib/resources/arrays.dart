@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 
 import 'icons.dart';
 
-enum DEFAULT_THEMES {
+enum DefaultThemes {
   info,
   success,
   error,
   warning,
 }
 
-enum LAYOUT_TYPE {
+enum LayoutType {
   ltr,
   rtl,
   center,
@@ -21,9 +21,9 @@ enum TYPE {
   singleChoiceSelector,
 }
 
-Map<DEFAULT_THEMES, IconData> themesIcons = {
-  DEFAULT_THEMES.info: BlurryIcons.infoIcon,
-  DEFAULT_THEMES.error: BlurryIcons.errorIcon,
-  DEFAULT_THEMES.success: BlurryIcons.successIcon,
-  DEFAULT_THEMES.warning: BlurryIcons.warningIcon
+Map<DefaultThemes, IconData> themesIcons = {
+  DefaultThemes.info: BlurryIcons.infoIcon,
+  DefaultThemes.error: BlurryIcons.errorIcon,
+  DefaultThemes.success: BlurryIcons.successIcon,
+  DefaultThemes.warning: BlurryIcons.warningIcon
 };

@@ -7,7 +7,7 @@ class BlurryConfirmButton extends StatelessWidget {
   final Color buttonColor;
   final String buttonText;
   final TextStyle? textStyle;
-  final LAYOUT_TYPE layoutType;
+  final LayoutType layoutType;
 
   const BlurryConfirmButton({
     Key? key,

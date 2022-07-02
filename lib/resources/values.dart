@@ -28,5 +28,5 @@ class DefaultBlurryValues {
 
   static const String defaultCancelButtonText = 'Cancel';
 
-  static const LAYOUT_TYPE defaultLayoutType = LAYOUT_TYPE.ltr;
+  static const LayoutType defaultLayoutType = LayoutType.ltr;
 }

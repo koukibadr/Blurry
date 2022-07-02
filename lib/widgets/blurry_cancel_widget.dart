@@ -8,7 +8,7 @@ class BlurryCancelWidget extends StatelessWidget {
   final Color buttonColor;
   final String buttonText;
   final TextStyle? textStyle;
-  final LAYOUT_TYPE layoutType;
+  final LayoutType layoutType;
 
   const BlurryCancelWidget({
     Key? key,

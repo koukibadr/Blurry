@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:blurry/resources/extensions.dart';
 
 class BlurryPopupTitle extends StatelessWidget {
-  final LAYOUT_TYPE layoutType;
+  final LayoutType layoutType;
   final Color renderingColor;
   final IconData? icon;
-  final DEFAULT_THEMES? blurryType;
+  final DefaultThemes? blurryType;
   final String title;
   final TextStyle? textStyle;
 
@@ -24,7 +24,7 @@ class BlurryPopupTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget titleContent;
-    if (layoutType == LAYOUT_TYPE.center) {
+    if (layoutType == LayoutType.center) {
       titleContent = Padding(
         padding: const EdgeInsets.only(
           top: 10,
@@ -47,7 +47,7 @@ class BlurryPopupTitle extends StatelessWidget {
           ],
         ),
       );
-    } else if (layoutType == LAYOUT_TYPE.rtl) {
+    } else if (layoutType == LayoutType.rtl) {
       titleContent = Padding(
         padding: const EdgeInsets.only(
           top: 10,

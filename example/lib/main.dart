@@ -45,7 +45,7 @@ class BlurryDemo extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   Blurry.info(
-                    layoutType: LAYOUT_TYPE.rtl,
+                    layoutType: LayoutType.rtl,
                     title: 'المعلومات ضبابية',
                     description:
                         'اربك تكست هو اول موقع يسمح لزواره الكرام بتحويل الكتابة العربي الى كتابة مفهومة',
@@ -174,11 +174,9 @@ class BlurryDemo extends StatelessWidget {
                     description:
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                     confirmButtonText: 'Confirm',
-                    onConfirmButtonPressed: () {
-                      print(textController.text);
-                    },
+                    onConfirmButtonPressed: () {},
                     inputLabel: 'Code',
-                    defaultTheme: DEFAULT_THEMES.info,
+                    defaultTheme: DefaultThemes.info,
                     inputTextController: textController,
                     textInputType: TextInputType.number,
                   ).show(context);
@@ -201,10 +199,9 @@ class BlurryDemo extends StatelessWidget {
                     confirmButtonText: 'Confirm',
                     onConfirmButtonPressed: () {
                       Navigator.pop(context);
-                      print(textController.text);
                     },
                     inputLabel: 'Password',
-                    defaultTheme: DEFAULT_THEMES.info,
+                    defaultTheme: DefaultThemes.info,
                     inputTextController: textController,
                   ).show(context);
                 },

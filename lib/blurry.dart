@@ -60,7 +60,7 @@ class Blurry extends StatefulWidget {
     this.inputLabel,
     this.inputTextController,
   }) : super(key: key) {
-    defaultTheme = DEFAULT_THEMES.info;
+    defaultTheme = DefaultThemes.info;
     _dialogType = TYPE.info;
     initializeValuesBlurryPopup();
   }
@@ -86,7 +86,7 @@ class Blurry extends StatefulWidget {
     this.inputLabel,
     this.inputTextController,
   }) : super(key: key) {
-    defaultTheme = DEFAULT_THEMES.success;
+    defaultTheme = DefaultThemes.success;
     _dialogType = TYPE.info;
     initializeValuesBlurryPopup();
   }
@@ -112,7 +112,7 @@ class Blurry extends StatefulWidget {
     this.inputLabel,
     this.inputTextController,
   }) : super(key: key) {
-    defaultTheme = DEFAULT_THEMES.error;
+    defaultTheme = DefaultThemes.error;
     _dialogType = TYPE.info;
     initializeValuesBlurryPopup();
   }
@@ -136,7 +136,7 @@ class Blurry extends StatefulWidget {
     this.barrierColor,
     this.layoutType = DefaultBlurryValues.defaultLayoutType,
   }) : super(key: key) {
-    defaultTheme = DEFAULT_THEMES.warning;
+    defaultTheme = DefaultThemes.warning;
     _dialogType = TYPE.info;
     initializeValuesBlurryPopup();
   }
@@ -293,8 +293,8 @@ class Blurry extends StatefulWidget {
   /// - ltr
   /// - rtl
   /// - center
-  /// by default is [LAYOUT_TYPE.ltr]
-  final LAYOUT_TYPE layoutType;
+  /// by default is [LayoutType.ltr]
+  final LayoutType layoutType;
 
   /// the input label string, required when using the input constructor
   late String? inputLabel;
@@ -323,7 +323,7 @@ class Blurry extends StatefulWidget {
   /// warning
   /// }
   /// ```
-  late DEFAULT_THEMES? defaultTheme;
+  late DefaultThemes? defaultTheme;
 
   /// indicate whether display visibility eye icon on password fields
   /// available only when using `Blurry.password` constructor

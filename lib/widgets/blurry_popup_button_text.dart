@@ -5,7 +5,7 @@ class BlurryPopupButtonText extends StatelessWidget {
   final String text;
   final Color textColor;
   final TextStyle? buttonTextStyle;
-  final LAYOUT_TYPE layoutType;
+  final LayoutType layoutType;
 
   const BlurryPopupButtonText({
     Key? key,
@@ -28,9 +28,9 @@ class BlurryPopupButtonText extends StatelessWidget {
               color: textColor,
               fontWeight: FontWeight.bold,
             ),
-      textAlign: layoutType == LAYOUT_TYPE.center
+      textAlign: layoutType == LayoutType.center
           ? TextAlign.center
-          : layoutType == LAYOUT_TYPE.rtl
+          : layoutType == LayoutType.rtl
               ? TextAlign.end
               : TextAlign.start,
     );
